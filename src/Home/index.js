@@ -58,8 +58,8 @@ function App() {
                 <div id="navbar-items">
                     <ul>
                    
-                        <li><Link to="Home" data-category="home">Home</Link></li>
-                        <li><Link to="/World" data-category="world">World</Link></li>
+                        <li><Link to="/" data-category="home">Home</Link></li>
+                        <li><Link to="/Wor" data-category="world">World</Link></li>
                         <li><Link to="/nation" data-category="nation">Nation</Link></li>
                         <li><Link to="/business" data-category="business">Business</Link></li>
                         <li><Link to="/technology" data-category="technology">Technology</Link></li>

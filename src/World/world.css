@@ -138,7 +138,7 @@
 }
 
 
-.img {
+.image {
     width: 100%;
     max-width: 500px;
     height: auto;
@@ -161,7 +161,7 @@
     text-align: center;
 }
 
-.readmore {
+.readmore-button {
     font-size: 1.1vw;
     margin-top: 1vw;
 }
