@@ -1,0 +1,395 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+
+}
+
+#search-bar {
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: -1%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+#search-bar ul {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* search-bar Bar */
+.search-bar {
+    flex-grow: 1;
+}
+
+#search-bar input {
+    padding: 10px;
+    width: 16vw;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: black;
+}
+
+#search-bar input::placeholder {
+    color: black;
+}
+
+#search-bar h1 {
+    font-size: 2vw;
+    margin-left: 26vw;
+    padding: 2%;
+}
+
+.logo-name a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.logo-namepart {
+    display: block;
+    text-decoration: none !important;
+    margin-right: 18vw;
+    color: black !important;
+}
+
+/* Sign In */
+.sign_in {
+    color: black;
+    font-weight: 500;
+    font-size: 1.2vw;
+    margin-left: 15vw;
+    text-decoration: none;
+}
+
+/* Subscribe Button */
+.subscribe {
+    background-color: #c00;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1vw;
+    text-decoration: none;
+}
+
+.subscribe:hover {
+    background-color: #900;
+}
+
+#navbar_items ul {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    display: flex;
+    list-style: none;
+    gap: 6%;
+    padding: 1%;
+}
+
+#navbar_items a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2vw;
+
+}
+
+#news_container {
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+#news_container h1 {
+    text-align: center;
+    font-size: 1.8vw;
+}
+
+.title_hr {
+    margin-left: 40%;
+    width: 20%;
+    border: 1px solid red;
+    /* Set HR color */
+}
+
+#headlines_container {
+    display: grid;
+    gap: 2vw;
+    /* Reduce gap for better alignment */
+    padding: 2vw;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.headline_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center align elements */
+    justify-content: space-between;
+    padding: 1vw;
+}
+
+
+.img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    /* Ensures images maintain proper aspect ratio */
+}
+
+.news-title {
+    font-size: 1.8vw;
+    margin-top: 1vh;
+}
+
+.description {
+    font-size: 1vw;
+    margin-top: 0.5vw;
+    padding: 0 1vw;
+    /* Add some padding for readability */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.readmore {
+    font-size: 1.1vw;
+    margin-top: 1vw;
+}
+
+.readmore-button a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}
+
+hr {
+    width: 80%;
+    margin-top: 1vw;
+}
+
+
+/* To ensure equal alignment in the grid items */
+
+#search-bar-container {
+    display: grid;
+    gap: 5vw;
+    padding: 2vw;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center align elements */
+    justify-content: space-between;
+    padding: 1vw;
+}
+
+
+.img-news {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    /* Ensures images maintain proper aspect ratio */
+}
+
+.h2-news {
+    font-size: 1.8vw;
+    margin-top: 1vh;
+    text-align: center;
+}
+
+.p-news {
+    font-size: 1vw;
+    margin-top: 0.5vw;
+    padding: 0 1vw;
+    /* Add some padding for readability */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.readmore-news {
+    font-size: 1.1vw;
+    margin-top: 1vw;
+}
+
+.readmore-news a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}
+
+hr {
+    width: 80%;
+    margin-top: 1vw;
+}
+
+
+
+/* carousal */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+img {
+    width: 100%;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    transition: 0.6s ease;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: gray;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.dots {
+    text-align: center;
+}
+
+/* .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #f0eaea;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  } */
+
+.active {
+    background-color: gray;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.news h2 {
+    font-size: large;
+}
+
+/* Carousel Styles */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+.slidepicture {
+    position: relative;
+    cursor: pointer;
+
+}
+
+.slidepicture img {
+
+    width: 100%;
+    height: 90vh;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: font-size 0.5s ease;
+
+}
+
+.slidepicture:hover .caption {
+    font-size: 2em;
+
+}
+
+/* .dots {
+  display: none;
+} */
+
+
+#footer {
+    background-color: black;
+    width: 100%;
+    height: 10vh;
+}
+
+
+.navbar-items-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+
+
+}
+
+.navbar-items-footer ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.navbar-items-footer a {
+    margin-top: 2%;
+    margin-left: 2%;
+    text-decoration: none;
+    color: white;
+}
+
+.footer-logo-name {
+    color: white;
+    align-items: center;
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 1%;
+
+}
+
+.footer-copyright {
+    color: white;
+    text-align: right;
+    margin-right: 2%;
+    margin-top: -2%;
+}

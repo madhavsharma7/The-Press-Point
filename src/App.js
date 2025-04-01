@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home/index";
+import World from "./World/Wo";
 
-import Home from "./Home/index"
+// Correct the path based on your project structure
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
   return (
-    <div id="container">
-      <Home />
-    </div>
 
-    // <BrowserRouter>
-    //   <div className='App'>
-    //     <Routes>
-    //       <Route  element={<Home />} />
-      
-    //     </Routes>
-    //   </div>
-    // </BrowserRouter>
+    // <div className="App">
+    //   <Home />
+    // </div>
 
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          {/* Define your routes */}
+          <Route path="/" element={<Home/>} /> 
+          <Route path="/Wo" element={<World />}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
 
   );
 }

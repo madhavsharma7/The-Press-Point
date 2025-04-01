@@ -1,15 +1,15 @@
 @media screen and (max-width: 600px) {
-    #search input[type="text"] {
+    #search-bar input[type="text"] {
         width: 25vw;
         height: 2.5vw;
     }
 
-    .logo a {
+    .logo-name a {
         margin-left: -15vw;
         font-size: 4vw;
     }
 
-    .logo-part {
+    .logo-name-part {
         margin-left: -15vw;
         font-size: 4vw;
     }
@@ -76,7 +76,7 @@
         font-size: 3vw;
     }
 
-    #search-container {
+    #search-bar-container {
         margin-top: 5%;
         grid-template-columns: repeat(2, 2fr);
         gap: 8%;
@@ -113,7 +113,7 @@
         display: none;
     }
 
-    .footer-logo {
+    .footer-logo-name {
         font-size: 4.5vw;
         margin-top: 2%;
     }
