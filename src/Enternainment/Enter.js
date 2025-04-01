@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./world.css";
+import "./Enter.css";
 import "./media.css";
 import { Link } from "react-router-dom";
 

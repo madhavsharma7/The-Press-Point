@@ -60,13 +60,13 @@ function App() {
                    
                         <li><Link to="/" data-category="home">Home</Link></li>
                         <li><Link to="/Wor" data-category="world">World</Link></li>
-                        <li><Link to="/nation" data-category="nation">Nation</Link></li>
-                        <li><Link to="/business" data-category="business">Business</Link></li>
-                        <li><Link to="/technology" data-category="technology">Technology</Link></li>
-                        <li><Link to="/entertainment" data-category="entertainment">Entertainment</Link></li>
-                        <li><Link to="/sports" data-category="sports">Sports</Link></li>
-                        <li><Link to="/science" data-category="science">Science</Link></li>
-                        <li><Link to="/health" data-category="health">Health</Link></li>
+                        <li><Link to="/International" data-category="nation">Nation</Link></li>
+                        <li><Link to="/Bus" data-category="business">Business</Link></li>
+                        <li><Link to="/Tech" data-category="technology">Technology</Link></li>
+                        <li><Link to="/Enter" data-category="entertainment">Entertainment</Link></li>
+                        <li><Link to="/Sports" data-category="sports">Sports</Link></li>
+                        <li><Link to="/Science" data-category="science">Science</Link></li>
+                        <li><Link to="/Health" data-category="health">Health</Link></li>
                        
                     </ul>
                 </div>

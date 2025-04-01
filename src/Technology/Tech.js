@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./world.css";
+import "./Tech.css";
 import "./media.css";
 import { Link } from "react-router-dom";
 
-// https://gnews.io/api/v4/top-headlines?category=business&apikey=${API_KEY}
+// https://gnews.io/api/v4/top-headlines?category=technology&apikey=${API_KEY}
 
 // Replace with your actual API key
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
