@@ -46,11 +46,11 @@ function App() {
                             </div>
                             <div>
                                 <li>
-                                    <a className="sign-in" href="./Login/index.html">Sign in</a>
+                                    <Link className="sign-in" to="/Login" >Sign in</Link>
                                 </li>
                             </div>
                             <li>
-                                <a className="sub" href="./Subscribe/index.html">Subscribe</a>
+                                <Link className="sub" to="Subscribe">Subscribe</Link>
                             </li>
                         </ul>
                     </nav>

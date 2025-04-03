@@ -9,7 +9,8 @@ import Nation from "./Nation/International.js"
 import Science_Sector from "./Science/Science.js"
 import Sports_Sector from "./Sports/Sports.js"
 import Technology from "./Technology/Tech.js"
-
+// import Signin from "./Signin/login.js"
+// import Subscribe from "./Sub/Sub.js"
 // Correct the path based on your project structure
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <div className="App">
 
         <Routes>
+
           {/* Define your routes */}
           <Route path="/" element={<Home />} />
           <Route path="/Wor" element={<World />} />
@@ -33,6 +35,8 @@ function App() {
           <Route path="/Science" element={<Science_Sector />} />
           <Route path="/Sports" element={<Sports_Sector />} />
           <Route path="/Tech" element={<Technology />} />
+          {/* <Route path="/Login" element={<Signin />} /> */}
+          {/* <Route path="/Subscribe" element={<Subscribe />} /> */}
         </Routes>
 
       </div>

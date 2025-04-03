@@ -1,0 +1,31 @@
+@media screen and (max-width: 600px) {
+
+    .subscribe {
+        width: 90vw;
+    }
+
+    .subscribe__copy {
+        width: 95%;
+    }
+
+    .form__email {
+        width: 80%;
+        margin-left: 3%;
+    }
+
+    .form__button {
+        width: 40%;
+        height: 40%;
+        margin-top: 5%;
+        margin-left: 2%;
+    }
+
+    .notice input {
+        margin-left: 2vw;
+    }
+
+    .notice__copy {
+        margin-left: 2%;
+    }
+
+}
