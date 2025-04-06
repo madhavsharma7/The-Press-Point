@@ -1,28 +1,34 @@
 @media screen and (max-width: 600px) {
-    #search-bar input[type="text"] {
-        width: 25vw;
-        height: 2.5vw;
+    .navbar {
+        margin-top: 5%;
     }
 
-    .logo-name a {
+
+    #search input[type="text"] {
+        width: 25vw;
+        height: 2.5vw;
+        margin-left: -10%;
+    }
+
+    .logo a {
         margin-left: -15vw;
         font-size: 4vw;
     }
 
-    .logo-name-part {
+    .logo-part {
         margin-left: -15vw;
         font-size: 4vw;
     }
 
     .sign-in {
-        margin-left: -2vw;
+        margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
         font-size: 3vw;
-        margin-left: 10%;
+        margin-left: 2%;
     }
 
     /* #navbar-items ul {
@@ -33,15 +39,13 @@
     } */
 
     #navbar-items a {
-        font-size: 2.2vw;
-
-        margin-left: -2.5%;
-        height: 5vh;
+        margin-left: -3vw;
+        font-size: 2vw;
+        font-weight: 500;
     }
 
     #news-container h1 {
         font-size: 4vw;
-
     }
 
     .title-hr {
@@ -51,7 +55,6 @@
 
     #headlines-container {
         grid-template-columns: repeat(2, 2fr);
-
         gap: 8%;
         margin-top: 5%;
     }
@@ -59,7 +62,6 @@
     .img {
         width: 100%;
         height: 18vh;
-
     }
 
     .title {
@@ -76,7 +78,7 @@
         font-size: 3vw;
     }
 
-    #search-bar-container {
+    #search-container {
         margin-top: 5%;
         grid-template-columns: repeat(2, 2fr);
         gap: 8%;
@@ -107,13 +109,14 @@
 
     #footer {
         margin-top: 25vh;
+        
     }
 
     .navbar-items-footer a {
         display: none;
     }
 
-    .footer-logo-name {
+    .footer-logo {
         font-size: 4.5vw;
         margin-top: 2%;
     }

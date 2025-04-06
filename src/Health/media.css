@@ -14,23 +14,22 @@
         font-size: 4vw;
     }
 
-    .sign-in {
+    /* .sign-in {
         margin-left: -2vw;
         font-size: 3vw;
         font-weight: 600;
-    }
+    } */
 
     .sub {
         font-size: 3vw;
         margin-left: 10%;
     }
 
-    #navbar-items a {
+    /* #navbar-items a {
         font-size: 2.2vw;
-
         margin-left: -2.5%;
         height: 5vh;
-    }
+    } */
 
     #news-container h1 {
         font-size: 4vw;
