@@ -50,7 +50,7 @@ function App() {
                                 </li>
                             </div>
                             <li>
-                                <Link className="sub" to="Subscribe">Subscribe</Link>
+                                <Link className="sub" to="Sub">Subscribe</Link>
                             </li>
                         </ul>
                     </nav>

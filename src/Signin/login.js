@@ -26,6 +26,7 @@ const AuthContainer = () => {
   }, []);
 
   return (
+    <div id="main">
     <div ref={containerRef} className={isActive ? "container active" : "container"}>
       <div className="form-container sign-up">
         <form>
@@ -75,6 +76,7 @@ const AuthContainer = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

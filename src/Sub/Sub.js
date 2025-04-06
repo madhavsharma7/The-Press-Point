@@ -41,6 +41,7 @@ const Subscribe = () => {
     };
 
     return (
+        <div id="main">
         <div className="subscribe">
             <h2 className="subscribe__title">Let's keep in touch</h2>
             <p className="subscribe__copy">
@@ -67,6 +68,7 @@ const Subscribe = () => {
                     I agree to my email address being stored and used to receive monthly newsletters.
                 </span>
             </div>
+        </div>
         </div>
     );
 };

@@ -7,7 +7,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body {
+#main {
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -15,7 +15,7 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-}
+} 
 
 .container {
     background-color: #fff;
@@ -90,6 +90,7 @@ body {
     position: absolute;
     top: 0;
     height: 100%;
+    margin-left: 0;
     transition: all 0.6s ease-in-out;
 }
 
@@ -134,6 +135,7 @@ body {
 
 .social-icons {
     margin: 20px 0;
+    
 }
 
 .social-icons a {
