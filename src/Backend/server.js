@@ -4,7 +4,7 @@ const cors = require('cors');
 const User = require('./models/User');
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' })); // Allow frontend origin
 app.use(express.json());
 
 // MongoDB Connection
@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost:27017/signup-demo', {
 
 // Signup Route
 app.post('/signup', async (req, res) => {
+    console.log('Signup request received:', req.body);
     const { name, email, password } = req.body;
 
     try {
@@ -28,10 +29,12 @@ app.post('/signup', async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
+        console.error('Signup error:', err);
         res.status(500).json({ message: 'Something went wrong' });
     }
 });
 
+// Start Server
 app.listen(5000, () => {
     console.log('Server running on http://localhost:5000');
 });
