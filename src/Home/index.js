@@ -28,6 +28,7 @@ function App() {
     }, []);
 
     return (
+      
         <div id="container">
             {/* Navbar */}
             <div className="navbar">
@@ -119,6 +120,7 @@ function App() {
                 </div>
             </div>
         </div>
+       
     );
 }
 

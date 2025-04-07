@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Busi.css";
-import "./media-business.css"
+import "./media-busi.css"
 import { Link } from "react-router-dom";
 
 // https://gnews.io/api/v4/top-headlines?category=business&apikey=${API_KEY}

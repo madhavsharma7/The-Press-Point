@@ -360,19 +360,6 @@ img {
     margin-top: 5%;
 }
 
-.navbar-items-footer ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-}
-
-.navbar-items-footer a {
-    margin-top: 2%;
-    margin-left: 2%;
-    text-decoration: none;
-    color: white;
-}
 
 .footer-logo-name {
     color: white;
