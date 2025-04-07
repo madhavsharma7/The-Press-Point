@@ -3,7 +3,6 @@
     margin: 0;
     box-sizing: border-box;
 
-
 }
 
 #search-bar {
@@ -60,7 +59,7 @@
 }
 
 /* Sign In */
-.sign_in {
+.signin {
     color: black;
     font-weight: 500;
     font-size: 1.2vw;
@@ -69,7 +68,7 @@
 }
 
 /* Subscribe Button */
-.subscribe {
+.sub {
     background-color: #c00;
     color: white;
     padding: 10px 15px;
@@ -349,7 +348,7 @@ img {
 } */
 
 
-#footer {
+#footers {
     background-color: black;
     width: 100%;
     height: 10vh;

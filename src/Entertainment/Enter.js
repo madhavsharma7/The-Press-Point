@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 // Replace with your actual API key
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
-const API_URL = ``;
+const API_URL = `https://gnews.io/api/v4/top-headlines?category=enternainment&apikey=${API_KEY}`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);

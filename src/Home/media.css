@@ -1,11 +1,11 @@
 @media screen and (max-width: 600px) {
-    .navbar {
-        margin-top: 5%;
+
+    #container{
+        margin-top: -5%;
     }
 
-
     #search input[type="text"] {
-        width: 25vw;
+        width: 30vw;
         height: 2.5vw;
         margin-left: -10%;
     }
@@ -21,26 +21,19 @@
     }
 
     .sign-in {
-        margin-left: -6vw;
+        margin-left: -5%;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
         font-size: 3vw;
-        margin-left: 2%;
+        margin-left: 10vw;
+        padding: 8px 10px;
     }
 
-    /* #navbar-items ul {
-        display: grid;
-        grid-template-columns: repeat(4, 4fr);
-        margin-top: 2vh;
-        
-    } */
-
-    #navbar-items a {
-        margin-left: -3vw;
-        font-size: 2vw;
+    #navbar-items :Link {
+        font-size: 1.5vw;
         font-weight: 500;
     }
 
@@ -109,7 +102,7 @@
 
     #footer {
         margin-top: 25vh;
-        
+
     }
 
     .navbar-items-footer a {

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./world.css";
-import "./media.css";
+import "./media.css"
 import { Link } from "react-router-dom";
 
 // https://gnews.io/api/v4/top-headlines?category=world&apikey=${API_KEY}
 
 // Replace with your actual API key
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
-const API_URL = ``;
+const API_URL = `https://gnews.io/api/v4/top-headlines?category=world&apikey=${API_KEY}`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
@@ -47,7 +47,7 @@ function Headlines() {
                                 </li>
                             </div>
                             <div>
-                                <li><Link className="sign-in" to="/login">Sign in</Link></li>
+                                <li><Link className="signin" to="/login">Sign in</Link></li>
                             </div>
                             <li><Link className="sub" to="/subscribe">Subscribe</Link></li>
                         </ul>
@@ -102,7 +102,7 @@ function Headlines() {
             </main>
 
             {/* Footer */}
-            <div id="footer">
+            <div id="footers">
                 <div className="navbar-items-footer">
                     <p className="footer-logo">the rish news.</p>
                     <p className="footer-copyright">Copyright &copy; 2025 the rish news. All Rights Reserved</p>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Busi.css";
 import "./media.css";
+// import "../Business/media.css"
 import { Link } from "react-router-dom";
 
 // https://gnews.io/api/v4/top-headlines?category=business&apikey=${API_KEY}
 
 // Replace with your actual API key
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
-const API_URL = ``;
+const API_URL = `https://gnews.io/api/v4/top-headlines?category=business&apikey=${API_KEY}`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);

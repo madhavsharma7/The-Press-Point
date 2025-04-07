@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 // Replace with your actual API key
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
-const API_URL = ``;
+const API_URL = `https://gnews.io/api/v4/top-headlines?category=health&apikey=${API_KEY}`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
@@ -49,7 +49,7 @@ function Headlines() {
                             <div>
                                 <li><Link className="sign-in" to="/login">Sign in</Link></li>
                             </div>
-                            <li><Link className="sub" to="/subscribe">Subscribe</Link></li>
+                            <li><Link className="subscribe" to="/subscribe">Subscribe</Link></li>
                         </ul>
                     </nav>
                 </header>
