@@ -238,44 +238,31 @@ hr {
 }
 
 
-#footer {
+#footers-home {
     background-color: black;
     width: 100%;
     height: 20%;
 
 }
 
-.navbar-items-footer {
+.navbar-items-footers-home {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
 
-.navbar-items-footer ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-}
-
-.navbar-items-footer a {
-    margin-top: 2%;
-    margin-left: 2%;
-    text-decoration: none;
-    color: white;
-}
-
-.footer-logo {
+.footers-logo-home {
     color: white;
     align-items: center;
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.8vw;
     margin-top: 1%;
 }
 
-.footer-copyright {
+.footers-copyright-home {
     color: white;
     text-align: right;
     margin-right: 2%;
-    margin-top: 1%;
+    margin-top: -1.6%;
+    padding-bottom: 2%;
 }

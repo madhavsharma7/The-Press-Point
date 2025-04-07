@@ -1,11 +1,9 @@
 @media screen and (max-width: 600px) {
-    /* .navbar {
-        margin-top: 2%;
-    } */
 
-   #container {
-       margin-top: -5%;
-   }
+    #container {
+        margin-top: -5%;
+    }
+
     #search input[type="text"] {
         width: 25vw;
         height: 2.5vw;
@@ -13,24 +11,24 @@
     }
 
     .logo a {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .logo-part {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .signin {
-        margin-left: -8vw;
+        margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
         font-size: 3vw;
-        margin-left: 10vw;
+        margin-right: -3vw;
         padding: 8px 10px;
     }
 
@@ -102,20 +100,17 @@
         font-size: 3vw;
     }
 
-    #footers {
-        margin-top: 97vh;
+    #foot {
+        margin-top: 90vh;
+
     }
 
-    .navbar-items-footer a {
-        display: none;
-    }
-
-    .footer-logo {
+    .foot-logo {
         font-size: 4.5vw;
         margin-top: 2%;
     }
 
-    .footer-copyright {
+    .foot-copyright {
         margin-top: 2%;
         text-align: center;
         font-size: 2.5vw;

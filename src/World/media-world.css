@@ -1,7 +1,8 @@
 @media screen and (max-width: 600px) {
+
     #container {
-            margin-top: -5%;
-        }
+        margin-top: -5%;
+    }
 
     #search input[type="text"] {
         width: 25vw;
@@ -10,25 +11,26 @@
     }
 
     .logo a {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .logo-part {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
-    .sign-in {
+    .signin {
         margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
-    /* .sub {
+    .sub {
         font-size: 3vw;
-        margin-left: 2%;
-    } */
+        margin-right: -3vw;
+        padding: 8px 10px;
+    }
 
     #navbar-items :Link {
         font-size: 1.5vw;
@@ -98,21 +100,16 @@
         font-size: 3vw;
     }
 
-    #footer {
-        margin-top: 25vh;
-
+    #footers {
+        margin-top: 90vh;
     }
 
-    .navbar-items-footer a {
-        display: none;
-    }
-
-    .footer-logo {
+    .footers-logo {
         font-size: 4.5vw;
         margin-top: 2%;
     }
 
-    .footer-copyright {
+    .footers-copyright {
         margin-top: 2%;
         text-align: center;
         font-size: 2.5vw;

@@ -1,34 +1,34 @@
 @media screen and (max-width: 600px) {
 
-    #container{
+    #container {
         margin-top: -5%;
     }
 
     #search input[type="text"] {
-        width: 30vw;
+        width: 25vw;
         height: 2.5vw;
         margin-left: -10%;
     }
 
     .logo a {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .logo-part {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .sign-in {
-        margin-left: -5%;
+        margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
         font-size: 3vw;
-        margin-left: 10vw;
+        margin-right: -3vw;
         padding: 8px 10px;
     }
 
@@ -100,23 +100,21 @@
         font-size: 3vw;
     }
 
-    #footer {
-        margin-top: 25vh;
+    #footers {
+        margin-top: 90vh;
 
     }
 
-    .navbar-items-footer a {
-        display: none;
-    }
-
-    .footer-logo {
+    .footers-logo-home {
         font-size: 4.5vw;
         margin-top: 2%;
     }
 
-    .footer-copyright {
+    .footers-copyright-home {
         margin-top: 2%;
         text-align: center;
         font-size: 2.5vw;
+        padding-bottom: 2%;
     }
+
 }

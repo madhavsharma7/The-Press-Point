@@ -67,7 +67,7 @@
 }
 
 /* Subscribe Button */
-.subscribe {
+.sub {
     background-color: #c00;
     color: white;
     padding: 10px 15px;
@@ -347,7 +347,7 @@ img {
 } */
 
 
-#footer {
+#footer-first {
     background-color: black;
     width: 100%;
     height: 10vh;
@@ -358,8 +358,6 @@ img {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
-
-
 }
 
 .navbar-items-footer ul {
@@ -380,14 +378,13 @@ img {
     color: white;
     align-items: center;
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.8vw;
     margin-top: 1%;
-
 }
 
-.footer-copyright {
+.footer-copyrights {
     color: white;
     text-align: right;
     margin-right: 2%;
-    margin-top: -2%;
+    margin-top: -1.8%;
 }

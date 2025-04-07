@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./health.css";
-import "./media.css";
+import "./media-health.css"
 import { Link } from "react-router-dom";
 
 // https://gnews.io/api/v4/top-headlines?category=health&apikey=${API_KEY}
@@ -29,7 +29,7 @@ function Headlines() {
                 console.error("Error fetching headlines:", error);
                 setError("Failed to load headlines. Please try again later.");
             });
-    }, []);
+    }, []); // Runs once when component mounts
 
     return (
         <div id="container">
@@ -42,29 +42,30 @@ function Headlines() {
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <Link to="/">the rish <span className="logo-part">news.</span></Link>
+                                        <Link to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>
                             <div>
-                                <li><Link className="sign-in" to="/login">Sign in</Link></li>
+                                <li><Link className="signin" to="/login">Sign in</Link></li>
                             </div>
-                            <li><Link className="subscribe" to="/subscribe">Subscribe</Link></li>
+                            <li><Link className="sub" to="/subscribe">Subscribe</Link></li>
                         </ul>
                     </nav>
                 </header>
 
                 <div id="navbar-items">
                     <ul>
+
                         <li><Link to="/" data-category="home">Home</Link></li>
-                        <li><Link to="/World" data-category="world">World</Link></li>
-                        <li><Link to="/nation" data-category="nation">Nation</Link></li>
-                        <li><Link to="/business" data-category="business">Business</Link></li>
-                        <li><Link to="/technology" data-category="technology">Technology</Link></li>
-                        <li><Link to="/entertainment" data-category="entertainment">Entertainment</Link></li>
-                        <li><Link to="/sports" data-category="sports">Sports</Link></li>
-                        <li><Link to="/science" data-category="science">Science</Link></li>
-                        <li><Link to="/health" data-category="health">Health</Link></li>
+                        <li><Link to="/Wor" data-category="world">World</Link></li>
+                        <li><Link to="/International" data-category="nation">Nation</Link></li>
+                        <li><Link to="/Bus" data-category="business">Business</Link></li>
+                        <li><Link to="/Tech" data-category="technology">Technology</Link></li>
+                        <li><Link to="/Enter" data-category="entertainment">Entertainment</Link></li>
+                        <li><Link to="/Sports" data-category="sports">Sports</Link></li>
+                        <li><Link to="/Science" data-category="science">Science</Link></li>
+                        <li><Link to="/Health" data-category="health">Health</Link></li>
                     </ul>
                 </div>
             </div>
@@ -102,10 +103,10 @@ function Headlines() {
             </main>
 
             {/* Footer */}
-            <div id="footer">
-                <div className="navbar-items-footer">
-                    <p className="footer-logo">the rish news.</p>
-                    <p className="footer-copyright">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
+            <div id="footer-health">
+                <div className="navbar-items-footer-health">
+                    <p className="footer-logo-health">The Press Point</p>
+                    <p className="footer-copyright-health">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
                 </div>
             </div>
         </div>

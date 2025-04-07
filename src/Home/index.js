@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import "./media.css";
+import "./media-home.css";
 
 // https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}
 // https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=5&apikey=${apiKey}
@@ -39,7 +39,7 @@ function App() {
                                 <li>
                                     <h1 className="logo">
                                         <a href="index.html">
-                                            the rish <span className="logo-part">news.</span>
+                                            The Press <span className="logo-part">Point</span>
                                         </a>
                                     </h1>
                                 </li>
@@ -112,10 +112,10 @@ function App() {
             </main>
 
             {/* Footer */}
-            <div id="footer">
-                <div className="navbar-items-footer">
-                    <p className="footer-logo">the rish news.</p>
-                    <p className="footer-copyright">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
+            <div id="footers-home">
+                <div className="navbar-items-footers-home">
+                    <p className="footers-logo-home">The Press Point</p>
+                    <p className="footers-copyright-home">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
                 </div>
             </div>
         </div>

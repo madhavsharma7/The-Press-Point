@@ -11,24 +11,24 @@
     }
 
     .logo a {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
     .logo-part {
-        margin-left: -15vw;
+        margin-left: -18vw;
         font-size: 4vw;
     }
 
-    .signin {
-        margin-left: -8vw;
+    .sign-in {
+        margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
         font-size: 3vw;
-        margin-left: 4vw;
+        margin-right: -3vw;
         padding: 8px 10px;
     }
 
@@ -100,21 +100,17 @@
         font-size: 3vw;
     }
 
-    #footers {
+    #footers-first {
         margin-top: 90vh;
 
     }
 
-    .navbar-items-footer a {
-        display: none;
-    }
-
-    .footer-logo {
+    .footer-logo-name {
         font-size: 4.5vw;
         margin-top: 2%;
     }
 
-    .footer-copyright {
+   .footer-copyrights {
         margin-top: 2%;
         text-align: center;
         font-size: 2.5vw;
