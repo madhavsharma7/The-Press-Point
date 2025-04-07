@@ -6,6 +6,12 @@
 
     .subscribe__copy {
         width: 95%;
+        font-size: 3.5vw;
+    }
+
+    .form input {
+        width: 95%;
+        font-size: 4vw;
     }
 
     .form__email {
@@ -18,6 +24,7 @@
         height: 40%;
         margin-top: 5%;
         margin-left: 2%;
+        font-size: 4vw;
     }
 
     .notice input {
@@ -26,6 +33,7 @@
 
     .notice__copy {
         margin-left: 2%;
+        font-size: 3vw;
     }
 
 }

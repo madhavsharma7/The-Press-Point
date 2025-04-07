@@ -1,0 +1,40 @@
+@media screen and (max-width: 600px) {
+
+    #container {
+        margin-top: -5%;
+    }
+
+    .container p {
+        font-size: 3vw;
+    }
+
+    .form-signin h1 {
+        font-size: 5vw;
+        margin-left: -8vw;
+    }
+
+    .forget {
+        font-size: 2vw;
+    }
+
+    .sign-in button[type="submit"] {
+        width: 110%;
+    }
+
+    .sign-up button {
+        font-size: 3vw;
+        width: 120%;
+    }
+
+    .hidden {
+        width: 110%;
+    }
+
+    .forget {
+        width: 120%;
+    }
+
+    .form-signin button {
+        width: 120%;
+    }
+}

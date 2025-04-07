@@ -105,7 +105,7 @@ function Headlines() {
             <div id="foote">
                 <div className="navbar-items-foote">
                     <p className="foote-logo">The Press Point</p>
-                    <p className="foote-copyright">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
+                    <p className="foote-copyright">Copyright &copy; 2025 The Press Point All Rights Reserved</p>
                 </div>
             </div>
         </div>

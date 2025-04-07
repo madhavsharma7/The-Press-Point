@@ -115,7 +115,7 @@ function App() {
             <div id="footers-home">
                 <div className="navbar-items-footers-home">
                     <p className="footers-logo-home">The Press Point</p>
-                    <p className="footers-copyright-home">Copyright &copy; 2025 the rish news. All Rights Reserved</p>
+                    <p className="footers-copyright-home">Copyright &copy; 2025 The Press Point All Rights Reserved</p>
                 </div>
             </div>
         </div>
