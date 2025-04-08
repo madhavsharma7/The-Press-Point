@@ -78,8 +78,8 @@
         gap: 8%;
     }
 
-    .latestnews {
-        margin-top: 42%;
+    .latest {
+        margin-top: 32vh;
     }
 
     .img-news {
@@ -101,8 +101,8 @@
         font-size: 3vw;
     }
 
-    #footers {
-        margin-top: 90vh;
+    #footers-home {
+        margin-top: 35vh;
 
     }
 

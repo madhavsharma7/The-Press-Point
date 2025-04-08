@@ -93,7 +93,7 @@ function App() {
                     )}
                 </div>
 
-                <h1 className="latestnews">Latest News</h1>
+                <h1 className="latest">Latest News</h1>
                 <hr className="title-hr" />
                 <div id="search-container">
                     {searchResults.length > 0 ? (
