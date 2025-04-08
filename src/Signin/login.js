@@ -93,6 +93,7 @@ const AuthContainer = () => {
               <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
               <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
             </div>
+            
             <span>or use your email and password</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />

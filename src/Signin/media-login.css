@@ -15,10 +15,35 @@
 
     .forget {
         font-size: 2vw;
+        width: 130%;
+    }
+
+    .sign-in span {
+        width: 100%;
+    }
+
+    .sign-in input[type="email"] {
+        width: 125%;
+    }
+
+    .sign-in input[type="password"] {
+        width: 125%;
     }
 
     .sign-in button[type="submit"] {
-        width: 110%;
+        width: 120%;
+    }
+
+    .sign-up input[type="text"] {
+        width: 120%;
+    }
+
+    .sign-up input[type="email"] {
+        width: 120%;
+    }
+
+    .sign-up input[type="password"] {
+        width: 120%;
     }
 
     .sign-up button {
@@ -28,10 +53,6 @@
 
     .hidden {
         width: 110%;
-    }
-
-    .forget {
-        width: 120%;
     }
 
     .form-signin button {
