@@ -46,16 +46,24 @@
 }
 
 .logo a{
+    
+    margin-left: -1vw;
     font-size: 1.6vw;
     color: black !important;
     text-decoration: none !important;
 }
 
 .logo-part {
+    margin-left: -1vw;
     display: block;
     text-decoration: none !important;
     margin-right: 18vw;
     color: black !important;
+}
+
+.username{
+    font-size: 1.5vw;
+    margin-left: 10vw;
 }
 
 /* Sign In */

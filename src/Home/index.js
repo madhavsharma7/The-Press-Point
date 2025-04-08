@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import "./media-home.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+
 
 // https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}
 // https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=5&apikey=${apiKey}
@@ -14,7 +17,7 @@ const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&
 function App() {
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-
+    const [user, setUser] = useState(null);
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
@@ -25,6 +28,12 @@ function App() {
             .then((response) => response.json())
             .then((data) => setSearchResults(data.articles || []))
             .catch((error) => console.error("Error fetching search results:", error));
+
+        // Get user from localStorage
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
     }, []);
 
     return (
@@ -45,7 +54,25 @@ function App() {
                             </div>
                             <div>
                                 <li>
-                                    <Link className="sign-in" to="/Login" >Sign in</Link>
+                                    {
+                                        user ? (
+                                            <span className="username">
+                                                Hi, {user.name}
+                                                <FontAwesomeIcon
+                                                    icon={faRightFromBracket}
+                                                    style={{ marginLeft: "10px", cursor: "pointer" }}
+                                                    title="Logout"
+                                                    onClick={() => {
+                                                        localStorage.removeItem("user"); // clear user
+                                                        window.location.reload(); // refresh to re-render navbar
+                                                    }}
+                                                    />
+                                                    </span>
+                                           
+                                        ) : (
+                                            <Link className="sign-in" to="/Login">Sign in</Link>
+                                        )
+                                    }
                                 </li>
                             </div>
                             <li>

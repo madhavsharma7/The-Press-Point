@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./login.css";
 import "./media-login.css";
+import { useNavigate } from 'react-router-dom';
 
 const AuthContainer = () => {
   const [isActive, setIsActive] = useState(false);
@@ -10,6 +11,11 @@ const AuthContainer = () => {
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+
+  // Login form state
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const navigate = useNavigate();
   const [message, setMessage] = useState('');
 
   const handleSignup = async (e) => {
@@ -34,8 +40,42 @@ const AuthContainer = () => {
         setSignupEmail('');
         setSignupPassword('');
         setIsActive(false);
+
+
       } else {
         setMessage(data.message || 'Signup failed');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('Error connecting to server');
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setMessage('');
+
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: loginEmail,
+          password: loginPassword,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage(data.message);
+        console.log('Logged in user:', data.user);
+        setLoginEmail('');
+        setLoginPassword('');
+        localStorage.setItem("user", JSON.stringify(data.user)); // Save user info
+        // 🔁 Redirect to home
+        navigate('/');
+      } else {
+        setMessage(data.message || 'Login failed');
       }
     } catch (err) {
       console.error(err);
@@ -51,10 +91,10 @@ const AuthContainer = () => {
           <form onSubmit={handleSignup}>
             <h1>Create Account</h1>
             <div className="social-icons">
-              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+              <a className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+              <a className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+              <a className="icon"><i className="fa-brands fa-github"></i></a>
+              <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
             </div>
             <span>or use your email for registration</span>
             <input
@@ -85,20 +125,32 @@ const AuthContainer = () => {
 
         {/* Sign In Form */}
         <div className="form-container sign-in">
-          <form>
+          <form onSubmit={handleLogin}>
             <h1>Sign In</h1>
             <div className="social-icons">
-              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+              <a className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+              <a className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+              <a className="icon"><i className="fa-brands fa-github"></i></a>
+              <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
             </div>
-            
             <span>or use your email and password</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+              required
+            />
             <a className="forget" href="#">Forget Your Password?</a>
             <button type="submit">Sign In</button>
+            {message && <p className="message">{message}</p>}
           </form>
         </div>
 
