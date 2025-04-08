@@ -14,7 +14,7 @@ const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&
 function App() {
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-   
+
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
@@ -28,7 +28,7 @@ function App() {
     }, []);
 
     return (
-      
+
         <div id="container">
             {/* Navbar */}
             <div className="navbar">
@@ -39,9 +39,7 @@ function App() {
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <a href="index.html">
-                                            The Press <span className="logo-part">Point</span>
-                                        </a>
+                                        <Link to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>
@@ -120,7 +118,7 @@ function App() {
                 </div>
             </div>
         </div>
-       
+
     );
 }
 

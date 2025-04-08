@@ -49,7 +49,7 @@ function Headlines() {
                             <div>
                                 <li><Link className="signin" to="/login">Sign in</Link></li>
                             </div>
-                            <li><Link className="sub" to="/subscribe">Subscribe</Link></li>
+                            <li><Link className="sub" to="/Sub">Subscribe</Link></li>
                         </ul>
                     </nav>
                 </header>
