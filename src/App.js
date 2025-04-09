@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home/index";
-import World from "./World/Wor.js";
+// import World from "./World/Wor.js";
 import Bus from "./Business/Busi.js";
 import Entertainment from "./Entertainment/Enter.js"; // Fixed typo
 import Health_Sector from "./Health/Health.js";
@@ -18,7 +18,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Wor" element={<World />} />
+          {/* <Route path="/Wor" element={<World />} /> */}
           <Route path="/Bus" element={<Bus />} />
           <Route path="/Enter" element={<Entertainment />} /> \
           <Route path="/Health" element={<Health_Sector />} />
