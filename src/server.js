@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./Backend/models/User');
+const User = require('./Backend/models/User'); // match folder/file case exactly
+
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:3000' }));
