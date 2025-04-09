@@ -8,7 +8,14 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 
-mongoose.connect('mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority&appName=Cluster0')
+// CORS - allow both local dev and production frontend
+app.use(cors({
+    origin: ['http://localhost:3000', process.env.FRONTEND_URL],
+    credentials: true
+}));
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
