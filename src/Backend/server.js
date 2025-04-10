@@ -1,9 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./models/User'); // ✅ CORRECT
-
-
+const User = require('../Backend/models/User'); // ✅ CORRECT
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:3000' }));
