@@ -1,17 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./User'); // ✅ FIXED
+const User = require('./User'); // Make sure User.js is in the same folder
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
+// CORS Configuration
 app.use(cors({
-    origin: ['http://localhost:3000', process.env.FRONTEND_URL],
-    credentials: true
+    origin: [
+        'http://localhost:3000', // local dev
+        'https://the-press-point.vercel.app', // vercel frontend
+    ],
+    credentials: true,
 }));
+
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority')
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority')
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
@@ -54,6 +64,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.listen(5000, () => {
-    console.log('Server running on http://localhost:5000');
+// Start Server
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT} or on Render`);
 });
