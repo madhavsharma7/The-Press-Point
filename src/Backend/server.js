@@ -11,15 +11,11 @@ const PORT = process.env.PORT || 5000;
 
 // CORS Configuration
 app.use(cors({
-    origin: [
-        'http://localhost:3000', // local dev
-        'https://the-press-point.vercel.app', // vercel frontend
-    ],
-    credentials: true,
+    origin: "https://the-press-point.vercel.app", // 👈 allow Vercel frontend
+    credentials: true
 }));
 
 app.use(express.json());
-
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority')
     .then(() => console.log('✅ MongoDB connected'))
