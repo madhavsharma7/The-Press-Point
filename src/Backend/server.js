@@ -1,20 +1,17 @@
-const express = require('express');
+\const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('../Backend/models/User'); // ✅ CORRECT
+const User = require('./models/User'); // ✅ FIXED
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
-app.use(express.json());
 
-// CORS - allow both local dev and production frontend
 app.use(cors({
     origin: ['http://localhost:3000', process.env.FRONTEND_URL],
     credentials: true
 }));
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority appName=Cluster0')
+mongoose.connect('mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority')
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
@@ -57,7 +54,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Start Server
 app.listen(5000, () => {
     console.log('Server running on http://localhost:5000');
 });
