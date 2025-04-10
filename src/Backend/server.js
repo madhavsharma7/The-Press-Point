@@ -8,7 +8,6 @@ const app = express();
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
-
 // CORS - allow both local dev and production frontend
 app.use(cors({
     origin: ['http://localhost:3000', process.env.FRONTEND_URL],
