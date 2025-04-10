@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./models/User'); // ✅ FIXED
+const User = require('./User'); // ✅ FIXED
 
 const app = express();
 
