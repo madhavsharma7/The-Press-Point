@@ -115,7 +115,7 @@ function App() {
                             </div>
                         ))
                     ) : (
-                        <p>No Headlines Available.</p>
+                        <p class="news-error">No Headlines Available.</p>
                     )}
                 </div>
 
@@ -144,7 +144,7 @@ function App() {
                             </div>
                         ))
                     ) : (
-                        <p>No Latest News Available</p>
+                        <p class="news-error">No Latest News Available</p>
                     )}
                 </div>
 

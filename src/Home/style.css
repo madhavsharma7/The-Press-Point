@@ -178,6 +178,12 @@
     font-weight: bold;
 }
 
+
+.news-error{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 hr {
     width: 80%;
     margin-top: -2vh;
