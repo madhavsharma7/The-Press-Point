@@ -138,26 +138,27 @@
 
 
 .image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
+    height: 100%;
+    width: auto;
     object-fit: cover;
-    /* Ensures images maintain proper aspect ratio */
+    display: block;
 }
 
 .news-title {
-    font-size: 1.8vw;
-    margin-top: 1vh;
+    font-size: 1.6vw;
+    margin-top: 2vh;
+    font-weight: 600;
+    line-height: 1.6em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .description {
     font-size: 1vw;
-    margin-top: 0.5vw;
+    margin-top: 1vw;
     padding: 0 1vw;
-    /* Add some padding for readability */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .readmore-button {
@@ -176,67 +177,6 @@ hr {
     margin-top: 1vw;
 }
 
-
-/* To ensure equal alignment in the grid items */
-
-#search-bar-container {
-    display: grid;
-    gap: 5vw;
-    padding: 2vw;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.news-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Center align elements */
-    justify-content: space-between;
-    padding: 1vw;
-}
-
-
-.img-news {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    object-fit: cover;
-    /* Ensures images maintain proper aspect ratio */
-}
-
-.h2-news {
-    font-size: 1.8vw;
-    margin-top: 1vh;
-    text-align: center;
-}
-
-.p-news {
-    font-size: 1vw;
-    margin-top: 0.5vw;
-    padding: 0 1vw;
-    /* Add some padding for readability */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.readmore-news {
-    font-size: 1.1vw;
-    margin-top: 1vw;
-}
-
-.readmore-news a {
-    text-decoration: none;
-    color: blue;
-    font-weight: bold;
-}
-
-hr {
-    width: 80%;
-    margin-top: 1vw;
-}
-
-
 #footers {
     background-color: black;
     width: 100%;
@@ -244,7 +184,7 @@ hr {
 }
 
 
-.navbar-items-footers{
+.navbar-items-footers {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
@@ -274,7 +214,7 @@ hr {
 
 }
 
-.footers-copyright{
+.footers-copyright {
     color: white;
     text-align: right;
     margin-right: 2%;

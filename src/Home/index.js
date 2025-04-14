@@ -12,7 +12,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category"
-const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}`;
+const HEADLINES_URL = ` https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}`;
 const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=5&apikey=${API_KEY}`
 
 function App() {
@@ -67,9 +67,9 @@ function App() {
                                                         localStorage.removeItem("user"); // clear user
                                                         window.location.reload(); // refresh to re-render navbar
                                                     }}
-                                                    />
-                                                    </span>
-                                           
+                                                />
+                                            </span>
+
                                         ) : (
                                             <Link className="sign-in" to="/Login">Sign in</Link>
                                         )
@@ -122,13 +122,24 @@ function App() {
                 <h1 className="latest">Latest News</h1>
                 <hr className="title-hr" />
                 <div id="search-container">
+
                     {searchResults.length > 0 ? (
                         searchResults.map((article, index) => (
                             <div key={index} className="news-item">
-                                <img className="img-news" src={article.image || "fallback-image.jpg"} alt={article.title} style={{ width: "100%", maxWidth: "500px" }} />
+                                <div className="img-container">
+                                    <img
+                                        className="img-news"
+                                        src={article.image || "fallback-image.jpg"}
+                                        alt={article.title}
+                                    />
+                                </div>
                                 <h2 className="h2-news">{article.title}</h2>
                                 <p className="p-news">{article.description}</p>
-                                <p className="readmore-news"><a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a></p>
+                                <p className="readmore-news">
+                                    <a href={article.url} target="_blank" rel="noopener noreferrer">
+                                        Read more
+                                    </a>
+                                </p>
                                 <hr />
                             </div>
                         ))
@@ -136,6 +147,7 @@ function App() {
                         <p>No Latest News Available</p>
                     )}
                 </div>
+
             </main>
 
             {/* Footer */}
