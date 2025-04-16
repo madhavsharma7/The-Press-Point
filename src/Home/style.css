@@ -47,14 +47,14 @@
 
 .logo a {
 
-    margin-left: -1vw;
+    margin-left: 1vw;
     font-size: 1.6vw;
     color: black !important;
     text-decoration: none !important;
 }
 
 .logo-part {
-    margin-left: -1vw;
+    margin-left: 1vw;
     display: block;
     text-decoration: none !important;
     margin-right: 18vw;
@@ -71,8 +71,20 @@
     color: black;
     font-weight: 500;
     font-size: 1.1vw;
-    margin-left: 15vw;
+    margin-left: 13vw;
     text-decoration: none;
+}
+
+
+.save-article {
+    padding: 2vw;
+    color: black;
+    font-size: 1.5vw;
+
+}
+
+.signin-icon1 {
+    display: none;
 }
 
 /* Subscribe Button */
@@ -110,6 +122,16 @@
 
 }
 
+#right-navbar {
+    text-align: right;
+
+}
+
+.bar i{
+ color: black;
+ font-size: 2vw ;
+ display: none;
+}
 #news-container {
     grid-gap: 20px;
     padding: 20px;
@@ -167,6 +189,24 @@
     padding: 0 1vw;
 }
 
+.article-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.save a{
+    text-decoration: none;
+}
+.save {
+    color: blue;
+    margin-top: 4.5vh;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding-left:2vw ; 
+}
+
+
 .readmore {
     font-size: 1.1vw;
     margin-top: 2vw;
@@ -179,11 +219,12 @@
 }
 
 
-.news-error{
+.news-error {
     text-align: center;
     align-items: center;
     justify-content: center;
 }
+
 hr {
     width: 80%;
     margin-top: -2vh;
@@ -243,14 +284,23 @@ hr {
 }
 
 .readmore-news {
+    display: flex;
+    justify-content: space-between;
     font-size: 1.1vw;
-    margin-top: 1vw;
+    /* margin-top: 1vw; */
 }
 
 .readmore-news a {
     text-decoration: none;
     color: blue;
     font-weight: bold;
+}
+
+.save-latest a{
+    text-decoration: none;
+}
+.save-latest{
+  padding-left: 1vw;
 }
 
 hr {

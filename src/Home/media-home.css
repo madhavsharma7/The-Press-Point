@@ -22,15 +22,26 @@
     }
 
     .sign-in {
+        display: none;
         margin-left: -6vw;
         font-size: 3vw;
         font-weight: 600;
     }
 
     .sub {
+        display: none;
         font-size: 3vw;
         margin-right: -3vw;
         padding: 8px 10px;
+    }
+
+    .save-article {
+        display: none;
+    }
+
+    .bar i {
+        display: block;
+        font-size: 4vw;
     }
 
     #navbar-items :Link {
