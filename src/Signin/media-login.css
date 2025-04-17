@@ -16,17 +16,19 @@
     .forget {
         font-size: 2vw;
         width: 130%;
-    }
+        padding-left: 2vw;  
+      }
 
-    .sign-in{
+    .sign-in {
         left: -12vw;
     }
+
     .sign-in h1 {
-
-        font-size: 5.5vw;
+        margin-left: -5vw;
+       font-size: 7vw;
     }
-
     .sign-in span {
+        margin-left: -5vw;
         width: 100%;
     }
 
