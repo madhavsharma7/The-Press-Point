@@ -11,7 +11,7 @@ import Sports_Sector from "./Sports/Sports.js";
 import Technology from "./Technology/Tech.js";
 import Signin from "./Signin/login.js"; // Ensure correct case
 import Subscribe from "./Sub/Sub.js"
-
+import Articlesave from "./ArticleSave/Save.js"
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +28,7 @@ function App() {
           <Route path="/Tech" element={<Technology />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/Sub" element={<Subscribe />} />
+          <Route path="/Save" element={<Articlesave />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 #search {
@@ -127,10 +128,10 @@
 
 }
 
-.bar i{
- color: black;
- font-size: 2vw ;
- display: none;
+.bar i {
+    color: black;
+    font-size: 2vw;
+    display: none;
 }
 
 #news-container {
@@ -196,17 +197,19 @@
     align-items: center;
 }
 
-.save a{
+.save Link {
     text-decoration: none;
 }
-.save {
+
+.save Button {
     color: blue;
     margin-top: 4.5vh;
     font-size: 1.1vw;
     font-weight: bold;
-    padding-left:2vw ; 
+    padding-left: 2vw;
+    border: none;
+    background-color: white;
 }
-
 
 .readmore {
     font-size: 1.1vw;
@@ -218,7 +221,6 @@
     color: blue;
     font-weight: bold;
 }
-
 
 .news-error {
     text-align: center;
@@ -233,6 +235,7 @@ hr {
 
 
 #search-container {
+    display: flex;
     display: grid;
     gap: 2vw;
     padding: 2vw;
@@ -284,8 +287,14 @@ hr {
     padding: 0 1vw;
 }
 
-.readmore-news {
+.article-button-two {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.readmore-news {
+
     justify-content: space-between;
     font-size: 1.1vw;
     /* margin-top: 1vw; */
@@ -297,11 +306,18 @@ hr {
     font-weight: bold;
 }
 
-.save-latest a{
+.save-latest Link {
     text-decoration: none;
 }
-.save-latest{
-  padding-left: 1vw;
+
+.save-latest button {
+    color: blue;
+    margin-top: 2.5vh;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding-left: 2vw;
+    border: none;
+    background-color: white;
 }
 
 hr {

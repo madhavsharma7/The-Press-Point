@@ -1,0 +1,164 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#search {
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: -1%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+#search ul {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Search Bar */
+.search-bar {
+    flex-grow: 1;
+}
+
+#search input {
+    padding: 10px;
+    width: 16vw;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: black;
+}
+
+#search input::placeholder {
+    color: black;
+}
+
+#search h1 {
+    font-size: 2vw;
+    margin-left: 26vw;
+    padding: 2%;
+}
+
+.logo a {
+
+    margin-left: 1vw;
+    font-size: 1.6vw;
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.logo-part {
+    margin-left: 1vw;
+    display: block;
+    text-decoration: none !important;
+    margin-right: 18vw;
+    color: black !important;
+}
+
+.username {
+    font-size: 1.5vw;
+    margin-left: 10vw;
+}
+
+/* Sign In */
+.sign-in {
+    color: black;
+    font-weight: 500;
+    font-size: 1.1vw;
+    margin-left: 13vw;
+    text-decoration: none;
+}
+
+
+.save-article {
+    padding: 2vw;
+    color: black;
+    font-size: 1.5vw;
+
+}
+
+.signin-icon1 {
+    display: none;
+}
+
+/* Subscribe Button */
+.sub {
+    background-color: #c00;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1vw;
+    text-decoration: none;
+}
+
+.sub:hover {
+    background-color: #900;
+}
+
+#navbar-items ul {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    display: flex;
+    list-style: none;
+    gap: 5%;
+    padding: 1%;
+}
+
+#navbar-items a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.1vw;
+    font-weight: 500;
+
+}
+
+#right-navbar {
+    text-align: right;
+
+}
+
+.bar i {
+    color: black;
+    font-size: 2vw;
+    display: none;
+}
+
+
+#footers-home {
+    background-color: black;
+    width: 100%;
+    height: 20%;
+
+}
+
+.navbar-items-footers-home {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.footers-logo-home {
+    color: white;
+    align-items: center;
+    text-align: center;
+    font-size: 1.8vw;
+    margin-top: 1%;
+}
+
+.footers-copyright-home {
+    color: white;
+    text-align: right;
+    margin-right: 2%;
+    margin-top: -1.6%;
+    padding-bottom: 2%;
+}
