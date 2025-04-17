@@ -15,7 +15,7 @@
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-} 
+}
 
 .container {
     background-color: #fff;
@@ -95,7 +95,7 @@
 }
 
 .sign-in {
-    left: 0;
+    left: -12vw;
     width: 50%;
     z-index: 2;
 }
@@ -135,7 +135,7 @@
 
 .social-icons {
     margin: 20px 0;
-    
+
 }
 
 .social-icons a {

@@ -5,6 +5,7 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {toast } from 'react-toastify';
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
@@ -23,9 +24,9 @@ function App() {
         if (!isDuplicate) {
             saved.push(article);
             localStorage.setItem("savedArticles", JSON.stringify(saved));
-            alert("Article saved!");
+            toast("Article saved!");
         } else {
-            alert("Article already saved.");
+            toast("Article already saved.");
         }
     };
 
@@ -47,6 +48,7 @@ function App() {
     }, []);
 
     return (
+        
         <div id="container">
             {/* Navbar */}
             <div className="navbar">
@@ -77,7 +79,7 @@ function App() {
                                             />
                                         </span>
                                     ) : (
-                                        <Link className="sign-in" to="/Login">Sign in</Link>
+                                        <Link className="sign_in" to="/Login">Sign in</Link>
                                     )}
                                 </li>
                             </div>

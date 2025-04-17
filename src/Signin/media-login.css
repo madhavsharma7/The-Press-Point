@@ -18,6 +18,14 @@
         width: 130%;
     }
 
+    .sign-in{
+        left: -12vw;
+    }
+    .sign-in h1 {
+
+        font-size: 5.5vw;
+    }
+
     .sign-in span {
         width: 100%;
     }
