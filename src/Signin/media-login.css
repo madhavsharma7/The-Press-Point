@@ -16,8 +16,8 @@
     .forget {
         font-size: 2vw;
         width: 130%;
-        padding-left: 2vw;  
-      }
+        padding-left: 2vw;
+    }
 
     .sign-in {
         left: -12vw;
@@ -25,8 +25,9 @@
 
     .sign-in h1 {
         margin-left: -5vw;
-       font-size: 7vw;
+        font-size: 7vw;
     }
+
     .sign-in span {
         margin-left: -5vw;
         width: 100%;

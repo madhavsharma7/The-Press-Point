@@ -20,14 +20,14 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhav:7uJJp6mKZehs82Yo@cluster0.fzje2ti.mongodb.net/signup-demo?retryWrites=true&w=majority')
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
-
 // Signup Route
 app.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
         const existingUser = await User.findOne({ email });
-        if (existingUser) return res.status(400).json({ message: 'User already exists' });
+        if (existingUser)
+            return res.status(400).json({ message: 'Email already in use' });
 
         const newUser = new User({ name, email, password });
         await newUser.save();
@@ -35,7 +35,7 @@ app.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
         console.error('Signup error:', err);
-        res.status(500).json({ message: 'Something went wrong' });
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 

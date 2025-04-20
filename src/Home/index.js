@@ -5,7 +5,7 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
@@ -30,6 +30,7 @@ function App() {
         }
     };
 
+
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
@@ -48,14 +49,14 @@ function App() {
     }, []);
 
     return (
-        
+
         <div id="container">
             {/* Navbar */}
             <div className="navbar">
                 <header>
                     <nav id="search">
                         <ul>
-                            <li><input type="text" placeholder="Search" /></li>
+            
                             <div>
                                 <li>
                                     <h1 className="logo">
@@ -151,14 +152,14 @@ function App() {
                                 <h2 className="h2-news">{article.title}</h2>
                                 <p className="p-news">{article.description}</p>
                                 <div className="article-button-two">
-                                <div className="readmore-news">
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                                </div>
+                                    <div className="readmore-news">
+                                        <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                                    </div>
 
-                                <p className="save-latest">
-                                    <button onClick={() => handleSave(article)}>Save Article</button>
-                                </p>
-</div>
+                                    <p className="save-latest">
+                                        <button onClick={() => handleSave(article)}>Save Article</button>
+                                    </p>
+                                </div>
                                 <hr />
                             </div>
                         ))
@@ -179,6 +180,7 @@ function App() {
             </div>
         </div>
     );
+
 }
 
 export default App;
