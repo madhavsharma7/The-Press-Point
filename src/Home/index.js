@@ -55,11 +55,11 @@ function App() {
                 <header>
                     <nav id="search">
                         <ul>
-            
+                            <li><input type="text" placeholder="Search" /></li>
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <Link to="/">The Press <span className="logo-part">Point</span></Link>
+                                        <Link class="logo-first"to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>

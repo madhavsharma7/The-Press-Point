@@ -5,19 +5,15 @@
     scroll-behavior: smooth;
 }
 
-
-.logo{
-    display: flex;
-}
 .logo a {
-    margin-left: 16vw;
+    position: relative;
+    margin-left: 10%;
     font-size: 1.6vw;
     color: black !important;
     text-decoration: none !important;
 }
 
 .logo-part {
-    /* margin-left: 1vw; */
     display: block;
     text-decoration: none !important;
     margin-right: 18vw;
@@ -34,7 +30,7 @@
     color: black;
     font-weight: 500;
     font-size: 1.1vw;
-    margin-left: 13vw;
+    margin-left: 15vw;
     text-decoration: none;
 }
 
