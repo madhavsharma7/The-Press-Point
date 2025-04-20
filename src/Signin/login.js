@@ -13,26 +13,37 @@ const AuthContainer = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  // ✅ Backend API base URL on Render
+  const API_BASE = 'https://the-press-point.onrender.com';
+
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setMessage('');
 
-    const res = await fetch('https://the-press-point.onrender.com/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      }),
-    });
+    try {
+      const response = await fetch(`${API_BASE}/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: signupName,
+          email: signupEmail,
+          password: signupPassword,
+        }),
+      });
 
-    const data = await res.json();
-    if (res.ok) {
-      console.log('✅ Signup success', data);
-    } else {
-      console.error('❌ Signup failed', data.message);
+      const data = await response.json();
+      if (response.ok) {
+        setMessage(data.message);
+        setSignupName('');
+        setSignupEmail('');
+        setSignupPassword('');
+        setIsActive(false); // Switch to sign-in view
+      } else {
+        setMessage(data.message || 'Signup failed');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('Error connecting to server');
     }
   };
 

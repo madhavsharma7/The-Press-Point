@@ -30,7 +30,6 @@ function App() {
         }
     };
 
-
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
