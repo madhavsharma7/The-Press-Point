@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./login.css";
 import "./media-login.css";
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,36 @@ const AuthContainer = () => {
 
   // ✅ Backend API base URL on Render
   const API_BASE = 'https://the-press-point.onrender.com';
+
+  useEffect(() => {
+    if (!window.google) return; // Ensure Google is loaded before using it
+
+    window.google.accounts.id.initialize({
+      client_id: "98047572173-vcdm3gt2mbfa29og5t6ba576oti1cgpe.apps.googleusercontent.com",
+      callback: handleGoogleLogin,
+    });
+
+    // Render the Google login button into the container
+    window.google.accounts.id.renderButton(
+      document.getElementById("google-btn"),
+      {
+        theme: "outline",
+        size: "large",
+        shape: "pill",
+        text: "signin_with", // Use correct text here
+      }
+    );
+  }, []);
+
+  // Google login handler
+  const handleGoogleLogin = (response) => {
+    console.log("✅ Google Token:", response.credential);
+
+    // Optionally send token to backend to create/check user
+    // For now, just store and redirect
+    localStorage.setItem("google_token", response.credential);
+    window.location.href = "/"; // redirect to homepage
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -122,7 +152,12 @@ const AuthContainer = () => {
           <form onSubmit={handleLogin}>
             <h1>Sign In</h1>
             <div className="social-icons">
-              <a className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+              {/* Google Sign In Button */}
+              <div
+                id="google-btn"
+                className="google-signin-btn"
+                style={{ display: "inline-block" }}
+              ></div>
               <a className="icon"><i className="fa-brands fa-facebook-f"></i></a>
               <a className="icon"><i className="fa-brands fa-github"></i></a>
               <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
@@ -142,7 +177,7 @@ const AuthContainer = () => {
               onChange={(e) => setLoginPassword(e.target.value)}
               required
             />
-            <a className="forget" href="#">Forget Your Password?</a>
+            <a className="forget">Forget Your Password?</a>
             <button type="submit">Sign In</button>
             {message && <p className="message">{message}</p>}
           </form>
