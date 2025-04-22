@@ -16,6 +16,7 @@ const AuthContainer = () => {
   // ✅ Backend API base URL on Render
   const API_BASE = 'https://the-press-point.onrender.com';
 
+
   useEffect(() => {
     if (!window.google) return; // Ensure Google is loaded before using it
 
@@ -36,6 +37,7 @@ const AuthContainer = () => {
     );
   }, []);
 
+
   // Google login handler
   const handleGoogleLogin = (response) => {
     console.log("✅ Google Token:", response.credential);
@@ -44,6 +46,52 @@ const AuthContainer = () => {
     // For now, just store and redirect
     localStorage.setItem("google_token", response.credential);
     window.location.href = "/"; // redirect to homepage
+  };
+
+  // Facebook login
+
+  useEffect(() => {
+    if (!window.FB) return;
+    window.FB.init({
+      appId: "1402945321060916",
+      cookie: true,
+      xfbml: true,
+      version: "v16.0",
+      autoLogAppEvents: false,
+    });
+    console.log("✅ FB SDK initialized");
+  }, []);
+
+  const handleFacebookLogin = () => {
+    window.FB.login(function (response) {
+      if (response.authResponse) {
+        // Successful login
+        window.FB.api('/me', { fields: 'name,email' }, async function (userData) {
+          console.log('👤 Facebook user:', userData);
+
+          // Send user data to your backend (make sure the backend is working)
+          try {
+            const res = await fetch(`${API_BASE}/facebook-login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: userData.name, email: userData.email }),
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              localStorage.setItem('user', JSON.stringify(data.user));
+              navigate('/'); // Redirect to homepage
+            } else {
+              console.error('Failed to log in with Facebook');
+            }
+          } catch (err) {
+            console.error('Error while sending user data:', err);
+          }
+        });
+      } else {
+        console.log('❌ Facebook login failed');
+      }
+    }, { scope: 'public_profile,email' });
   };
 
   const handleSignup = async (e) => {
@@ -150,17 +198,30 @@ const AuthContainer = () => {
         {/* Sign In Form */}
         <div className="form-container sign-in">
           <form onSubmit={handleLogin}>
-            <h1>Sign In</h1>
+            <h1 className="signin-topic">Sign In</h1>
             <div className="social-icons">
+
               {/* Google Sign In Button */}
               <div
                 id="google-btn"
                 className="google-signin-btn"
-                style={{ display: "inline-block" }}
-              ></div>
-              <a className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+              >
+              </div>
+
+              {/* Facebook Sign In Button */}
+              <div
+                id="facebook-btn"
+                className="facebook-signin-btn"
+                onClick={handleFacebookLogin}
+              >
+                <i className="fab fa-facebook" style={{ marginRight: "8px" }}></i>
+                Continue with Facebook
+              </div>
+
+
+              {/* <a className="icon"><i className="fa-brands fa-facebook-f"></i></a>
               <a className="icon"><i className="fa-brands fa-github"></i></a>
-              <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+              <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a> */}
             </div>
             <span>or use your email and password</span>
             <input

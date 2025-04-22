@@ -31,6 +31,31 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhav:7uJJp6mKZehs82Yo
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
+// ✅ Facebook Login Route (correct order)
+app.post('/facebook-login', async (req, res) => {
+    const { name, email } = req.body;
+
+    if (!email || !name) {
+        return res.status(400).json({ message: 'Name and email are required' });
+    }
+
+    try {
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            user = new User({ name, email, password: '' });
+            await user.save();
+        }
+
+        res.status(200).json({
+            message: 'Login successful',
+            user: { name: user.name, email: user.email }
+        });
+    } catch (error) {
+        console.error('❌ Facebook login error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 // Signup Route
 app.post('/signup', async (req, res) => {
     console.log('📥 Signup request received:', req.body);
