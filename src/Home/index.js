@@ -62,7 +62,7 @@ function App() {
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <Link class="logo-first" to="/">The Press <span className="logo-part">Point</span></Link>
+                                        <Link className="logo-first" to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>
