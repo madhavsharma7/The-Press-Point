@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-o2avgzm1na1pcjq4.us.auth0.com"
+    clientId="ANgOObSBtMq3fbwqThvmhNAIwAWq2Bbp"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
     <App />
     <ToastContainer />
-  </React.StrictMode>
+  </Auth0Provider>
 
 );
 

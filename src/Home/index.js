@@ -7,15 +7,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { toast } from 'react-toastify';
 
+
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
 const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}`;
 const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=5&apikey=${API_KEY}`;
 
+
 function App() {
+
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-    const [user, setUser] = useState(null);
+    const {setUser, logout, user} = useState();
 
     const handleSave = (article) => {
         const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
@@ -44,7 +47,7 @@ function App() {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             setUser(JSON.parse(storedUser));
-        }
+        }       
     }, []);
 
     return (
@@ -59,28 +62,26 @@ function App() {
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <Link class="logo-first"to="/">The Press <span className="logo-part">Point</span></Link>
+                                        <Link class="logo-first" to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>
                             <div>
                                 <li>
-                                    {user ? (
+                                    {/* {isAuthenticated ? (
                                         <span className="username">
-                                            Hi, {user.name}
+                                            Hi, {user?.name}
                                             <FontAwesomeIcon
                                                 icon={faRightFromBracket}
                                                 style={{ marginLeft: "10px", cursor: "pointer" }}
                                                 title="Logout"
-                                                onClick={() => {
-                                                    localStorage.removeItem("user");
-                                                    window.location.reload();
-                                                }}
+                                                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                                             />
                                         </span>
                                     ) : (
-                                        <Link className="sign_in" to="/Login">Sign in</Link>
-                                    )}
+                                        <button onClick={() => loginWithRedirect()}>Log In</button>
+                                    )} */}
+                                    <Link className="sign-in" to="/login">Sign in</Link>
                                 </li>
                             </div>
                             <div id="right-navbar">
@@ -90,6 +91,8 @@ function App() {
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
+
+                                    {/* <button onClick={() => loginWithRedirect()}>Log In</button> */}
                                     <Link className="sub" to="Sub">Subscribe</Link>
                                     <div className="bar"><i className="fa-solid fa-bars"></i></div>
                                 </li>

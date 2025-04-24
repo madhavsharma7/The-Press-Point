@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home/index";
 import World from "./World/Wor.js";
 import Bus from "./Business/Busi.js";
-import Entertainment from "./Entertainment/Enter.js"; // Fixed typo
+import Entertainment from "./Entertainment/Enter.js"; 
 import Health_Sector from "./Health/Health.js";
 import Nation from "./Nation/International.js";
 import Science_Sector from "./Science/Science.js";
 import Sports_Sector from "./Sports/Sports.js";
 import Technology from "./Technology/Tech.js";
-import Signin from "./Signin/login.js"; // Ensure correct case
+import Signin from "./Signin/login.js"; 
 import Subscribe from "./Sub/Sub.js"
 import Articlesave from "./ArticleSave/Save.js"
 function App() {

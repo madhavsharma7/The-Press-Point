@@ -104,19 +104,19 @@
     margin-top: -8vh;
 }
 
-#facebook-btn {
-    margin-top: 2%;
-    font-size: 1.2vw;
-    display: inline-block;
-    background-color: #1877f2;
+.signingit button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #000;
     color: white;
+    border: none;
     padding: 10px 20px;
-    border-radius: 15px;
+    border-radius: 15git addpx;
     cursor: pointer;
-    /* font-weight: bold; */
-    text-align: center;
+    font-size: 1.3vw;
+    text-transform:none;    
 }
-
 
 .container.active .sign-in {
     transform: translateX(100%);
