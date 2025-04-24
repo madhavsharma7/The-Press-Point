@@ -39,7 +39,6 @@
     padding: 2vw;
     color: black;
     font-size: 1.5vw;
-
 }
 
 .signin-icon1 {
@@ -78,17 +77,37 @@
     color: black;
     font-size: 1.1vw;
     font-weight: 500;
-
 }
 
 #right-navbar {
     text-align: right;
-
 }
 
-.bar i {
-    color: black;
-    font-size: 2vw;
+/* Sidebar  */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    position: absolute;
+    /* Or fixed if you prefer */
+    right: 20px;
+    top: 20px;
+    z-index: 1001;
+  
+}
+
+.hamburger .line {
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.sidebar{
     display: none;
 }
 

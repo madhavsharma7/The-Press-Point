@@ -8,46 +8,97 @@
     #search input[type="text"] {
         width: 25vw;
         height: 2.5vw;
-        margin-left: -10%;
+        margin-left: 10%;
     }
 
     .logo a {
-        margin-left: -18vw;
-        font-size: 4vw;
+        margin-left: -22vw !important;
+        font-size: 4vw !important;
     }
 
     .logo-part {
-        margin-left: -18vw;
-        font-size: 4vw;
+        margin-left: -22vw !important;
+        font-size: 4vw !important;
     }
 
-    .sign_in {
+    #signin{
         display: none;
-        margin-left: -6vw;
-        font-size: 3vw;
-        font-weight: 600;
     }
 
     .sub {
         display: none;
-        font-size: 3vw;
-        margin-right: -3vw;
-        padding: 8px 10px;
     }
 
     .save-article {
         display: none;
     }
 
-    .bar i {
-        display: block;
-        font-size: 4vw;
-    }
-
     #navbar-items :Link {
         font-size: 1.5vw;
         font-weight: 500;
     }
+
+    /* Sidebar  */
+    .hamburger {
+        display: flex;
+        color: black;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .hamburger .line {
+        height: 3px;
+        width: 100%;
+        background-color: black;
+        border-radius: 5px;
+    }
+    .hamburger.active{
+        color: white;
+        background-color: black;
+    }
+
+    /* When sidebar is open (hamburger is active) */
+    .hamburger.active .line {
+        background-color: white;
+        color: white;
+    }
+
+    .sidebar {
+        display: inline-block;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60vw;
+        height: 100vh;
+        background-color: black;
+        /* background-color: rgba(0, 0, 0, 0.8) !important; */
+            /* Transparent black background */
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        /* padding: 2rem; */
+        padding-top: 15vh;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .sidebar.active {
+        right: 0;
+        background-color: black;
+    }
+
+    .sidebar a {
+        margin-top: 2vh;
+        text-align: center;
+        font-size: 4vw;
+        color: white;
+        text-decoration: none;
+    }
+
 
     #news-container h1 {
         font-size: 4vw;
@@ -121,20 +172,20 @@
     }
 
     #footers-home {
-        margin-top: 35vh;
-
+        margin-top: 35vh !important;
     }
 
     .footers-logo-home {
-        font-size: 4.5vw;
-        margin-top: 2%;
+        font-size: 4.5vw !important;
+        margin-top: 2% !important;
     }
 
     .footers-copyright-home {
-        margin-top: 2%;
-        text-align: center;
-        font-size: 2.5vw;
-        padding-bottom: 2%;
-    }
+        margin-top: 2% !important;
+        text-align: center !important;
+        font-size: 2.5vw !important;
+        padding-bottom: 2% !important;
 
+
+    }
 }

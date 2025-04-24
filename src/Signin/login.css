@@ -107,14 +107,14 @@
 .signingit button {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     background-color: #000;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 15git addpx;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 1.3vw;
+    font-size: 1vw;
     text-transform:none;    
 }
 

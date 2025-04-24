@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./login.css";
 import "./media-login.css";
 import { useNavigate } from 'react-router-dom';
@@ -125,7 +125,7 @@ const AuthContainer = () => {
               <a className="icon"><i className="fa-brands fa-github"></i></a>
               <a className="icon"><i className="fa-brands fa-linkedin-in"></i></a> */}
             </div>
-            <span>or use your email for registration</span>
+            {/* <span>or use your email for registration</span> */}
             <input
               type="text"
               placeholder="Name"
@@ -183,7 +183,7 @@ const AuthContainer = () => {
               onChange={(e) => setLoginPassword(e.target.value)}
               required
             />
-            <a className="forget">Forget Your Password?</a>
+            {/* <a className="forget">Forget Your Password?</a> */}
             <button type="submit">Sign In</button>
             {message && <p className="message">{message}</p>}
           </form>
