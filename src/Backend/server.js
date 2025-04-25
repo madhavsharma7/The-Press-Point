@@ -154,8 +154,6 @@ app.listen(PORT, () => {
     console.log(`✅ GitHub OAuth server running at http://localhost:${PORT}`);
 });
 
-
-
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

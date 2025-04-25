@@ -164,9 +164,11 @@ const AuthContainer = () => {
                 className="google-signin-btn"
               >
               </div>
+
               <div className="signingit">
                 <button onClick={handleGitHubLogin}><i className="fa-brands fa-github"></i> Sign in with GitHub</button>
               </div>
+              
             </div>
             <span>or use your email and password</span>
             <input

@@ -104,6 +104,11 @@
     margin-top: -8vh;
 }
 
+#google-btn{
+    font-size: 1vw;
+    width: 100%;
+}
+
 .signingit button {
     display: flex;
     align-items: center;
