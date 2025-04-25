@@ -12,8 +12,8 @@ const AuthContainer = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
-  const API_BASE = "https://the-press-point.onrender.com/";
+  
+  const API_BASE = "https://the-press-point.onrender.com";
 
   // Initialize Google Sign-In
   useEffect(() => {
