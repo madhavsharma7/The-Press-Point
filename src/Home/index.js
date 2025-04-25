@@ -49,7 +49,7 @@ function App() {
         localStorage.removeItem("user");
         setUser(null); // Update the user state to null after logout
         toast("Logged out successfully");
-        navigate("/login"); // Redirect to login after logout
+        navigate("/"); // Redirect to login after logout
     };
 
     useEffect(() => {
@@ -139,9 +139,50 @@ function App() {
                 <div id="navbar-items">
                     <ul>
                         <li>
-                            <Link to="/" data-category="home">Home</Link>
+                            <Link to="/" data-category="home">
+                                Home
+                            </Link>
                         </li>
-                        {/* Other navbar links... */}
+                        <li>
+                            <Link to="/Wor" data-category="world">
+                                World
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/International" data-category="nation">
+                                Nation
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Bus" data-category="business">
+                                Business
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Tech" data-category="technology">
+                                Technology
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Enter" data-category="entertainment">
+                                Entertainment
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Sports" data-category="sports">
+                                Sports
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Science" data-category="science">
+                                Science
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/Health" data-category="health">
+                                Health
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
