@@ -82,6 +82,43 @@ const AuthContainer = () => {
   };
 
   // Handle Login
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   setMessage("");
+
+  //   // Simple validation
+  //   if (!loginEmail || !loginPassword) {
+  //     setMessage("Please enter both email and password.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch(`${API_BASE}/login`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         email: loginEmail,
+  //         password: loginPassword,
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setMessage(data.message);
+  //       setLoginEmail("");
+  //       setLoginPassword("");
+  //       localStorage.setItem("user", JSON.stringify(data.user));
+  //       navigate("/");
+  //     } else {
+  //       setMessage(data.message || "Login failed");
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     setMessage("Error connecting to server");
+  //   }
+  // };
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -104,11 +141,14 @@ const AuthContainer = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setMessage(data.message);
-        setLoginEmail("");
-        setLoginPassword("");
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/");
+        -       setMessage(data.message);
+        -       setLoginEmail("");
+        -       setLoginPassword("");
+        -       localStorage.setItem("user", JSON.stringify(data.user));
+        -       navigate("/");
+        +       // store user and immediately go home
+          +       localStorage.setItem("user", JSON.stringify(data.user));
+        +       navigate("/", { replace: true });
       } else {
         setMessage(data.message || "Login failed");
       }
