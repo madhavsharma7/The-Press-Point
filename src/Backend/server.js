@@ -1,67 +1,66 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./User');
-const axios = require('axios');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
+const axios = require('axios');
+const User = require('./User');
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS setup
-const allowedOrigins = [
-    'https://the-press-point.vercel.app',
-    'http://localhost:3000'
-];
-
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true
-}));
-
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'your-fallback-mongo-uri')
+// CORS
+const allowedOrigins = [
+    'https://the-press-point.vercel.app',
+    'http://localhost:3000',
+];
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
+        credentials: true,
+    })
+);
+
+// MongoDB
+mongoose
+    .connect(process.env.MONGO_URI || 'your-fallback-mongo-uri')
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-// Signup Route
+// Signup
 app.post('/signup', async (req, res) => {
-    console.log("📥 Signup request body:", req.body);
-
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
-        console.log("❌ Missing fields");
         return res.status(400).json({ message: 'All fields are required' });
     }
 
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            console.log("❌ Email already in use");
-            return res.status(400).json({ message: 'Email already in use' });
+            return res.status(409).json({ message: 'User already exists' });
         }
 
-        const newUser = new User({ name, email, password });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
 
-        console.log("✅ User created");
-        res.status(201).json({ message: 'User created successfully' });
-    } catch (error) {
-        console.error('❌ Error during signup:', error); 
-        res.status(500).json({ message: 'Internal server error', error: error.message });
+        res.status(201).json({ message: 'Signup successful', user: { name, email } });
+    } catch (err) {
+        console.error('❌ Signup error:', err);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
-// Login Route
+// Login
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -74,7 +73,8 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'User not found' });
         }
 
-        if (user.password !== password) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
             return res.status(401).json({ message: 'Incorrect password' });
         }
 
@@ -88,18 +88,15 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Github Login
-
+// GitHub OAuth
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-// const axios = require('axios');
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
-// Step 1: Redirect to GitHub for login
 app.get('/auth/github', (req, res) => {
     res.redirect(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user`);
 });
 
-// Step 2: GitHub redirects here with code → Exchange it for access token
 app.get('/auth/github/callback', async (req, res) => {
     const code = req.query.code;
 
@@ -111,9 +108,7 @@ app.get('/auth/github/callback', async (req, res) => {
                 client_secret: CLIENT_SECRET,
                 code,
             },
-            {
-                headers: { accept: 'application/json' },
-            }
+            { headers: { accept: 'application/json' } }
         );
 
         const accessToken = tokenResponse.data.access_token;
@@ -124,18 +119,14 @@ app.get('/auth/github/callback', async (req, res) => {
 
         const { login, name, avatar_url } = userResponse.data;
 
-        res.redirect(`http://localhost:3000/github-success?login=${login}&name=${name}&avatar=${avatar_url}`);
+        res.redirect(`${FRONTEND_URL}/github-success?login=${login}&name=${name}&avatar=${avatar_url}`);
     } catch (err) {
         console.error('OAuth Error:', err.message);
         res.status(500).send('Login failed');
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`✅ GitHub OAuth server running at http://localhost:${PORT}`);
-});
-
+// Start server
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
-
