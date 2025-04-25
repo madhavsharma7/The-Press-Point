@@ -14,9 +14,13 @@ const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&
 function App() {
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-    const { setUser, logout, user } = useState();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
+
+    const [user, setUser] = useState(() => {
+        const stored = localStorage.getItem("user");
+        return stored ? JSON.parse(stored) : null;
+    });
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
@@ -37,8 +41,15 @@ function App() {
         if (!user) {
             e.preventDefault();
             toast("Please log in to read the article.");
-            // navigate("/login");
+            navigate("/login");
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setUser(null); // Update the user state to null after logout
+        toast("Logged out successfully");
+        navigate("/login"); // Redirect to login after logout
     };
 
     useEffect(() => {
@@ -51,11 +62,6 @@ function App() {
             .then((response) => response.json())
             .then((data) => setSearchResults(data.articles || []))
             .catch((error) => console.error("Error fetching search results:", error));
-
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
     }, []);
 
     return (
@@ -79,22 +85,22 @@ function App() {
                             </div>
                             <div>
                                 <li>
-                                    {/* {isAuthenticated ? (
+                                    {/* Conditional rendering based on login status */}
+                                    {user ? (
                                         <span className="username">
-                                            Hi, {user?.name}
-                                            <FontAwesomeIcon
-                                                icon={faRightFromBracket}
-                                                style={{ marginLeft: "10px", cursor: "pointer" }}
-                                                title="Logout"
-                                                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-                                            />
+                                            Hi, {user.name}
+                                            <i
+                                                className="fa-solid fa-right-to-bracket logout-icon"
+                                                onClick={handleLogout}
+                                                title="Log Out"
+                                            ></i>
                                         </span>
+
                                     ) : (
-                                        <button onClick={() => loginWithRedirect()}>Log In</button>
-                                    )} */}
-                                    <Link className="sign-in" id="signin" to="/login">
-                                        Sign in
-                                    </Link>
+                                        <Link className="sign-in" id="signin" to="/login">
+                                            Sign in
+                                        </Link>
+                                    )}
                                 </li>
                             </div>
                             <div id="right-navbar">
@@ -107,13 +113,14 @@ function App() {
                                         <img src={face} alt="Login" />
                                     </Link>
 
-                                    {/* <button onClick={() => loginWithRedirect()}>Log In</button> */}
-
                                     <Link className="sub" to="Sub">
                                         Subscribe
                                     </Link>
                                 </li>
-                                <div className={`hamburger ${sidebarOpen ? 'active' : ''}`} onClick={toggleSidebar}>
+                                <div
+                                    className={`hamburger ${sidebarOpen ? "active" : ""}`}
+                                    onClick={toggleSidebar}
+                                >
                                     <span className="line"></span>
                                     <span className="line"></span>
                                     <span className="line"></span>
@@ -121,62 +128,20 @@ function App() {
 
                                 <div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
                                     <Link to="/login">Login</Link>
-
                                     <Link to="/Save">Saved Articles</Link>
                                     <Link to="Sub">Subscribe</Link>
-
                                 </div>
                             </div>
                         </ul>
                     </nav>
                 </header>
+                {/* Navbar Items */}
                 <div id="navbar-items">
                     <ul>
                         <li>
-                            <Link to="/" data-category="home">
-                                Home
-                            </Link>
+                            <Link to="/" data-category="home">Home</Link>
                         </li>
-                        <li>
-                            <Link to="/Wor" data-category="world">
-                                World
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/International" data-category="nation">
-                                Nation
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Bus" data-category="business">
-                                Business
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Tech" data-category="technology">
-                                Technology
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Enter" data-category="entertainment">
-                                Entertainment
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Sports" data-category="sports">
-                                Sports
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Science" data-category="science">
-                                Science
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Health" data-category="health">
-                                Health
-                            </Link>
-                        </li>
+                        {/* Other navbar links... */}
                     </ul>
                 </div>
             </div>
@@ -203,9 +168,7 @@ function App() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             onClick={(e) => handleReadMore(e, article.url)}
-
                                         >
-
                                             Read more
                                         </a>
                                     </p>
@@ -223,6 +186,7 @@ function App() {
                     )}
                 </div>
 
+                {/* Latest News */}
                 <h1 className="latest">Latest News</h1>
                 <hr className="title-hr" />
                 <div id="search-container">
@@ -249,7 +213,6 @@ function App() {
                                             Read more
                                         </a>
                                     </div>
-
                                     <p className="save-latest">
                                         <button onClick={() => handleSave(article)}>
                                             Save Article

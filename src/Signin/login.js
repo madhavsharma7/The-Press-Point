@@ -12,7 +12,6 @@ const AuthContainer = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  
   const API_BASE = "https://the-press-point.onrender.com";
 
   // Initialize Google Sign-In
@@ -40,7 +39,7 @@ const AuthContainer = () => {
   const handleGoogleLogin = (response) => {
     console.log("✅ Google Token:", response.credential);
     localStorage.setItem("google_token", response.credential);
-    window.location.href = "/";
+    navigate("/", { replace: true });
   };
 
   // Handle Signup
@@ -48,7 +47,6 @@ const AuthContainer = () => {
     e.preventDefault();
     setMessage("");
 
-    // Simple validation
     if (!signupName || !signupEmail || !signupPassword) {
       setMessage("Please fill in all fields.");
       return;
@@ -64,66 +62,27 @@ const AuthContainer = () => {
           password: signupPassword,
         }),
       });
-
       const data = await response.json();
+
       if (response.ok) {
         setMessage(data.message);
         setSignupName("");
         setSignupEmail("");
         setSignupPassword("");
-        setIsActive(false); // Switch to sign-in view
+        setIsActive(false);
       } else {
         setMessage(data.message || "Signup failed");
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
       setMessage("Error connecting to server");
     }
   };
 
   // Handle Login
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setMessage("");
-
-  //   // Simple validation
-  //   if (!loginEmail || !loginPassword) {
-  //     setMessage("Please enter both email and password.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch(`${API_BASE}/login`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         email: loginEmail,
-  //         password: loginPassword,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setMessage(data.message);
-  //       setLoginEmail("");
-  //       setLoginPassword("");
-  //       localStorage.setItem("user", JSON.stringify(data.user));
-  //       navigate("/");
-  //     } else {
-  //       setMessage(data.message || "Login failed");
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //     setMessage("Error connecting to server");
-  //   }
-  // };
-
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
 
-    // Simple validation
     if (!loginEmail || !loginPassword) {
       setMessage("Please enter both email and password.");
       return;
@@ -133,27 +92,17 @@ const AuthContainer = () => {
       const response = await fetch(`${API_BASE}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: loginEmail,
-          password: loginPassword,
-        }),
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
-
       const data = await response.json();
+
       if (response.ok) {
-        -       setMessage(data.message);
-        -       setLoginEmail("");
-        -       setLoginPassword("");
-        -       localStorage.setItem("user", JSON.stringify(data.user));
-        -       navigate("/");
-        +       // store user and immediately go home
-          +       localStorage.setItem("user", JSON.stringify(data.user));
-        +       navigate("/", { replace: true });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/", { replace: true });
       } else {
         setMessage(data.message || "Login failed");
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
       setMessage("Error connecting to server");
     }
   };
@@ -201,12 +150,9 @@ const AuthContainer = () => {
           <form onSubmit={handleLogin}>
             <h1 className="signin-topic">Sign In</h1>
             <div className="social-icons">
-              {/* Google Sign In Button */}
               <div id="google-btn" className="google-signin-btn"></div>
-
-              {/* GitHub Sign In Button */}
               <div className="signingit">
-                <button onClick={handleGitHubLogin}>
+                <button type="button" onClick={handleGitHubLogin}>
                   <i className="fa-brands fa-github"></i> Sign in with GitHub
                 </button>
               </div>
@@ -237,16 +183,22 @@ const AuthContainer = () => {
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all of site features</p>
-              <button className="hidden" onClick={() => setIsActive(false)}>
+              <button
+                className="hidden"
+                type="button"
+                onClick={() => setIsActive(false)}
+              >
                 Sign In
               </button>
             </div>
             <div className="toggle-panel toggle-right">
               <h1>Hello, Friend!</h1>
-              <p>
-                Register with your personal details to use all of site features
-              </p>
-              <button className="hidden" onClick={() => setIsActive(true)}>
+              <p>Register with your personal details to use all of site features</p>
+              <button
+                className="hidden"
+                type="button"
+                onClick={() => setIsActive(true)}
+              >
                 Sign Up
               </button>
             </div>
