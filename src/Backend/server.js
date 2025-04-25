@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 // const bcrypt = require('bcrypt');
-const axios = require('axios');
+// const axios = require('axios');
 const User = require('./User');
 
 dotenv.config();
