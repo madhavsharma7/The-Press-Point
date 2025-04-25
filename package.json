@@ -18,7 +18,7 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "express-openid-connect": "^2.18.0",
-    "mongoose": "^8.13.2",
+    "mongoose": "^8.13.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-dotenv": "^0.1.3",

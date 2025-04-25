@@ -15,11 +15,13 @@ const AuthContainer = () => {
 
   const API_BASE = "https://the-press-point.onrender.com";
 
+  // Initialize Google Sign-In
   useEffect(() => {
     if (!window.google) return;
 
     window.google.accounts.id.initialize({
-      client_id: "98047572173-vcdm3gt2mbfa29og5t6ba576oti1cgpe.apps.googleusercontent.com",
+      client_id:
+        "98047572173-vcdm3gt2mbfa29og5t6ba576oti1cgpe.apps.googleusercontent.com",
       callback: handleGoogleLogin,
     });
 
@@ -34,15 +36,23 @@ const AuthContainer = () => {
     );
   }, []);
 
+  // Handle Google Sign-In
   const handleGoogleLogin = (response) => {
     console.log("✅ Google Token:", response.credential);
     localStorage.setItem("google_token", response.credential);
     window.location.href = "/";
   };
 
+  // Handle Signup
   const handleSignup = async (e) => {
     e.preventDefault();
     setMessage("");
+
+    // Simple validation
+    if (!signupName || !signupEmail || !signupPassword) {
+      setMessage("Please fill in all fields.");
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE}/signup`, {
@@ -61,7 +71,7 @@ const AuthContainer = () => {
         setSignupName("");
         setSignupEmail("");
         setSignupPassword("");
-        setIsActive(false);
+        setIsActive(false); // Switch to sign-in view
       } else {
         setMessage(data.message || "Signup failed");
       }
@@ -71,9 +81,16 @@ const AuthContainer = () => {
     }
   };
 
+  // Handle Login
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
+
+    // Simple validation
+    if (!loginEmail || !loginPassword) {
+      setMessage("Please enter both email and password.");
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE}/login`, {
@@ -101,6 +118,7 @@ const AuthContainer = () => {
     }
   };
 
+  // Handle GitHub Login
   const handleGitHubLogin = () => {
     window.location.href = `${API_BASE}/auth/github`;
   };
@@ -108,6 +126,7 @@ const AuthContainer = () => {
   return (
     <div id="main">
       <div className={isActive ? "container active" : "container"}>
+        {/* Sign Up Form */}
         <div className="form-container sign-up">
           <form onSubmit={handleSignup}>
             <h1>Create Account</h1>
@@ -137,11 +156,15 @@ const AuthContainer = () => {
           </form>
         </div>
 
+        {/* Sign In Form */}
         <div className="form-container sign-in">
           <form onSubmit={handleLogin}>
             <h1 className="signin-topic">Sign In</h1>
             <div className="social-icons">
+              {/* Google Sign In Button */}
               <div id="google-btn" className="google-signin-btn"></div>
+
+              {/* GitHub Sign In Button */}
               <div className="signingit">
                 <button onClick={handleGitHubLogin}>
                   <i className="fa-brands fa-github"></i> Sign in with GitHub
@@ -168,6 +191,7 @@ const AuthContainer = () => {
           </form>
         </div>
 
+        {/* Toggle between Sign Up and Sign In */}
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">

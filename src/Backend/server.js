@@ -12,11 +12,12 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// CORS
+// CORS setup
 const allowedOrigins = [
-    'https://the-press-point.vercel.app',
-    'http://localhost:3000',
+    'https://the-press-point.vercel.app', // production frontend URL
+    'http://localhost:3000', // local development frontend URL
 ];
+
 app.use(
     cors({
         origin: (origin, callback) => {
@@ -30,15 +31,17 @@ app.use(
     })
 );
 
-// MongoDB
+// MongoDB connection
 mongoose
-    .connect(process.env.MONGO_URI || 'your-fallback-mongo-uri')
+    .connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-// Signup
+// Signup route
 app.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
+
+    // Input validation
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
@@ -49,6 +52,7 @@ app.post('/signup', async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
@@ -60,9 +64,11 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-// Login
+// Login route
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
+
+    // Input validation
     if (!email || !password) {
         return res.status(400).json({ message: 'Email and password are required' });
     }
@@ -73,6 +79,7 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'User not found' });
         }
 
+        // Compare password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Incorrect password' });
@@ -88,7 +95,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// GitHub OAuth
+// GitHub OAuth routes
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
@@ -101,6 +108,7 @@ app.get('/auth/github/callback', async (req, res) => {
     const code = req.query.code;
 
     try {
+        // Get access token from GitHub
         const tokenResponse = await axios.post(
             'https://github.com/login/oauth/access_token',
             {
@@ -113,13 +121,17 @@ app.get('/auth/github/callback', async (req, res) => {
 
         const accessToken = tokenResponse.data.access_token;
 
+        // Get user information from GitHub
         const userResponse = await axios.get('https://api.github.com/user', {
             headers: { Authorization: `Bearer ${accessToken}` },
         });
 
         const { login, name, avatar_url } = userResponse.data;
 
-        res.redirect(`${FRONTEND_URL}/github-success?login=${login}&name=${name}&avatar=${avatar_url}`);
+        // Redirect to frontend with GitHub data
+        res.redirect(
+            `${FRONTEND_URL}/github-success?login=${login}&name=${name}&avatar=${avatar_url}`
+        );
     } catch (err) {
         console.error('OAuth Error:', err.message);
         res.status(500).send('Login failed');
