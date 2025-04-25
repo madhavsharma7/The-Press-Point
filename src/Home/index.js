@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
@@ -16,6 +16,7 @@ function App() {
     const [searchResults, setSearchResults] = useState([]);
     const { setUser, logout, user } = useState();
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
@@ -29,6 +30,14 @@ function App() {
             toast("Article saved!");
         } else {
             toast("Article already saved.");
+        }
+    };
+
+    const handleReadMore = (e, url) => {
+        if (!user) {
+            e.preventDefault();
+            toast("Please log in to read the article.");
+            // navigate("/login");
         }
     };
 
@@ -193,7 +202,10 @@ function App() {
                                             href={article.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={(e) => handleReadMore(e, article.url)}
+
                                         >
+
                                             Read more
                                         </a>
                                     </p>
@@ -232,6 +244,7 @@ function App() {
                                             href={article.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={(e) => handleReadMore(e, article.url)}
                                         >
                                             Read more
                                         </a>
