@@ -74,9 +74,9 @@ function App() {
         localStorage.removeItem("user");
         localStorage.removeItem("savedArticles");
         setUser(null);
-        setSavedArticles([]); 
+        setSavedArticles([]);
         toast("Logged out successfully");
-        navigate("/"); 
+        navigate("/");
     };
 
     useEffect(() => {
@@ -135,11 +135,9 @@ function App() {
                                     <Link to="/Save" className="save-article">
                                         <i className="fa-solid fa-bookmark"></i>
                                     </Link>
-
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
-
                                     <Link className="sub" to="Sub">
                                         Subscribe
                                     </Link>
