@@ -13,6 +13,37 @@ function Headlines() {
     const [headlines, setHeadlines] = useState([]);
     const [error, setError] = useState(null);
 
+    // const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    // const handleSave = (article) => {
+    //     const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+    //     const isDuplicate = saved.some((a) => a.url === article.url);
+
+    //     if (!isDuplicate) {
+    //         saved.push(article);
+    //         localStorage.setItem("savedArticles", JSON.stringify(saved));
+    //         toast("Article saved!");
+    //     } else {
+    //         toast("Article already saved.");
+    //     }
+    // };
+
+    // const handleReadMore = (e, url) => {
+    //     if (!user) {
+    //         e.preventDefault();
+    //         toast("Please log in to read the article.");
+    //         navigate("/login");
+    //     }
+    // };
+
+    // const handleLogout = () => {
+    //     localStorage.removeItem("user");
+    //     setUser(null); // Update the user state to null after logout
+    //     toast("Logged out successfully");
+    //     navigate("/"); // Redirect to login after logout
+    // };
+
+
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
@@ -29,7 +60,9 @@ function Headlines() {
                 console.error("Error fetching headlines:", error);
                 setError("Failed to load headlines. Please try again later.");
             });
-    }, []); // Runs once when component mounts
+    }, []);
+
+
 
     return (
         <div id="container">

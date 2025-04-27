@@ -10,12 +10,15 @@ function Save() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-        setSavedArticles(saved);
-
         const storedUser = JSON.parse(localStorage.getItem("user"));
         if (storedUser) {
             setUser(storedUser);
+
+            // ✅ User ke according saved articles laa rahe hai
+            const userSavedArticles = JSON.parse(localStorage.getItem(`savedArticles_${storedUser.name}`)) || [];
+            setSavedArticles(userSavedArticles);
+        } else {
+            setSavedArticles([]); // agar user nahi mila to articles empty
         }
     }, []);
 
@@ -45,6 +48,9 @@ function Save() {
                                                 title="Logout"
                                                 onClick={() => {
                                                     localStorage.removeItem("user");
+                                                    localStorage.removeItem("savedArticles");
+                                                    setUser(null);
+                                                    setSavedArticles([]);
                                                     window.location.reload();
                                                 }}
                                             />

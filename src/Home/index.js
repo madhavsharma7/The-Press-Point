@@ -16,6 +16,8 @@ function App() {
     const [searchResults, setSearchResults] = useState([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
+    const [savedArticles, setSavedArticles] = useState([]);
+
 
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
@@ -24,17 +26,40 @@ function App() {
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-    const handleSave = (article) => {
-        const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-        const isDuplicate = saved.some((a) => a.url === article.url);
 
-        if (!isDuplicate) {
-            saved.push(article);
-            localStorage.setItem("savedArticles", JSON.stringify(saved));
-            toast("Article saved!");
+    useEffect(() => {
+        if (user) {
+            const savedKey = `savedArticles_${user.name}`;
+            const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
+            setSavedArticles(saved);
         } else {
-            toast("Article already saved.");
+            setSavedArticles([]); // Clear saved articles if no user
         }
+    }, [user]);
+
+
+    const handleSave = (article) => {
+
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            toast("Please log in to save articles.");
+            return;
+        }
+
+        const savedKey = `savedArticles_${user.name}`;
+        const existingArticles = JSON.parse(localStorage.getItem(savedKey)) || [];
+
+        const isAlreadySaved = existingArticles.some((a) => a.url === article.url);
+        if (isAlreadySaved) {
+            toast("Article already saved.");
+            return;
+        }
+
+        const updatedArticles = [...existingArticles, article];
+        localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
+
+        toast("Article saved successfully!");
     };
 
     const handleReadMore = (e, url) => {
@@ -47,9 +72,11 @@ function App() {
 
     const handleLogout = () => {
         localStorage.removeItem("user");
-        setUser(null); // Update the user state to null after logout
+        localStorage.removeItem("savedArticles");
+        setUser(null);
+        setSavedArticles([]); 
         toast("Logged out successfully");
-        navigate("/"); // Redirect to login after logout
+        navigate("/"); 
     };
 
     useEffect(() => {

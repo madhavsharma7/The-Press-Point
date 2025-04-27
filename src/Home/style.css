@@ -22,9 +22,12 @@
 
 .username {
     font-size: 1vw;
-    /* margin-left: 10vw; */
+    cursor: pointer;
 }
-
+.logout-icon{
+    margin-left: 1vw;
+}
+ 
 /* Sign In */
 .sign-in {
     color: black;
@@ -35,10 +38,12 @@
 }
 
 
+
 .save-article {
     padding: 2vw;
     color: black;
     font-size: 1.5vw;
+    cursor: pointer;
 }
 
 .signin-icon1 {
@@ -186,6 +191,7 @@
     padding-left: 2vw;
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 .readmore {
@@ -295,6 +301,7 @@ hr {
     padding-left: 2vw;
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 hr {
