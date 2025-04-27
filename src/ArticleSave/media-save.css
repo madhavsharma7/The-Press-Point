@@ -1,0 +1,52 @@
+@media screen and (max-width: 600px) {
+    .articles-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .headline-item-save {
+        margin-top: 5%;
+    }
+
+    .img-save {
+        width: 100%;
+        height: auto;
+    }
+
+    .title-save {
+        font-size: 3.2vw;
+        margin-top: 2vh;
+    }
+
+    .desc-save {
+        font-size: 2.5vw;
+        margin-top: 2vh;
+        text-align: center;
+    }
+
+    .readmore-save {
+        margin-top: 2vh;
+        font-size: 3vw;
+        text-align: center;
+    }
+
+    #footers-save {
+        margin-top: 35vh !important;
+    }
+
+    .footers-logo-save {
+        font-size: 4.5vw !important;
+        margin-top: 2% !important;
+    }
+
+    .footer-copyright-save {
+        color: white;
+        margin-top: 2% !important;
+        text-align: center !important;
+        font-size: 2.5vw !important;
+        padding-bottom: 2% !important;
+    }
+
+}

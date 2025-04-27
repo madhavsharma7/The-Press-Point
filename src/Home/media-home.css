@@ -74,7 +74,7 @@
         right: -100%;
         width: 60vw;
         height: 100vh;
-        background-color: black; 
+        background-color: black;
         transition: right 0.3s ease-in-out;
         z-index: 1000;
         padding-top: 15vh;
@@ -95,7 +95,6 @@
         color: white;
         text-decoration: none;
     }
-
 
     #news-container h1 {
         font-size: 4vw;
@@ -132,14 +131,15 @@
         margin-left: -2vw !important;
     }
 
-    .save button{
+    .save button {
         font-size: 3vw;
         margin-bottom: 2.2vh;
     }
 
-    .latest{
+    .latest {
         margin-top: 40vh !important;
     }
+
     #search-container {
         grid-template-columns: repeat(2, 2fr);
         gap: 5%;
@@ -179,7 +179,25 @@
         font-size: 3vw !important;
         margin-bottom: 2vh;
     }
-    
+
+    #logout-button-outer {
+        display: none;
+    }
+
+    .sidebar-user {
+        text-align: center;
+    }
+
+    .sidebar-username {
+        color: white;
+        font-size: 4.4vw;
+    }
+
+    .logout-icon {
+        color: white;
+        font-size: 4vw;
+    }
+
     #footers-home {
         margin-top: 35vh !important;
     }

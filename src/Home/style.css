@@ -37,8 +37,6 @@
     text-decoration: none;
 }
 
-
-
 .save-article {
     padding: 2vw;
     color: black;
@@ -101,8 +99,7 @@
     /* Or fixed if you prefer */
     right: 20px;
     top: 20px;
-    z-index: 1001;
-  
+    z-index: 1001; 
 }
 
 .hamburger .line {
@@ -218,7 +215,6 @@ hr {
 
 
 #search-container {
-
     display: grid;
     gap: 2vw;
     padding: 2vw;

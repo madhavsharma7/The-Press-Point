@@ -4,7 +4,7 @@ import "./Save.css";
 import face from "../assets/img/login-avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-
+import "./media-save.css"
 function Save() {
     const [savedArticles, setSavedArticles] = useState([]);
     const [user, setUser] = useState(null);
@@ -95,30 +95,32 @@ function Save() {
             <main id="news-container">
                 <h1>Saved Articles</h1>
                 <hr className="title-hr" />
-                {savedArticles.length > 0 ? (
-                    savedArticles.map((article, index) => (
-                        <div key={index} className="headline-item">
-                            <img className="img" src={article.image || "fallback-image.jpg"} alt={article.title} />
-                            <h2 className="title">{article.title}</h2>
-                            <p className="desc">{article.description}</p>
-                            <div className="article-button">
-                                <p className="readmore">
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                                </p>
+                <div className="articles-grid">
+                    {savedArticles.length > 0 ? (
+                        savedArticles.map((article, index) => (
+                            <div key={index} className="headline-item-save">
+                                <img className="img-save" src={article.image || "fallback-image.jpg"} alt={article.title} />
+                                <h2 className="title-save">{article.title}</h2>
+                                <p className="desc-save">{article.description}</p>
+                                <div className="article-button-save">
+                                    <p className="readmore-save">
+                                        <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                                    </p>
+                                </div>
+                                <hr />
                             </div>
-                            <hr />
-                        </div>
-                    ))
-                ) : (
-                    <p className="news-error">No saved articles yet.</p>
-                )}
+                        ))
+                    ) : (
+                        <p className="news-error">No saved articles yet.</p>
+                    )}
+                </div>
             </main>
 
             {/* Footer */}
-            <div id="footers-home">
-                <div className="navbar-items-footers-home">
-                    <p className="footers-logo-home">The Press Point</p>
-                    <p className="footer-copyright-home">
+            <div id="footers-save">
+                <div className="navbar-items-footers-save">
+                    <p className="footers-logo-save">The Press Point</p>
+                    <p className="footer-copyright-save">
                         &copy; 2025 The Press Point All Rights Reserved
                     </p>
                 </div>
