@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Tech.css";
 import "./media-tech.css";
 import { Link } from "react-router-dom";
+import face from "../assets/img/login-avatar.png";
+import { toast } from "react-toastify";
 
 // https://gnews.io/api/v4/top-headlines?category=technology&apikey=${API_KEY}
 
@@ -12,6 +15,70 @@ const API_URL = ` https://gnews.io/api/v4/top-headlines?category=technology&apik
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
     const [error, setError] = useState(null);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navigate = useNavigate();
+    const [savedArticles, setSavedArticles] = useState([]);
+
+    const [user, setUser] = useState(() => {
+        const stored = localStorage.getItem("user");
+        return stored ? JSON.parse(stored) : null;
+    });
+
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+
+    useEffect(() => {
+        if (user) {
+            const savedKey = `savedArticles_${user.name}`;
+            const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
+            setSavedArticles(saved);
+        } else {
+            setSavedArticles([]); // Clear saved articles if no user
+        }
+    }, [user]);
+
+
+    const handleSave = (article) => {
+
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            toast("Please log in to save articles.");
+            return;
+        }
+
+        const savedKey = `savedArticles_${user.name}`;
+        const existingArticles = JSON.parse(localStorage.getItem(savedKey)) || [];
+
+        const isAlreadySaved = existingArticles.some((a) => a.url === article.url);
+        if (isAlreadySaved) {
+            toast("Article already saved.");
+            return;
+        }
+
+        const updatedArticles = [...existingArticles, article];
+        localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
+
+        toast("Article saved successfully!");
+    };
+
+    const handleReadMore = (e, url) => {
+        if (!user) {
+            e.preventDefault();
+            toast("Please log in to read the article.");
+            navigate("/login");
+        }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("savedArticles");
+        setUser(null);
+        setSavedArticles([]);
+        toast("Logged out successfully");
+        navigate("/");
+    };
+
 
     useEffect(() => {
         fetch(API_URL)
@@ -42,14 +109,73 @@ function Headlines() {
                             <div>
                                 <li>
                                     <h1 className="logo">
-                                        <Link to="/">The Press<span className="logo-part">Point</span></Link>
+                                        <Link to="/">The Press <span className="logo-part">Point</span></Link>
                                     </h1>
                                 </li>
                             </div>
                             <div>
-                                <li><Link className="sign-in" to="/login">Sign in</Link></li>
+                                <li>
+                                    {/* Conditional rendering based on login status */}
+                                    {user ? (
+                                        <span id="logout-button-outer" className="username">
+                                            Hi, {user.name}
+                                            <i
+                                                className="fa-solid fa-right-to-bracket logout-icon"
+                                                onClick={handleLogout}
+                                                title="Log Out"
+                                            ></i>
+                                        </span>
+
+                                    ) : (
+                                        <Link className="sign-in" id="signin" to="/login">
+                                            Sign in
+                                        </Link>
+                                    )}
+                                </li>
                             </div>
-                            <li><Link className="sub" to="/Sub">Subscribe</Link></li>
+                            <div id="right-navbar">
+                                <li>
+                                    <Link to="/Save" className="save-article">
+                                        <i className="fa-solid fa-bookmark"></i>
+                                    </Link>
+                                    <Link className="signin-icon1" to="/Login">
+                                        <img src={face} alt="Login" />
+                                    </Link>
+                                    <Link className="sub" to="Sub">
+                                        Subscribe
+                                    </Link>
+                                </li>
+                                <div
+                                    className={`hamburger ${sidebarOpen ? "active" : ""}`}
+                                    onClick={toggleSidebar}
+                                >
+                                    <span className="line"></span>
+                                    <span className="line"></span>
+                                    <span className="line"></span>
+                                </div>
+
+                                <div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
+                                    {/* <Link to="/login">Login</Link> */}
+                                    {user ? (
+                                        <div className="sidebar-user">
+                                            <span className="sidebar-username">Hi, {user.name}</span>
+                                            <i
+                                                className="fa-solid fa-right-to-bracket logout-icon"
+                                                onClick={handleLogout}
+                                                title="Log Out"
+                                            ></i>
+
+                                            {/* <button className="sidebar-logout" onClick={handleLogout}>
+                                                Log Out
+                                            </button> */}
+                                        </div>
+                                    ) : (
+                                        <Link to="/login">Login</Link>
+                                    )}
+                                    <Link to="/Save">Saved Articles</Link>
+                                    <Link to="Sub">Subscribe</Link>
+                                </div>
+                            </div>
                         </ul>
                     </nav>
                 </header>

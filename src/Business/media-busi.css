@@ -72,7 +72,7 @@
     }
 
     #footer-first {
-        margin-top: 100vh;
+        margin-top: 110vh;
         height: 30%;
     }
 
@@ -84,7 +84,6 @@
    .footer-copyrights {
         margin-top: 2%;
         text-align: center;
-        font-size: 2.5vw;
-      
+        font-size: 2.5vw; 
     }
 }
