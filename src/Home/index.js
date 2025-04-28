@@ -114,7 +114,7 @@ function App() {
                                 <li>
                                     {/* Conditional rendering based on login status */}
                                     {user ? (
-                                        <span id="logout-button-outer"className="username">
+                                        <span id="logout-button-outer" className="username">
                                             Hi, {user.name}
                                             <i
                                                 className="fa-solid fa-right-to-bracket logout-icon"
@@ -152,7 +152,6 @@ function App() {
                                 </div>
 
                                 <div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
-                                    {/* <Link to="/login">Login</Link> */}
                                     {user ? (
                                         <div className="sidebar-user">
                                             <span className="sidebar-username">Hi, {user.name}</span>
@@ -161,17 +160,18 @@ function App() {
                                                 onClick={handleLogout}
                                                 title="Log Out"
                                             ></i>
-
-                                            {/* <button className="sidebar-logout" onClick={handleLogout}>
-                                                Log Out
-                                            </button> */}
                                         </div>
                                     ) : (
-                                        <Link to="/login">Login</Link>
+                                        <div className="sidebar-user">
+                                            <Link to="/login" className="sidebar-username">
+                                                Login
+                                            </Link>
+                                        </div>
                                     )}
                                     <Link to="/Save">Saved Articles</Link>
-                                    <Link to="Sub">Subscribe</Link>
+                                    <Link to="/Sub">Subscribe</Link>
                                 </div>
+
                             </div>
                         </ul>
                     </nav>
