@@ -244,7 +244,7 @@ function Headlines() {
             <div id="footer-science">
                 <div className="navbar-items-footer-science">
                     <p className="footer-science-logo">The Press Point</p>
-                    <p className="footer-science-copyright">Copyright &copy; 2025 The Press Point All Rights Reserved</p>
+                    <p className="footer-science-copyright">&copy; 2025 The Press Point All Rights Reserved</p>
                 </div>
             </div>
         </div>

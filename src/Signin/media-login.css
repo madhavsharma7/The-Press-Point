@@ -25,7 +25,7 @@
 
     .sign-in h1 {
         margin-left: -5vw;
-        font-size: 7vw;
+        font-size: 5vw;
     }
 
     .sign-in span {
@@ -47,10 +47,16 @@
 
     .sign-up input[type="text"] {
         width: 120%;
+        margin-top: 10vw;
     }
 
     .sign-up input[type="email"] {
         width: 120%;
+    }
+
+    .sign-up h1{
+        font-size: 4vw;
+        margin-top: -2vh;
     }
 
     .sign-up input[type="password"] {
@@ -69,4 +75,17 @@
     .form-signin button {
         width: 120%;
     }
+
+    .signingit button {
+        width: 100%;
+        font-size: 1.8vw;
+    }
+
+    #google-btn{
+        width: 100%;
+        font-size: 1.8vw;
+    }
+ 
+
+    
 }
