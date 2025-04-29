@@ -77,15 +77,16 @@
     }
 
     .signingit button {
-        width: 100%;
-        font-size: 1.8vw;
+        width: 120%;
+        margin-left: -10%;
+        font-size: 2vw;
     }
 
     #google-btn{
-        width: 100%;
-        font-size: 1.8vw;
+        width: 120%;
+        margin-left: -10%;
+        font-size: 3vw;
+
     }
  
-
-    
 }

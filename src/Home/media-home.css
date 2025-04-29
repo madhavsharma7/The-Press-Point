@@ -132,8 +132,8 @@
     }
 
     .save button {
-        font-size: 3vw;
-        margin-bottom: 2.2vh;
+        font-size: 3vw !important;
+        margin-bottom: 3vh;
     }
 
     .latest {
