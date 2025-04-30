@@ -97,17 +97,22 @@
 .sign-in {
     left: -12vw;
     width: 50%;
-    z-index: 2;
+    z-index: 2;  
 }
 
+.sign-in span{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
 .signin-topic {
     margin-top: -8vh;
+    margin-bottom: 10%;
 }
 
 #google-btn{
     font-size: 1vw;
     width: 100%;
-    /* padding: 10px 20px; */
+   
 }
 
 .signingit button {
@@ -155,10 +160,6 @@
         opacity: 1;
         z-index: 5;
     }
-}
-
-.social-icons {
-    margin: 20px 0;
 }
 
 .toggle-container {
