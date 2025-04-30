@@ -77,8 +77,8 @@
     }
 
      .signingit button {
-        width: 100%;
-        margin-left: -1%;
+        width: 90%;
+        /* margin-left: -1%; */
         font-size: 2vw;
     }
 
