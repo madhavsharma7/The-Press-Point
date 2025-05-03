@@ -21,13 +21,15 @@
 }
 
 .username {
+    margin-left: -2% !important;
     font-size: 1vw;
     cursor: pointer;
 }
-.logout-icon{
+
+.logout-icon {
     margin-left: 1vw;
 }
- 
+
 /* Sign In */
 .sign-in {
     color: black;
@@ -99,7 +101,7 @@
     /* Or fixed if you prefer */
     right: 20px;
     top: 20px;
-    z-index: 1001; 
+    z-index: 1001;
 }
 
 .hamburger .line {
@@ -109,7 +111,7 @@
     border-radius: 2px;
 }
 
-.sidebar{
+.sidebar {
     display: none;
 }
 

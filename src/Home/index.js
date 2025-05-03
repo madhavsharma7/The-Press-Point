@@ -5,6 +5,7 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
+import {jwtDecode} from "jwt-decode";
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
@@ -18,14 +19,24 @@ function App() {
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
 
-
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
     });
 
-    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+            } catch (error) {
+                console.error("Failed to parse user:", error);
+            }
+        }
+    }, []);
 
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
     useEffect(() => {
         if (user) {
@@ -37,6 +48,33 @@ function App() {
         }
     }, [user]);
 
+    // github username change in login 
+    // Inside useEffect when code is present
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code");
+
+        if (code) {
+            fetch("http://localhost:5000/api/auth/github", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ code }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.token) {
+                        const decoded = jwtDecode(data.token);
+                        const { name, email } = decoded;
+                        localStorage.setItem("user", JSON.stringify({ name, email }));
+                        localStorage.setItem("github_token", data.token);
+                        window.location.href = "/";  // force reload
+                    } else {
+                        console.error("Token not received from backend.");
+                    }
+                })
+                .catch(err => console.error("GitHub OAuth error:", err));
+        }
+    }, []);
 
     const handleSave = (article) => {
 

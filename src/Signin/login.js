@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./login.css";
 import "./media-login.css";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContainer = () => {
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +14,7 @@ const AuthContainer = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const API_BASE = "https://the-press-point.onrender.com";
-
+ 
   // Initialize Google Sign-In
   useEffect(() => {
     if (!window.google) return;
@@ -38,9 +39,20 @@ const AuthContainer = () => {
   // Handle Google Sign-In
   const handleGoogleLogin = (response) => {
     console.log("✅ Google Token:", response.credential);
+
+    const decoded = jwtDecode(response.credential); // ✅ Fixed function call
+    console.log("🔍 Decoded Google User:", decoded);
+
+    const { name: userName, email: userEmail } = decoded;
+
+    localStorage.setItem("user", JSON.stringify({ name: userName, email: userEmail }));
+    localStorage.setItem("google_token", response.credential);
+  
     localStorage.setItem("google_token", response.credential);
     navigate("/", { replace: true });
   };
+
+  // After successful login or redirect
 
   // Handle Signup
   const handleSignup = async (e) => {
@@ -109,7 +121,8 @@ const AuthContainer = () => {
 
   // Handle GitHub Login
   const handleGitHubLogin = () => {
-    window.location.href = `${API_BASE}/auth/github`;
+
+    window.location.href = `http://localhost:5000/auth/github`;
   };
 
   return (
