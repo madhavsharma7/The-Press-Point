@@ -86,58 +86,6 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// github
-const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-
-app.get("/auth/github", (req, res) => {
-    const redirectUri = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user`;
-    res.redirect(redirectUri);
-});
-
-app.get("/auth/github/callback", async (req, res) => {
-    const code = req.query.code;
-    try {
-        const tokenResponse = await axios.post(
-            "https://github.com/login/oauth/access_token",
-            {
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
-                code,
-            },
-            {
-                headers: {
-                    Accept: "application/json",
-                },
-            }
-        );
-
-        const accessToken = tokenResponse.data.access_token;
-
-        const userResponse = await axios.get("https://api.github.com/user", {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        const { login, name, avatar_url } = userResponse.data;
-
-        // Create JWT payload (GitHub may not return email unless you use /emails endpoint)
-        const token = jwt.sign(
-            { name: name || login, email: email || `${login}@github.com` },
-            process.env.JWT_SECRET, // Make sure this is defined in .env
-            { expiresIn: "1h" }
-        );
-
-        // Redirect with JWT token to frontend
-        res.redirect(`${FRONTEND_URL}/github-auth?token=${token}`);
-    } catch (err) {
-        console.error("OAuth Error:", err.message);
-        res.status(500).send("GitHub login failed");
-    }
-});
-
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);

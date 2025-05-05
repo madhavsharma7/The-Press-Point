@@ -5,7 +5,7 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
@@ -18,7 +18,6 @@ function App() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
-
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
@@ -44,42 +43,12 @@ function App() {
             const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
             setSavedArticles(saved);
         } else {
-            setSavedArticles([]); // Clear saved articles if no user
+            setSavedArticles([]);
         }
     }, [user]);
 
-    // github username change in login 
-    // Inside useEffect when code is present
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get("code");
-
-        if (code) {
-            fetch("http://localhost:5000/api/auth/github", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code }),
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.token) {
-                        const decoded = jwtDecode(data.token);
-                        const { name, email } = decoded;
-                        localStorage.setItem("user", JSON.stringify({ name, email }));
-                        localStorage.setItem("github_token", data.token);
-                        window.location.href = "/";  // force reload
-                    } else {
-                        console.error("Token not received from backend.");
-                    }
-                })
-                .catch(err => console.error("GitHub OAuth error:", err));
-        }
-    }, []);
-
     const handleSave = (article) => {
-
         const user = JSON.parse(localStorage.getItem("user"));
-
         if (!user) {
             toast("Please log in to save articles.");
             return;
@@ -150,7 +119,6 @@ function App() {
                             </div>
                             <div>
                                 <li>
-                                    {/* Conditional rendering based on login status */}
                                     {user ? (
                                         <span id="logout-button-outer" className="username">
                                             Hi, {user.name}
@@ -160,7 +128,6 @@ function App() {
                                                 title="Log Out"
                                             ></i>
                                         </span>
-
                                     ) : (
                                         <Link className="sign-in" id="signin" to="/login">
                                             Sign in
@@ -209,59 +176,23 @@ function App() {
                                     <Link to="/Save">Saved Articles</Link>
                                     <Link to="/Sub">Subscribe</Link>
                                 </div>
-
                             </div>
                         </ul>
                     </nav>
                 </header>
+
                 {/* Navbar Items */}
                 <div id="navbar-items">
                     <ul>
-                        <li>
-                            <Link to="/" data-category="home">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Wor" data-category="world">
-                                World
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/International" data-category="nation">
-                                Nation
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Bus" data-category="business">
-                                Business
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Tech" data-category="technology">
-                                Technology
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Enter" data-category="entertainment">
-                                Entertainment
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Sports" data-category="sports">
-                                Sports
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Science" data-category="science">
-                                Science
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Health" data-category="health">
-                                Health
-                            </Link>
-                        </li>
+                        <li><Link to="/" data-category="home">Home</Link></li>
+                        <li><Link to="/Wor" data-category="world">World</Link></li>
+                        <li><Link to="/International" data-category="nation">Nation</Link></li>
+                        <li><Link to="/Bus" data-category="business">Business</Link></li>
+                        <li><Link to="/Tech" data-category="technology">Technology</Link></li>
+                        <li><Link to="/Enter" data-category="entertainment">Entertainment</Link></li>
+                        <li><Link to="/Sports" data-category="sports">Sports</Link></li>
+                        <li><Link to="/Science" data-category="science">Science</Link></li>
+                        <li><Link to="/Health" data-category="health">Health</Link></li>
                     </ul>
                 </div>
             </div>
@@ -293,9 +224,7 @@ function App() {
                                         </a>
                                     </p>
                                     <p className="save">
-                                        <button onClick={() => handleSave(article)}>
-                                            Save Article
-                                        </button>
+                                        <button onClick={() => handleSave(article)}>Save Article</button>
                                     </p>
                                 </div>
                                 <hr />
@@ -334,9 +263,7 @@ function App() {
                                         </a>
                                     </div>
                                     <p className="save-latest">
-                                        <button onClick={() => handleSave(article)}>
-                                            Save Article
-                                        </button>
+                                        <button onClick={() => handleSave(article)}>Save Article</button>
                                     </p>
                                 </div>
                                 <hr />

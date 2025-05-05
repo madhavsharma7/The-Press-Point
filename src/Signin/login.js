@@ -36,6 +36,18 @@ const AuthContainer = () => {
     );
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get("user");
+    const email = params.get("email");
+
+    if (user && email) {
+      const userData = { name: user, email };
+      localStorage.setItem("user", JSON.stringify(userData));
+      window.history.replaceState({}, document.title, "/"); // Clean URL
+    }
+  }, []);
+
   // Handle Google Sign-In
   const handleGoogleLogin = (response) => {
     console.log("✅ Google Token:", response.credential);
@@ -63,6 +75,7 @@ const AuthContainer = () => {
       setMessage("Please fill in all fields.");
       return;
     }
+
 
     try {
       const response = await fetch(`${API_BASE}/signup`, {
@@ -119,12 +132,6 @@ const AuthContainer = () => {
     }
   };
 
-  // Handle GitHub Login
-  const handleGitHubLogin = () => {
-
-    window.location.href = `http://localhost:5000/auth/github`;
-  };
-
   return (
     <div id="main">
       <div className={isActive ? "container active" : "container"}>
@@ -164,11 +171,6 @@ const AuthContainer = () => {
             <h1 className="signin-topic">Sign In</h1>
             <div className="social-icons">
               <div id="google-btn" className="google-signin-btn"></div>
-              <div className="signingit">
-                <button type="button" onClick={handleGitHubLogin}>
-                  <i className="fa-brands fa-github"></i>Sign in with GitHub
-                </button>
-              </div>
             </div>
             <span>or use your email and password</span>
             <input
