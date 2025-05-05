@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const User = require("./User");
-// const axios = require("axios"); // Needed for HTTP requests
-const jwt = require("jsonwebtoken");
+// // const axios = require("axios"); // Needed for HTTP requests
+// const jwt = require("jsonwebtoken");
 
 dotenv.config();
 const app = express();
