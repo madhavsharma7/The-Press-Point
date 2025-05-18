@@ -75,8 +75,6 @@ const AuthContainer = () => {
       setMessage("Please fill in all fields.");
       return;
     }
-
-
     try {
       const response = await fetch(`${API_BASE}/signup`, {
         method: "POST",

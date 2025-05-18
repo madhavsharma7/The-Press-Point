@@ -9,8 +9,8 @@ import { jwtDecode } from "jwt-decode";
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
-const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=5&apikey=${API_KEY}`;
-const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=5&apikey=${API_KEY}`;
+const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=12&apikey=${API_KEY}`;
+const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=12&apikey=${API_KEY}`;
 
 function App() {
     const [headlines, setHeadlines] = useState([]);
