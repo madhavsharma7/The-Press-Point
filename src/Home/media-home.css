@@ -107,8 +107,8 @@
 
     #headlines-container {
         grid-template-columns: repeat(2, 2fr);
-        gap: 8%;
-        margin-top: 5%;
+        gap: 4% !important;
+      
     }
 
     .img {
@@ -128,7 +128,7 @@
 
     .readmore {
         font-size: 2vw;
-        margin-left: -2vw !important;
+        margin-left: -1vw !important;
     }
 
     .save button {
@@ -137,12 +137,12 @@
     }
 
     .latest {
-        margin-top: 40vh !important;
+        margin-top: 55vh !important;
     }
 
     #search-container {
         grid-template-columns: repeat(2, 2fr);
-        gap: 5%;
+        gap: 4% !important;
     }
 
     .img-container {
@@ -172,7 +172,7 @@
 
     .readmore-news {
         font-size: 3vw;
-        margin-left: -5vw !important;
+        margin-left: -1vw !important;
     }
 
     .save-latest button {
@@ -199,7 +199,7 @@
     }
 
     #footers-home {
-        margin-top: 35vh !important;
+        margin-top: 60vh !important;
     }
 
     .footers-logo-home {
