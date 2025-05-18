@@ -221,7 +221,7 @@ function Headlines() {
                                                 Read more
                                             </a>
                                         </p>
-                                        <p className="save">
+                                        <p className="save-for-business">
                                             <button onClick={() => handleSave(article)}>
                                                 Save Article
                                             </button>

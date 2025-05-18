@@ -230,12 +230,21 @@ hr {
     font-weight: bold;
 }
 
+.save-for-intern button {
+    color: blue;
+    margin-top: 4.5vh;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding-left: 2vw;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
 hr {
     width: 80%;
     margin-top: 1vw;
 }
-
-
 
 /* carousal */
 .slideshow-container {

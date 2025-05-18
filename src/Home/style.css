@@ -178,11 +178,11 @@
     align-items: center;
 }
 
-.save Link {
+.save-for-home Link {
     text-decoration: none;
 }
 
-.save Button {
+.save-for-home Button {
     color: blue;
     margin-top: 4.5vh;
     font-size: 1.1vw;

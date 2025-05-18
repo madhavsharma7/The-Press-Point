@@ -57,22 +57,26 @@
         height: 18vh;
     }
 
-    .title {
-        font-size: 3.2vw;
-        margin-top: 2vh;
+    .news-title {
+        font-size: 3.2vw !important ;
+        margin-top: 2vh !important;
     }
 
-    .desc {
-        font-size: 2.5vw;
-        margin-top: 2vh;
+    .description {
+        font-size: 2.5vw !important;
+        margin-top: 2vh  !important;
     }
 
-    .readmore {
-        font-size: 3vw;
+    .readmore-button {
+        font-size: 3vw !important;
+    }
+
+    .save-button{
+        margin-top: -2%;
     }
 
     #footer-first {
-        margin-top: 110vh;
+        margin-top: 70vh;
         height: 30%;
     }
 

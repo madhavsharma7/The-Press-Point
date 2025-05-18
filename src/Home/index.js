@@ -223,7 +223,7 @@ function App() {
                                             Read more
                                         </a>
                                     </p>
-                                    <p className="save">
+                                    <p className="save-for-home">
                                         <button onClick={() => handleSave(article)}>Save Article</button>
                                     </p>
                                 </div>

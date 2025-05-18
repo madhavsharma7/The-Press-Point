@@ -137,7 +137,6 @@
     padding: 1vw;
 }
 
-
 .image {
     width: 100%;
     max-width: 500px;
@@ -170,6 +169,17 @@
     text-decoration: none;
     color: blue;
     font-weight: bold;
+}
+
+.save-for-enter button {
+    color: blue;
+    margin-top: 2vh;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding-left: 2vw;
+    border: none;
+    background-color: white;
+    cursor: pointer;
 }
 
 hr {

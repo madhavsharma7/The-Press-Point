@@ -214,9 +214,27 @@ function Headlines() {
                                     />
                                     <h2 className="title">{article.title}</h2>
                                     <p className="desc">{article.description || "No description available."}</p>
-                                    <p className="readmore">
+                                    {/* <p className="readmore">
                                         <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
                                     </p>
+                                    <hr /> */}
+                                    <div className="article-button">
+                                        <p className="readmore-button">
+                                            <a
+                                                href={article.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => handleReadMore(e, article.url)}
+                                            >
+                                                Read more
+                                            </a>
+                                        </p>
+                                        <p className="save-for-tech">
+                                            <button onClick={() => handleSave(article)}>
+                                                Save Article
+                                            </button>
+                                        </p>
+                                    </div>
                                     <hr />
                                 </div>
                             ))
