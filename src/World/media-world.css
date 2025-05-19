@@ -71,9 +71,14 @@
         font-size: 3vw;
     }
 
+    .save-for-world button {
+        font-size: 3vw !important;
+        margin-bottom: 3vh;
+    }
+
     #footers {
-        margin-top: 70vh;
-        height: 30%; 
+        margin-top: 60vh;
+        height: 30%;
     }
 
     .footers-logo {
@@ -85,6 +90,6 @@
         margin-top: 2%;
         text-align: center;
         font-size: 2.5vw;
-   
+
     }
 }

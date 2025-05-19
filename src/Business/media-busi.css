@@ -58,25 +58,26 @@
     }
 
     .news-title {
-        font-size: 3.2vw !important ;
+        font-size: 3.2vw !important;
         margin-top: 2vh !important;
     }
 
     .description {
         font-size: 2.5vw !important;
-        margin-top: 2vh  !important;
+        margin-top: 2vh !important;
     }
 
     .readmore-button {
         font-size: 3vw !important;
     }
 
-    .save-button{
-        margin-top: -2%;
+    .save-for-business button {
+        font-size: 3vw !important;
+        margin-bottom: 1vh;
     }
 
     #footer-first {
-        margin-top: 70vh;
+        margin-top: 60vh;
         height: 30%;
     }
 
@@ -85,9 +86,9 @@
         margin-top: 2%;
     }
 
-   .footer-copyrights {
+    .footer-copyrights {
         margin-top: 2%;
         text-align: center;
-        font-size: 2.5vw; 
+        font-size: 2.5vw;
     }
 }

@@ -179,6 +179,7 @@
     background-color: white;
     cursor: pointer;
 }
+
 hr {
     width: 80%;
     margin-top: 1vw;
@@ -202,7 +203,6 @@ hr {
     justify-content: space-between;
     padding: 1vw;
 }
-
 
 .img-news {
     width: 100%;

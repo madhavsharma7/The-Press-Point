@@ -71,8 +71,13 @@
         font-size: 3vw;
     }
 
+    .save-for-intern button {
+        font-size: 3vw !important;
+        margin-bottom: 3vh;
+    }
+
     #foot {
-        margin-top: 70vh;
+        margin-top: 60vh;
         height: 30%;
     }
 

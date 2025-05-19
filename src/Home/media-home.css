@@ -108,7 +108,7 @@
     #headlines-container {
         grid-template-columns: repeat(2, 2fr);
         gap: 4% !important;
-      
+
     }
 
     .img {
@@ -131,7 +131,7 @@
         margin-left: -1vw !important;
     }
 
-    .save button {
+    .save-for-home button {
         font-size: 3vw !important;
         margin-bottom: 3vh;
     }
@@ -143,21 +143,19 @@
     #search-container {
         grid-template-columns: repeat(2, 2fr);
         gap: 4% !important;
+        margin-top: 5%;
     }
 
     .img-container {
-        width: 100%;
-        height: auto;
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 2% !important;
+
     }
 
     .h2-news {
-        font-size: 5vw;
-        margin: 2vh 0;
-    }
-
-    .img-news {
-        height: 25vh;
-        margin-bottom: 2vh;
+        font-size: 3.2vw !important;
+        margin: 2vh 0 !important;
     }
 
     .latest {
@@ -166,12 +164,12 @@
     }
 
     .p-news {
-        font-size: 2.5vw;
-        margin-top: -5vh;
+        font-size: 2.5vw !important;
+        margin-top: 2vh !important;
     }
 
     .readmore-news {
-        font-size: 3vw;
+        font-size: 3vw !important;
         margin-left: -1vw !important;
     }
 
