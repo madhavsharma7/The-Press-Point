@@ -166,7 +166,7 @@ function Headlines() {
                                         <Link to="/login">Login</Link>
                                     )}
                                     <Link to="/Save">Saved Articles</Link>
-                                    <Link to="Sub">Subscribe</Link>
+                                    <Link to="/Sub">Subscribe</Link>
                                 </div>
                             </div>
                         </ul>
