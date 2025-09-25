@@ -27,6 +27,25 @@ const userSchema = new mongoose.Schema({
 
 module.exports = mongoose.model("User", userSchema);
 
+app.get("/api/news/search", async (req, res) => {
+    const { q = "example" } = req.query;
+
+    try {
+        const response = await fetch(
+            `https://gnews.io/api/v4/search?q=${q}&lang=en&country=in&max=12&apikey=${process.env.GNEWS_API_KEY}`
+        );
+
+        if (!response.ok) {
+            return res.status(response.status).json({ error: "Failed to fetch from GNews" });
+        }
+
+        const data = await response.json();
+        res.json(data); // Send it to frontend
+    } catch (error) {
+        console.error("Proxy Error:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
 
 
 // app.use(
