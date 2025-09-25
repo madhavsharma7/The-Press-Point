@@ -5,7 +5,6 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 
 const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";

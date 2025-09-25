@@ -17,19 +17,45 @@ const allowedOrigins = [
     "https://the-press-point.vercel.app", // for production frontend
 ];
 
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+module.exports = mongoose.model("User", userSchema);
+
+
+
+// app.use(
+//     cors({
+//         origin: function (origin, callback) {
+//             if (!origin || allowedOrigins.includes(origin)) {
+//                 callback(null, true); // Allow CORS for the allowed origins
+//             } else {
+//                 callback(new Error("Not allowed by CORS"));
+//             }
+//         },
+//         credentials: true, // Allow cookies to be sent with requests
+//     })
+// );
+
+
 app.use(
     cors({
         origin: function (origin, callback) {
             if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true); // Allow CORS for the allowed origins
+                callback(null, true);
             } else {
-                callback(new Error("Not allowed by CORS"));
+                console.warn(`Blocked by CORS: ${origin}`);
+                callback(null, false); // Reject without crashing
             }
         },
-        credentials: true, // Allow cookies to be sent with requests
+        credentials: true,
     })
 );
-
 // MongoDB connection
 mongoose
     .connect(process.env.MONGO_URI, {
