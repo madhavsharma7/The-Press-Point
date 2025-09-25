@@ -18,66 +18,66 @@ function Headlines() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
-    
-        const [user, setUser] = useState(() => {
-            const stored = localStorage.getItem("user");
-            return stored ? JSON.parse(stored) : null;
-        });
-    
-        const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-    
-    
-        useEffect(() => {
-            if (user) {
-                const savedKey = `savedArticles_${user.name}`;
-                const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
-                setSavedArticles(saved);
-            } else {
-                setSavedArticles([]); // Clear saved articles if no user
-            }
-        }, [user]);
-    
-        const handleSave = (article) => {
-    
-            const user = JSON.parse(localStorage.getItem("user"));
-    
-            if (!user) {
-                toast("Please log in to save articles.");
-                return;
-            }
-    
+
+    const [user, setUser] = useState(() => {
+        const stored = localStorage.getItem("user");
+        return stored ? JSON.parse(stored) : null;
+    });
+
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+
+    useEffect(() => {
+        if (user) {
             const savedKey = `savedArticles_${user.name}`;
-            const existingArticles = JSON.parse(localStorage.getItem(savedKey)) || [];
-    
-            const isAlreadySaved = existingArticles.some((a) => a.url === article.url);
-            if (isAlreadySaved) {
-                toast("Article already saved.");
-                return;
-            }
-    
-            const updatedArticles = [...existingArticles, article];
-            localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
-    
-            toast("Article saved successfully!");
-        };
-    
-        const handleReadMore = (e, url) => {
-            if (!user) {
-                e.preventDefault();
-                toast("Please log in to read the article.");
-                navigate("/login");
-            }
-        };
-    
-        const handleLogout = () => {
-            localStorage.removeItem("user");
-            localStorage.removeItem("savedArticles");
-            setUser(null);
-            setSavedArticles([]);
-            toast("Logged out successfully");
-            navigate("/");
-        };
-    
+            const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
+            setSavedArticles(saved);
+        } else {
+            setSavedArticles([]); // Clear saved articles if no user
+        }
+    }, [user]);
+
+    const handleSave = (article) => {
+
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            toast("Please log in to save articles.");
+            return;
+        }
+
+        const savedKey = `savedArticles_${user.name}`;
+        const existingArticles = JSON.parse(localStorage.getItem(savedKey)) || [];
+
+        const isAlreadySaved = existingArticles.some((a) => a.url === article.url);
+        if (isAlreadySaved) {
+            toast("Article already saved.");
+            return;
+        }
+
+        const updatedArticles = [...existingArticles, article];
+        localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
+
+        toast("Article saved successfully!");
+    };
+
+    const handleReadMore = (e, url) => {
+        if (!user) {
+            e.preventDefault();
+            toast("Please log in to read the article.");
+            navigate("/login");
+        }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("savedArticles");
+        setUser(null);
+        setSavedArticles([]);
+        toast("Logged out successfully");
+        navigate("/");
+    };
+
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
