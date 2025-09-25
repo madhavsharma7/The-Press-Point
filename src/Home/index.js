@@ -6,7 +6,7 @@ import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
 
-const API_KEY = "2d30750a66691447416f982f9f60225e";
+const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
 const category = "category";
 const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=12&apikey=${API_KEY}`;
 const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=12&apikey=${API_KEY}`;
