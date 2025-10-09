@@ -178,15 +178,6 @@ function Headlines() {
                 {/* Navbar Items */}
                 <div id="navbar-items">
                     <ul>
-<<<<<<< HEAD
-                                              <li><Link to="/">Home</Link></li>
-                                              <li><Link to="/Bus">Business</Link></li>
-                                              <li><Link to="/Tech">Technology</Link></li>
-                                              <li><Link to="/Enter">Entertainment</Link></li>
-                                              <li><Link to="/Sports">Sports</Link></li>
-                                              <li><Link to="/Science">Science</Link></li>
-                                              <li><Link to="/Health">Health</Link></li>
-=======
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/Bus">Business</Link></li>
                         <li><Link to="/Tech">Technology</Link></li>
@@ -194,13 +185,13 @@ function Headlines() {
                         <li><Link to="/Sports">Sports</Link></li>
                         <li><Link to="/Science">Science</Link></li>
                         <li><Link to="/Health">Health</Link></li>
->>>>>>> e379569 (api changed)
-                    </ul>
-                </div>
-            </div>
 
-            {/* ================== News Section ================== */}
-            <main id="news-container">
+                    </ul >
+                </div >
+            </div >
+
+        {/* ================== News Section ================== */ }
+        < main id = "news-container" >
                 <h1>Health Headlines</h1>
                 <hr className="title-hr" />
 
@@ -258,15 +249,15 @@ function Headlines() {
                 </div>
             </main>
 
-            {/* ================== Footer ================== */}
-            <div id="footer-first">
-                <div className="navbar-items-footer">
-                    <p className="footer-logo-name">The Press Point</p>
-                    <p className="footer-copyrights">
-                        &copy; 2025 The Press Point All Rights Reserved
-                    </p>
-                </div>
+        {/* ================== Footer ================== */ }
+        < div id = "footer-first" >
+            <div className="navbar-items-footer">
+                <p className="footer-logo-name">The Press Point</p>
+                <p className="footer-copyrights">
+                    &copy; 2025 The Press Point All Rights Reserved
+                </p>
             </div>
+            </div >
         </div>
     );
 }
