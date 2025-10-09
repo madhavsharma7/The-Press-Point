@@ -5,15 +5,17 @@ import "./media-home.css";
 import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
-//  2d30750a66691447416f982f9f60225e  
-const API_KEY = "773dcaa65d9b9a5df06b87e05a18b242";
-const category = "category";
-const HEADLINES_URL = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&max=12&apikey=${API_KEY}`;
-const SEARCH_URL = `https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=12&apikey=${API_KEY}`;
+
+const API_KEY = "56ed5976ed140580a93a61871fa125bd";
+const category = "general";
+
+// ✅ Mediastack API endpoint for top headlines
+const HEADLINES_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=${category}&countries=in&languages=en&limit=12`;
 
 function App() {
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("example");
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
@@ -85,17 +87,32 @@ function App() {
         navigate("/");
     };
 
+    // ✅ Fetch headlines & search results from Mediastack
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
-            .then((data) => setHeadlines(data.articles || []))
+            .then((data) => {
+                console.log("Headlines from Mediastack:", data);
+                setHeadlines(data.data || []);
+            })
             .catch((error) => console.error("Error fetching headlines:", error));
+
+        const SEARCH_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&keywords=${searchQuery}&countries=in&languages=en&limit=12`;
 
         fetch(SEARCH_URL)
             .then((response) => response.json())
-            .then((data) => setSearchResults(data.articles || []))
+            .then((data) => {
+                console.log("Search results from Mediastack:", data);
+                setSearchResults(data.data || []);
+            })
             .catch((error) => console.error("Error fetching search results:", error));
-    }, []);
+    }, [searchQuery]);
+
+    const handleSearch = (e) => {
+        if (e.key === "Enter" && e.target.value.trim() !== "") {
+            setSearchQuery(e.target.value.trim());
+        }
+    };
 
     return (
         <div id="container">
@@ -105,7 +122,11 @@ function App() {
                     <nav id="search">
                         <ul>
                             <li>
-                                <input type="text" placeholder="Search" />
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    onKeyDown={handleSearch}
+                                />
                             </li>
                             <div>
                                 <li>
@@ -184,8 +205,6 @@ function App() {
                 <div id="navbar-items">
                     <ul>
                         <li><Link to="/" data-category="home">Home</Link></li>
-                        <li><Link to="/Wor" data-category="world">World</Link></li>
-                        <li><Link to="/International" data-category="nation">Nation</Link></li>
                         <li><Link to="/Bus" data-category="business">Business</Link></li>
                         <li><Link to="/Tech" data-category="technology">Technology</Link></li>
                         <li><Link to="/Enter" data-category="entertainment">Entertainment</Link></li>
@@ -206,11 +225,11 @@ function App() {
                             <div key={index} className="headline-item">
                                 <img
                                     className="img"
-                                    src={article.image || "fallback-image.jpg"}
-                                    alt={article.title}
+                                    src={article.image || "https://via.placeholder.com/400x200?text=No+Image"}
+                                    alt={article.title || "No Title"}
                                 />
-                                <h2 className="title">{article.title}</h2>
-                                <p className="desc">{article.description}</p>
+                                <h2 className="title">{article.title || "Untitled"}</h2>
+                                <p className="desc">{article.description || "No description available."}</p>
                                 <div className="article-button">
                                     <p className="readmore">
                                         <a
@@ -244,12 +263,12 @@ function App() {
                                 <div className="img-container">
                                     <img
                                         className="img-news"
-                                        src={article.image || "fallback-image.jpg"}
-                                        alt={article.title}
+                                        src={article.image || "https://via.placeholder.com/400x200?text=No+Image"}
+                                        alt={article.title || "No Title"}
                                     />
                                 </div>
-                                <h2 className="h2-news">{article.title}</h2>
-                                <p className="p-news">{article.description}</p>
+                                <h2 className="h2-news">{article.title || "Untitled"}</h2>
+                                <p className="p-news">{article.description || "No description available."}</p>
                                 <div className="article-button-two">
                                     <div className="readmore-news">
                                         <a
