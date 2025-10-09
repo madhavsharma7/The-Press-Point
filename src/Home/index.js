@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const API_KEY = "56ed5976ed140580a93a61871fa125bd";
 const category = "general";
 
-// ✅ Mediastack API endpoint for top headlines
+// Mediastack API endpoint for top headlines
 const HEADLINES_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=${category}&countries=in&languages=en&limit=12`;
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
         navigate("/");
     };
 
-    // ✅ Fetch headlines & search results from Mediastack
+    //  Fetch headlines & search results from Mediastack
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
