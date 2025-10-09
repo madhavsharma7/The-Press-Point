@@ -96,6 +96,8 @@ function App() {
                 setHeadlines(data.data || []);
             })
             .catch((error) => console.error("Error fetching headlines:", error));
+        const API_KEY = "56ed5976ed140580a93a61871fa125bd";
+        const SEARCH_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&keywords=${searchQuery}&countries=in&languages=en&limit=12`;
 
         const SEARCH_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&keywords=${searchQuery}&countries=in&languages=en&limit=12`;
 

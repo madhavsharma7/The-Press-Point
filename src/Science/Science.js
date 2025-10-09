@@ -178,6 +178,7 @@ function Headlines() {
                 {/* Navbar Items */}
                 <div id="navbar-items">
                     <ul>
+<<<<<<< HEAD
                                               <li><Link to="/">Home</Link></li>
                                               <li><Link to="/Bus">Business</Link></li>
                                               <li><Link to="/Tech">Technology</Link></li>
@@ -185,6 +186,15 @@ function Headlines() {
                                               <li><Link to="/Sports">Sports</Link></li>
                                               <li><Link to="/Science">Science</Link></li>
                                               <li><Link to="/Health">Health</Link></li>
+=======
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/Bus">Business</Link></li>
+                        <li><Link to="/Tech">Technology</Link></li>
+                        <li><Link to="/Enter">Entertainment</Link></li>
+                        <li><Link to="/Sports">Sports</Link></li>
+                        <li><Link to="/Science">Science</Link></li>
+                        <li><Link to="/Health">Health</Link></li>
+>>>>>>> e379569 (api changed)
                     </ul>
                 </div>
             </div>
