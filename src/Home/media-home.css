@@ -112,7 +112,7 @@
 
     .img-home {
         width: 100%;
-        height: 25vh;
+        height: 20vh;
     }
 
     .title {
@@ -132,7 +132,7 @@
 
     .save-for-home button {
         font-size: 3vw !important;
-        margin-bottom: 2.5vh;
+        margin-bottom: 3vh;
     }
 
     .latest {
@@ -147,7 +147,7 @@
     }
 
     .latest-search {
-        margin-top: 260% !important;
+        margin-top: 300% !important;
     }
 
     .img-container-search {
@@ -186,7 +186,7 @@
 
     .save-latest-search button {
         font-size: 3vw !important;
-        margin-bottom: 1vh;
+        margin-bottom: 0.8vh;
     }
 
 
@@ -209,7 +209,7 @@
     }
 
     #footers-home {
-        margin-top: 70vh !important;
+        margin-top: 45vh !important;
     }
 
     .footers-logo-home {
