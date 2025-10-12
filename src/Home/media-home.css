@@ -107,13 +107,12 @@
 
     #headlines-container {
         grid-template-columns: repeat(2, 2fr);
-        gap: 4% !important;
-
+        gap: 1% !important;
     }
 
-    .img {
+    .img-home {
         width: 100%;
-        height: 18vh;
+        height: 25vh;
     }
 
     .title {
@@ -133,24 +132,28 @@
 
     .save-for-home button {
         font-size: 3vw !important;
-        margin-bottom: 3.5vh;
+        margin-bottom: 2.5vh;
     }
 
     .latest {
         margin-top: 55vh !important;
     }
 
-    #search-container {
+    /* Latest news */
+    #search-container-search {
         grid-template-columns: repeat(2, 2fr);
-        gap: 4% !important;
-        margin-top: 5%;
+        gap: 2% !important;
+        margin-top: 4vh !important;
     }
 
-    .img-container {
-        width: 100% !important;
-        height: auto !important;
-        margin-top: 2% !important;
+    .latest-search {
+        margin-top: 260% !important;
+    }
 
+    .img-container-search {
+        width: 100% !important;
+        height: 35% !important;
+        margin-top: 2% !important;
     }
 
     .h2-news {
@@ -168,15 +171,24 @@
         margin-top: 2vh !important;
     }
 
-    .readmore-news {
-        font-size: 3vw !important;
-        margin-left: -1vw !important;
+    .readmore-news-search a {
+        text-decoration: none;
+        color: blue;
+        font-weight: 700;
+
     }
 
-    .save-latest button {
+    .readmore-news-search {
         font-size: 3vw !important;
-        margin-bottom: 1.8vh;
+        margin-left: -1vw !important;
+
     }
+
+    .save-latest-search button {
+        font-size: 3vw !important;
+        margin-bottom: 2.2vh;
+    }
+
 
     #logout-button-outer {
         display: none;
@@ -197,7 +209,7 @@
     }
 
     #footers-home {
-        margin-top: 60vh !important;
+        margin-top: 70vh !important;
     }
 
     .footers-logo-home {

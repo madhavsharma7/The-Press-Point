@@ -48,13 +48,13 @@
 
     #headlines-container {
         grid-template-columns: repeat(2, 2fr);
-        gap: 8%;
+        gap: 4%;
         margin-top: 5%;
     }
 
-    .img {
+    .img-tech {
         width: 100%;
-        height: 18vh;
+        height: 20vh !important;
     }
 
     .title {
@@ -76,8 +76,8 @@
         margin-bottom: 1.2vh;
     }
 
-    #foote {
-        margin-top: 60vh;
+    #footer-tech {
+        margin-top: 630vh !important;
         height: 30%;
     }
 

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./Sports.css";
 import "./media-sports.css";
+import { Link, useNavigate } from "react-router-dom";
 import face from "../assets/img/login-avatar.png";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-// ✅ Mediastack API Configuration
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-const API_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=sports&countries=in&languages=en&limit=25`;
+// ✅ Correct category & API URL
+const category = "sports";
+const country = "in";
+const API_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
     const [error, setError] = useState(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
+    const navigate = useNavigate();
 
     // ✅ Get user info from local storage
     const [user, setUser] = useState(() => {
@@ -70,14 +70,13 @@ function Headlines() {
     // ✅ Logout handler
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    // ✅ Fetch Business News
+    // ✅ Fetch Sports News
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
@@ -85,12 +84,12 @@ function Headlines() {
                 return response.json();
             })
             .then((data) => {
-                console.log("Business News Response:", data);
-                setHeadlines(data.data || []);
+                console.log("Sports News Response:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
                 console.error("Error fetching headlines:", error);
-                setError("Failed to load business news. Please try again later.");
+                setError("Failed to load sports news. Please try again later.");
             });
     }, []);
 
@@ -104,6 +103,7 @@ function Headlines() {
                             <li>
                                 <input type="text" placeholder="Search" />
                             </li>
+
                             <div>
                                 <li>
                                     <h1 className="logo">
@@ -113,6 +113,7 @@ function Headlines() {
                                     </h1>
                                 </li>
                             </div>
+
                             <div>
                                 <li>
                                     {user ? (
@@ -131,6 +132,7 @@ function Headlines() {
                                     )}
                                 </li>
                             </div>
+
                             <div id="right-navbar">
                                 <li>
                                     <Link to="/Save" className="save-article">
@@ -139,11 +141,12 @@ function Headlines() {
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
-                                    <Link className="sub" to="Sub">
+                                    <Link className="sub" to="/Sub">
                                         Subscribe
                                     </Link>
                                 </li>
 
+                                {/* Hamburger */}
                                 <div
                                     className={`hamburger ${sidebarOpen ? "active" : ""}`}
                                     onClick={toggleSidebar}
@@ -200,11 +203,10 @@ function Headlines() {
                     ) : headlines.length > 0 ? (
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
-                                {/* ✅ Show No Image Available box if image is missing */}
-                                {article.image && article.image.startsWith("http") ? (
+                                {article.urlToImage && article.urlToImage.startsWith("http") ? (
                                     <img
-                                        className="img"
-                                        src={article.image}
+                                        className="img-sports"
+                                        src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
                                         (e.target.src =
@@ -212,9 +214,7 @@ function Headlines() {
                                         }
                                     />
                                 ) : (
-                                    <div className="no-image">
-                                        No Image Available
-                                    </div>
+                                    <div className="no-image">No Image Available</div>
                                 )}
 
                                 <h2 className="news-title">{article.title}</h2>
@@ -243,16 +243,16 @@ function Headlines() {
                             </div>
                         ))
                     ) : (
-                        <p>No business news available.</p>
+                        <p>No sports news available.</p>
                     )}
                 </div>
             </main>
 
             {/* ================== Footer ================== */}
-            <div id="footer-first">
-                <div className="navbar-items-footer">
-                    <p className="footer-logo-name">The Press Point</p>
-                    <p className="footer-copyrights">
+            <div id="footersss">
+                <div className="navbar-items-footersss">
+                    <p className="footersss-logo-name">The Press Point</p>
+                    <p className="footersss-copyrights">
                         &copy; 2025 The Press Point All Rights Reserved
                     </p>
                 </div>
@@ -262,5 +262,3 @@ function Headlines() {
 }
 
 export default Headlines;
-
-

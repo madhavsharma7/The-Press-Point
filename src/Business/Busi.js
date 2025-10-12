@@ -5,9 +5,9 @@ import "./media-busi.css";
 import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
-// ✅ Mediastack API Configuration
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-const API_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=business&countries=in&languages=en&limit=25`;
+const category = "business";
+const country = "in";
+const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
@@ -16,7 +16,7 @@ function Headlines() {
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
 
-    // ✅ Get user info from local storage
+    // ✅ Load user from local storage
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
@@ -35,7 +35,7 @@ function Headlines() {
         }
     }, [user]);
 
-    // ✅ Save article
+    // ✅ Save article to local storage
     const handleSave = (article) => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
@@ -57,7 +57,7 @@ function Headlines() {
         toast("Article saved successfully!");
     };
 
-    // ✅ Handle “Read more” click
+    // ✅ “Read more” requires login
     const handleReadMore = (e, url) => {
         if (!user) {
             e.preventDefault();
@@ -66,26 +66,25 @@ function Headlines() {
         }
     };
 
-    // ✅ Logout handler
+    // ✅ Logout
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    // ✅ Fetch Business News
+    // ✅ Fetch Business News from Saurav API
     useEffect(() => {
-        fetch(API_URL)
+        fetch(HEADLINES_URL)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then((data) => {
                 console.log("Business News Response:", data);
-                setHeadlines(data.data || []);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
                 console.error("Error fetching headlines:", error);
@@ -199,11 +198,11 @@ function Headlines() {
                     ) : headlines.length > 0 ? (
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
-                                {/* ✅ Show No Image Available box if image is missing */}
-                                {article.image && article.image.startsWith("http") ? (
+                                {/* ✅ Correct image key for Saurav API */}
+                                {article.urlToImage ? (
                                     <img
-                                        className="img"
-                                        src={article.image}
+                                        className="image-business"
+                                        src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
                                         (e.target.src =
@@ -211,12 +210,10 @@ function Headlines() {
                                         }
                                     />
                                 ) : (
-                                    <div className="no-image">
-                                        No Image Available
-                                    </div>
+                                    <div className="no-image">No Image Available</div>
                                 )}
 
-                                <h2 className="news-title">{article.title}</h2>
+                                <h2 className="news-title">{article.title || "Untitled"}</h2>
                                 <p className="description">
                                     {article.description || "No description available."}
                                 </p>

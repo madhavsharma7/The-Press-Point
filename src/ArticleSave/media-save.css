@@ -26,10 +26,16 @@
         text-align: center;
     }
 
-    .readmore-save {
+    .readmore-news-submit {
         margin-top: 2vh;
         font-size: 3vw;
         text-align: center;
+    }
+
+    .delete-article{
+            margin-top: 2vh;
+            font-size: 3vw;
+            text-align: center;
     }
 
     #footers-save {

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Tech.css";
 import "./media-tech.css";
-import { Link } from "react-router-dom";
 import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
-// ✅ Mediastack API Configuration
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-const API_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=technology&countries=in&languages=en&limit=25`;
+const category = "technology";
+const country = "in";
+const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
@@ -17,7 +16,7 @@ function Headlines() {
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
 
-    // ✅ Get user info from local storage
+    // Get user info from local storage
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
@@ -25,7 +24,7 @@ function Headlines() {
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-    // ✅ Load saved articles for current user
+    // Load saved articles for current user
     useEffect(() => {
         if (user) {
             const savedKey = `savedArticles_${user.name}`;
@@ -36,7 +35,7 @@ function Headlines() {
         }
     }, [user]);
 
-    // ✅ Save article
+    // Save article
     const handleSave = (article) => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
@@ -58,7 +57,7 @@ function Headlines() {
         toast("Article saved successfully!");
     };
 
-    // ✅ Handle “Read more” click
+    //Handle “Read more” click
     const handleReadMore = (e, url) => {
         if (!user) {
             e.preventDefault();
@@ -67,36 +66,35 @@ function Headlines() {
         }
     };
 
-    // ✅ Logout handler
+    // Logout handler
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    // ✅ Fetch Business News
+    // Fetch Technology News
     useEffect(() => {
-        fetch(API_URL)
+        fetch(HEADLINES_URL)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then((data) => {
-                console.log("Business News Response:", data);
-                setHeadlines(data.data || []);
+                console.log("Technology News Response:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
-                console.error("Error fetching headlines:", error);
-                setError("Failed to load business news. Please try again later.");
+                console.error("Error fetching technology headlines:", error);
+                setError("Failed to load technology news. Please try again later.");
             });
     }, []);
 
     return (
         <div id="container">
-            {/* ================== Navbar ================== */}
+            {/* Navbar  */}
             <div className="navbar">
                 <header>
                     <nav id="search">
@@ -139,7 +137,7 @@ function Headlines() {
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
-                                    <Link className="sub" to="Sub">
+                                    <Link className="sub" to="/Sub">
                                         Subscribe
                                     </Link>
                                 </li>
@@ -189,7 +187,7 @@ function Headlines() {
                 </div>
             </div>
 
-            {/* ================== News Section ================== */}
+            {/* News Section */}
             <main id="news-container">
                 <h1>Technology Headlines</h1>
                 <hr className="title-hr" />
@@ -200,11 +198,10 @@ function Headlines() {
                     ) : headlines.length > 0 ? (
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
-                                {/* ✅ Show No Image Available box if image is missing */}
-                                {article.image && article.image.startsWith("http") ? (
+                                {article.urlToImage && article.urlToImage.startsWith("http") ? (
                                     <img
-                                        className="img"
-                                        src={article.image}
+                                        className="img-tech"
+                                        src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
                                         (e.target.src =
@@ -212,9 +209,7 @@ function Headlines() {
                                         }
                                     />
                                 ) : (
-                                    <div className="no-image">
-                                        No Image Available
-                                    </div>
+                                    <div className="no-image">No Image Available</div>
                                 )}
 
                                 <h2 className="news-title">{article.title}</h2>
@@ -243,13 +238,13 @@ function Headlines() {
                             </div>
                         ))
                     ) : (
-                        <p>No business news available.</p>
+                        <p>No technology news available.</p>
                     )}
                 </div>
             </main>
 
-            {/* ================== Footer ================== */}
-            <div id="footer-first">
+            {/* Footer */}
+            <div id="footer-tech">
                 <div className="navbar-items-footer">
                     <p className="footer-logo-name">The Press Point</p>
                     <p className="footer-copyrights">

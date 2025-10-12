@@ -6,16 +6,14 @@ import face from "../assets/img/login-avatar.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
 
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
 const category = "general";
-
-// Mediastack API endpoint for top headlines
-const HEADLINES_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=${category}&countries=in&languages=en&limit=12`;
+const country = "in";
+const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function App() {
     const [headlines, setHeadlines] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("example");
+    const [searchQuery, setSearchQuery] = useState("india");
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
@@ -28,8 +26,7 @@ function App() {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             try {
-                const parsedUser = JSON.parse(storedUser);
-                setUser(parsedUser);
+                setUser(JSON.parse(storedUser));
             } catch (error) {
                 console.error("Failed to parse user:", error);
             }
@@ -80,33 +77,32 @@ function App() {
 
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    //  Fetch headlines & search results from Mediastack
+    // Fetch top headlines
     useEffect(() => {
         fetch(HEADLINES_URL)
             .then((response) => response.json())
             .then((data) => {
-                console.log("Headlines from Mediastack:", data);
-                setHeadlines(data.data || []);
+                console.log("Headlines from Saurav API:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => console.error("Error fetching headlines:", error));
-        const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-        const SEARCH_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&keywords=${searchQuery}&countries=in&languages=en&limit=12`;
+    }, []);
 
-        fetch(SEARCH_URL)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Search results from Mediastack:", data);
-                setSearchResults(data.data || []);
-            })
-            .catch((error) => console.error("Error fetching search results:", error));
-    }, [searchQuery]);
+    // Fetch search results 
+    useEffect(() => {
+        if (headlines.length > 0 && searchQuery.trim() !== "") {
+            const filtered = headlines.filter((article) =>
+                article.title?.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setSearchResults(filtered);
+        }
+    }, [searchQuery, headlines]);
 
     const handleSearch = (e) => {
         if (e.key === "Enter" && e.target.value.trim() !== "") {
@@ -224,8 +220,8 @@ function App() {
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
                                 <img
-                                    className="img"
-                                    src={article.image || "https://via.placeholder.com/400x200?text=No+Image"}
+                                    className="img-home"
+                                    src={article.urlToImage || "https://via.placeholder.com/400x200?text=No+Image"}
                                     alt={article.title || "No Title"}
                                 />
                                 <h2 className="title">{article.title || "Untitled"}</h2>
@@ -253,44 +249,46 @@ function App() {
                     )}
                 </div>
 
-                {/* Latest News */}
-                <h1 className="latest">Latest News</h1>
-                <hr className="title-hr" />
-                <div id="search-container">
-                    {searchResults.length > 0 ? (
-                        searchResults.map((article, index) => (
-                            <div key={index} className="news-item">
-                                <div className="img-container">
-                                    <img
-                                        className="img-news"
-                                        src={article.image || "https://via.placeholder.com/400x200?text=No+Image"}
-                                        alt={article.title || "No Title"}
-                                    />
-                                </div>
-                                <h2 className="h2-news">{article.title || "Untitled"}</h2>
-                                <p className="p-news">{article.description || "No description available."}</p>
-                                <div className="article-button-two">
-                                    <div className="readmore-news">
-                                        <a
-                                            href={article.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={(e) => handleReadMore(e, article.url)}
-                                        >
-                                            Read more
-                                        </a>
+
+                <h1 className="latest-search">Latest News</h1>
+                <hr className="title-hr-search" />
+
+                    <div id="search-container-search">
+                        {searchResults.length > 0 ? (
+                            searchResults.map((article, index) => (
+                                <div key={index} className="news-item-search">
+                                    <div className="img-container-search">
+                                        <img
+                                            className="img-news-search"
+                                            src={article.urlToImage || "https://via.placeholder.com/400x200?text=No+Image"}
+                                            alt={article.title || "No Title"}
+                                        />
                                     </div>
-                                    <p className="save-latest">
-                                        <button onClick={() => handleSave(article)}>Save Article</button>
-                                    </p>
+                                    <h2 className="h2-news">{article.title || "Untitled"}</h2>
+                                    <p className="p-news">{article.description || "No description available."}</p>
+                                    <div className="article-button-two">
+                                        <div className="readmore-news-search ">
+                                            <a
+                                                href={article.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => handleReadMore(e, article.url)}
+                                            >
+                                                Read more
+                                            </a>
+                                        </div>
+                                        <p className="save-latest-search">
+                                            <button onClick={() => handleSave(article)}>Save Article</button>
+                                        </p>
+                                    </div>
+                                    <hr />
                                 </div>
-                                <hr />
-                            </div>
-                        ))
-                    ) : (
-                        <p className="news-error">No Latest News Available</p>
-                    )}
-                </div>
+                            ))
+                        ) : (
+                            <p className="news-error">No Latest News Available</p>
+                        )}
+                    </div>
+                
             </main>
 
             {/* Footer */}

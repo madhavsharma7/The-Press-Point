@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./Science.css";
-import "./media-science.css";
+import "./Sports.css";
+import "./media-sports.css";
 import { Link, useNavigate } from "react-router-dom";
 import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 // Correct category & API URL
-const category = "science";
+const category = "sports";
 const country = "in";
 const API_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
@@ -25,7 +25,7 @@ function Headlines() {
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-    // Load saved articles for the current user
+    // Load saved articles for current user
     useEffect(() => {
         if (user) {
             const savedKey = `savedArticles_${user.name}`;
@@ -58,7 +58,7 @@ function Headlines() {
         toast("Article saved successfully!");
     };
 
-    //Read more 
+    // Handle “Read more” click
     const handleReadMore = (e, url) => {
         if (!user) {
             e.preventDefault();
@@ -76,7 +76,7 @@ function Headlines() {
         navigate("/");
     };
 
-    // Fetch Science News
+    // Fetch Sports News
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
@@ -84,12 +84,12 @@ function Headlines() {
                 return response.json();
             })
             .then((data) => {
-                console.log("Science News Response:", data);
-                setHeadlines(data.articles || []); // ✅ Correct key is "articles"
+                console.log("Sports News Response:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
                 console.error("Error fetching headlines:", error);
-                setError("Failed to load science news. Please try again later.");
+                setError("Failed to load sports news. Please try again later.");
             });
     }, []);
 
@@ -192,9 +192,9 @@ function Headlines() {
                 </div>
             </div>
 
-            {/* News Section */}
+            {/* News Section*/}
             <main id="news-container">
-                <h1>Science Headlines</h1>
+                <h1>Sports Headlines</h1>
                 <hr className="title-hr" />
 
                 <div id="headlines-container">
@@ -205,7 +205,7 @@ function Headlines() {
                             <div key={index} className="headline-item">
                                 {article.urlToImage && article.urlToImage.startsWith("http") ? (
                                     <img
-                                        className="img-science"
+                                        className="img-sports"
                                         src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
@@ -243,16 +243,16 @@ function Headlines() {
                             </div>
                         ))
                     ) : (
-                        <p>No science news available.</p>
+                        <p>No sports news available.</p>
                     )}
                 </div>
             </main>
 
-            {/*Footer*/}
-            <div id="footer-science">
-                <div className="navbar-items-footer-science">
-                    <p className="footer-science-logo">The Press Point</p>
-                    <p className="footer-science-copyright">
+            {/* Footer  */}
+            <div id="footer-first">
+                <div className="navbar-items-footer">
+                    <p className="footer-logo-name">The Press Point</p>
+                    <p className="footer-copyrights">
                         &copy; 2025 The Press Point All Rights Reserved
                     </p>
                 </div>

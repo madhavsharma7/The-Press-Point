@@ -12,7 +12,7 @@ function Save() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();
 
-  const [user, setUser] = useState(() => {
+    const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
     });
@@ -49,9 +49,6 @@ function Save() {
             return;
         }
 
-        const updatedArticles = [...existingArticles, article];
-        localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
-
         toast("Article saved successfully!");
     };
 
@@ -77,13 +74,34 @@ function Save() {
         if (storedUser) {
             setUser(storedUser);
 
-            // ✅ User ke according saved articles laa rahe hai
             const userSavedArticles = JSON.parse(localStorage.getItem(`savedArticles_${storedUser.name}`)) || [];
             setSavedArticles(userSavedArticles);
         } else {
-            setSavedArticles([]); // agar user nahi mila to articles empty
+            setSavedArticles([]);
         }
     }, []);
+
+    // Delete article function
+    const handleDelete = (url) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            toast("Please log in first.");
+            return;
+        }
+
+        const savedKey = `savedArticles_${user.name}`;
+        const existingArticles = JSON.parse(localStorage.getItem(savedKey)) || [];
+
+        // Filter out the deleted article
+        const updatedArticles = existingArticles.filter((a) => a.url !== url);
+
+        // Update localStorage & state
+        localStorage.setItem(savedKey, JSON.stringify(updatedArticles));
+        setSavedArticles(updatedArticles);
+
+        toast("Article deleted successfully!");
+    };
+
 
     return (
         <div id="container">
@@ -179,16 +197,6 @@ function Save() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/Wor" data-category="world">
-                                World
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/International" data-category="nation">
-                                Nation
-                            </Link>
-                        </li>
-                        <li>
                             <Link to="/Bus" data-category="business">
                                 Business
                             </Link>
@@ -230,14 +238,17 @@ function Save() {
                     {savedArticles.length > 0 ? (
                         savedArticles.map((article, index) => (
                             <div key={index} className="headline-item-save">
-                                <img className="img-save" src={article.image || "fallback-image.jpg"} alt={article.title} />
+                                <img
+                                    className="img-save"
+                                    src={article.image || "https://via.placeholder.com/300x200?text=No+Image"}
+                                    alt={article.title}
+                                />
+
                                 <h2 className="title-save">{article.title}</h2>
                                 <p className="desc-save">{article.description}</p>
                                 <div className="article-button-save">
-                                    {/* <p className="readmore-save">
-                                        <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                                    </p> */}
-                                    <div className="readmore-news">
+
+                                    <div className="readmore-news-submit">
                                         <a
                                             href={article.url}
                                             target="_blank"
@@ -246,12 +257,12 @@ function Save() {
                                         >
                                             Read more
                                         </a>
+
                                     </div>
-                                    <p className="save-latest">
-                                        <button onClick={() => handleSave(article)}>
-                                            Save Article
-                                        </button>
-                                    </p>
+                                    <div className="delete-article" onClick={() => handleDelete(article.url)}>
+                                        <a>Delete</a>
+                                    </div>
+
                                 </div>
                                 <hr />
                             </div>
@@ -276,3 +287,4 @@ function Save() {
 }
 
 export default Save;
+

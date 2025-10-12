@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./health.css";
-import "./media-health.css"
-import { Link } from "react-router-dom";
+import "./media-health.css";
+import { Link, useNavigate } from "react-router-dom";
 import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-// ✅ Mediastack API Configuration
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-const API_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=health&countries=in&languages=en&limit=25`;
+//Correct category & URL
+const category = "health";
+const country = "in";
+const API_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
     const [error, setError] = useState(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const navigate = useNavigate();
     const [savedArticles, setSavedArticles] = useState([]);
+    const navigate = useNavigate();
 
-    // ✅ Get user info from local storage
+    // Get user info from local storage
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem("user");
         return stored ? JSON.parse(stored) : null;
@@ -25,7 +25,7 @@ function Headlines() {
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-    // ✅ Load saved articles for current user
+    // Load saved articles for current user
     useEffect(() => {
         if (user) {
             const savedKey = `savedArticles_${user.name}`;
@@ -36,7 +36,7 @@ function Headlines() {
         }
     }, [user]);
 
-    // ✅ Save article
+    // Save article
     const handleSave = (article) => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
@@ -58,7 +58,7 @@ function Headlines() {
         toast("Article saved successfully!");
     };
 
-    // ✅ Handle “Read more” click
+    // Read more 
     const handleReadMore = (e, url) => {
         if (!user) {
             e.preventDefault();
@@ -67,17 +67,16 @@ function Headlines() {
         }
     };
 
-    // ✅ Logout handler
+    // Logout 
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    // ✅ Fetch Business News
+    // fetch Health News
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
@@ -85,12 +84,12 @@ function Headlines() {
                 return response.json();
             })
             .then((data) => {
-                console.log("Business News Response:", data);
-                setHeadlines(data.data || []);
+                console.log("Health News Response:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
                 console.error("Error fetching headlines:", error);
-                setError("Failed to load business news. Please try again later.");
+                setError("Failed to load health news. Please try again later.");
             });
     }, []);
 
@@ -104,6 +103,7 @@ function Headlines() {
                             <li>
                                 <input type="text" placeholder="Search" />
                             </li>
+
                             <div>
                                 <li>
                                     <h1 className="logo">
@@ -113,6 +113,7 @@ function Headlines() {
                                     </h1>
                                 </li>
                             </div>
+
                             <div>
                                 <li>
                                     {user ? (
@@ -131,6 +132,7 @@ function Headlines() {
                                     )}
                                 </li>
                             </div>
+
                             <div id="right-navbar">
                                 <li>
                                     <Link to="/Save" className="save-article">
@@ -139,11 +141,12 @@ function Headlines() {
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
-                                    <Link className="sub" to="Sub">
+                                    <Link className="sub" to="/Sub">
                                         Subscribe
                                     </Link>
                                 </li>
 
+                                {/* Hamburger */}
                                 <div
                                     className={`hamburger ${sidebarOpen ? "active" : ""}`}
                                     onClick={toggleSidebar}
@@ -185,13 +188,12 @@ function Headlines() {
                         <li><Link to="/Sports">Sports</Link></li>
                         <li><Link to="/Science">Science</Link></li>
                         <li><Link to="/Health">Health</Link></li>
+                    </ul>
+                </div>
+            </div>
 
-                    </ul >
-                </div >
-            </div >
-
-        {/* ================== News Section ================== */ }
-        < main id = "news-container" >
+            {/*]News Section  */}
+            <main id="news-container">
                 <h1>Health Headlines</h1>
                 <hr className="title-hr" />
 
@@ -201,11 +203,10 @@ function Headlines() {
                     ) : headlines.length > 0 ? (
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
-                                {/* ✅ Show No Image Available box if image is missing */}
-                                {article.image && article.image.startsWith("http") ? (
+                                {article.urlToImage && article.urlToImage.startsWith("http") ? (
                                     <img
-                                        className="img"
-                                        src={article.image}
+                                        className="img-health"
+                                        src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
                                         (e.target.src =
@@ -213,9 +214,7 @@ function Headlines() {
                                         }
                                     />
                                 ) : (
-                                    <div className="no-image">
-                                        No Image Available
-                                    </div>
+                                    <div className="no-image">No Image Available</div>
                                 )}
 
                                 <h2 className="news-title">{article.title}</h2>
@@ -244,20 +243,20 @@ function Headlines() {
                             </div>
                         ))
                     ) : (
-                        <p>No business news available.</p>
+                        <p>No health news available.</p>
                     )}
                 </div>
             </main>
 
-        {/* ================== Footer ================== */ }
-        < div id = "footer-first" >
-            <div className="navbar-items-footer">
-                <p className="footer-logo-name">The Press Point</p>
-                <p className="footer-copyrights">
-                    &copy; 2025 The Press Point All Rights Reserved
-                </p>
+            {/*  Footer  */}
+            <div id="footer-health">
+                <div className="navbar-items-footer-health">
+                    <p className="footer-logo-health">The Press Point</p>
+                    <p className="footer-copyright-health">
+                        &copy; 2025 The Press Point All Rights Reserved
+                    </p>
+                </div>
             </div>
-            </div >
         </div>
     );
 }

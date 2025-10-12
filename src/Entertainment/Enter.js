@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Enter.css";
 import "./media-enter.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
-// ✅ Mediastack API Configuration
-const API_KEY = "56ed5976ed140580a93a61871fa125bd";
-const API_URL = `https://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=entertainment&countries=in&languages=en&limit=25`;
+// ✅ Correct category
+const category = "entertainment";
+const country = "in";
+const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
     const [headlines, setHeadlines] = useState([]);
@@ -70,27 +70,26 @@ function Headlines() {
     // ✅ Logout handler
     const handleLogout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("savedArticles");
         setUser(null);
         setSavedArticles([]);
         toast("Logged out successfully");
         navigate("/");
     };
 
-    // ✅ Fetch Business News
+    // ✅ Fetch Entertainment News
     useEffect(() => {
-        fetch(API_URL)
+        fetch(HEADLINES_URL)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then((data) => {
-                console.log("Business News Response:", data);
-                setHeadlines(data.data || []);
+                console.log("Entertainment News Response:", data);
+                setHeadlines(data.articles || []);
             })
             .catch((error) => {
                 console.error("Error fetching headlines:", error);
-                setError("Failed to load business news. Please try again later.");
+                setError("Failed to load entertainment news. Please try again later.");
             });
     }, []);
 
@@ -139,7 +138,7 @@ function Headlines() {
                                     <Link className="signin-icon1" to="/Login">
                                         <img src={face} alt="Login" />
                                     </Link>
-                                    <Link className="sub" to="Sub">
+                                    <Link className="sub" to="/Sub">
                                         Subscribe
                                     </Link>
                                 </li>
@@ -201,10 +200,10 @@ function Headlines() {
                         headlines.map((article, index) => (
                             <div key={index} className="headline-item">
                                 {/* ✅ Show No Image Available box if image is missing */}
-                                {article.image && article.image.startsWith("http") ? (
+                                {article.urlToImage && article.urlToImage.startsWith("http") ? (
                                     <img
-                                        className="img"
-                                        src={article.image}
+                                        className="img-enter"
+                                        src={article.urlToImage}
                                         alt={article.title || "No Title"}
                                         onError={(e) =>
                                         (e.target.src =
@@ -212,9 +211,7 @@ function Headlines() {
                                         }
                                     />
                                 ) : (
-                                    <div className="no-image">
-                                        No Image Available
-                                    </div>
+                                    <div className="no-image">No Image Available</div>
                                 )}
 
                                 <h2 className="news-title">{article.title}</h2>
@@ -243,16 +240,16 @@ function Headlines() {
                             </div>
                         ))
                     ) : (
-                        <p>No business news available.</p>
+                        <p>No entertainment news available.</p>
                     )}
                 </div>
             </main>
 
             {/* ================== Footer ================== */}
-            <div id="footer-first">
-                <div className="navbar-items-footer">
-                    <p className="footer-logo-name">The Press Point</p>
-                    <p className="footer-copyrights">
+            <div id="footer-enter">
+                <div className="navbar-items-footer-enter">
+                    <p className="footer-logo-enter">The Press Point</p>
+                    <p className="footer-copyrights-enter">
                         &copy; 2025 The Press Point All Rights Reserved
                     </p>
                 </div>
