@@ -1,5 +1,4 @@
 @media screen and (max-width: 600px) {
-
     #container {
         margin-top: -5%;
     }
@@ -32,7 +31,7 @@
         padding: 8px 10px;
     }
 
-    #navbar-items :Link {
+    #navbar-items :link {
         font-size: 1.5vw;
         font-weight: 500;
     }
@@ -44,6 +43,73 @@
     .title-hr {
         width: 26vw;
         margin-left: 33vw;
+    }
+
+    /* Side bar */
+    .sidebar {
+        display: inline-block;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60vw;
+        height: 100vh;
+        background-color: black;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar .active {
+        right: 0;
+        background-color: black;
+    }
+
+    .sidebar a {
+        text-align: center;
+        font-size: 4vw;
+        text-decoration: none;
+    }
+
+    .sidebar-menu {
+        margin-top: -8vh;
+    }
+
+    .login-resp {
+        padding-left: 36%;
+        padding-top: 6vh;
+    }
+
+    .sidebar-user {
+        margin-top: 5vh;
+        color: white;
+        font-weight: 100;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    .logout-btn-sidebar {
+        margin-top: 5vh;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 4vw;
+        cursor: pointer;
+    }
+
+    .sidebar-user {
+        text-align: center;
+    }
+
+    .sidebar-username {
+        color: white;
+        font-size: 4.4vw;
+    }
+
+    .logout-icon {
+        color: white;
+        font-size: 4vw;
     }
 
     #headlines-container {
@@ -73,11 +139,11 @@
 
     .save-for-sports button {
         font-size: 3vw !important;
-        margin-bottom: 3vh;
+        margin-bottom: 1.5vh;
     }
 
     #footersss {
-        margin-top: 490vh;
+        margin-top: 10vh;
         height: 30%;
     }
 

@@ -95,24 +95,25 @@
 }
 
 .sign-in {
-    left: -12vw;
+    left: -1vw;
     width: 50%;
-    z-index: 2;  
+    z-index: 2;
 }
 
-.sign-in span{
+.sign-in span {
     margin-bottom: 5%;
     margin-top: 5%;
 }
+
 .signin-topic {
     margin-top: -8vh;
     margin-bottom: 10%;
 }
 
-#google-btn{
+#google-btn {
     font-size: 1vw;
     width: 100%;
-   
+
 }
 
 .container.active .sign-in {
@@ -126,6 +127,16 @@
     z-index: 1;
 }
 
+.signup-topic {
+    margin-top: -8vh;
+    margin-bottom: 10%;
+}
+
+.signup-fields button{
+    width: 80%;
+    margin-left: 9%;
+    margin-top: 10%;
+}
 .container.active .sign-up {
     transform: translateX(100%);
     opacity: 1;

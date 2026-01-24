@@ -1,94 +1,160 @@
- @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
+  #container {
+    margin-top: -5%;
+  }
 
-     #container {
-         margin-top: -5%;
-     }
+  #search input[type="text"] {
+    width: 25vw;
+    height: 2.5vw;
+    margin-left: -10%;
+  }
 
-     #search input[type="text"] {
-         width: 25vw;
-         height: 2.5vw;
-         margin-left: -10%;
-     }
+  .logo a {
+    margin-left: -18vw;
+    font-size: 4vw;
+  }
 
-     .logo a {
-         margin-left: -18vw;
-         font-size: 4vw;
-     }
+  .logo-part {
+    margin-left: -18vw;
+    font-size: 4vw;
+  }
 
-     .logo-part {
-         margin-left: -18vw;
-         font-size: 4vw;
-     }
+  .sign-in {
+    margin-left: -6vw;
+    font-size: 3vw;
+    font-weight: 600;
+  }
 
-     .sign-in {
-         margin-left: -6vw;
-         font-size: 3vw;
-         font-weight: 600;
-     }
+  .sub {
+    font-size: 3vw;
+    margin-right: -3vw;
+    padding: 8px 10px;
+  }
 
-     .sub {
-         font-size: 3vw;
-         margin-right: -3vw;
-         padding: 8px 10px;
-     }
+  #navbar-items :link {
+    font-size: 1.5vw;
+    font-weight: 500;
+  }
 
-     #navbar-items :Link {
-         font-size: 1.5vw;
-         font-weight: 500;
-     }
+  #news-container h1 {
+    font-size: 2vw;
+  }
 
-     #news-container h1 {
-         font-size: 2vw;
-     }
+  .title-hr {
+    width: 26vw;
+    margin-left: 33vw;
+  }
 
-     .title-hr {
-         width: 26vw;
-         margin-left: 33vw;
-     }
+  /* Sidebar */
+  .sidebar {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60vw;
+    height: 100vh;
+    background-color: black;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
 
-     #headlines-container {
-         grid-template-columns: repeat(2, 2fr);
-         gap: 2%;
-     }
+  .sidebar.active {
+    right: 0;
+    background-color: black;
+  }
 
-     .image-business {
-         width: 100%;
-         height: 20vh !important;
-     }
+  .sidebar a {
+    text-align: center;
+    font-size: 4vw;
+    text-decoration: none;
+  }
 
-     .news-title {
-         font-size: 3.2vw !important;
-         margin-top: 2vh !important;
-     }
+  .sidebar-menu {
+    margin-top: -8vh;
+  }
 
-     .description {
-         font-size: 2.5vw !important;
-         margin-top: 2vh !important;
-         text-align: center;
-     }
+  .login-resp {
+    padding-left: 36%;
+    padding-top: 6vh;
+  }
 
-     .readmore-button {
-         font-size: 3vw !important;
-     }
+  .sidebar-user {
+    margin-top: 5vh;
+    color: white;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
 
-     .save-for-business button {
-         font-size: 3vw !important;
-         margin-bottom: 1.2vh;
-     }
+  .logout-btn-sidebar {
+    margin-top: 5vh;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 4vw;
+    cursor: pointer;
+  }
 
-     #footer-first {
-         margin-top: 535vh;
-         height: 30%;
-     }
+  .sidebar-user {
+    text-align: center;
+  }
 
-     .footer-logo-name {
-         font-size: 4.5vw;
-         margin-top: 2%;
-     }
+  .sidebar-username {
+    color: white;
+    font-size: 4.4vw;
+  }
 
-     .footer-copyrights {
-         margin-top: 2%;
-         text-align: center;
-         font-size: 2.5vw;
-     }
- }
+  .logout-icon {
+    color: white;
+    font-size: 4vw;
+  }
+
+  #headlines-container {
+    grid-template-columns: repeat(2, 2fr);
+    gap: 2%;
+  }
+
+  .image-business {
+    width: 100%;
+    height: 20vh !important;
+  }
+
+  .news-title {
+    font-size: 3.2vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .description {
+    font-size: 2.5vw !important;
+    margin-top: 2vh !important;
+    text-align: center;
+  }
+
+  .readmore-button {
+    font-size: 3vw !important;
+  }
+
+  .save-for-business button {
+    font-size: 3vw !important;
+    margin-bottom: 1.2vh;
+  }
+
+  #footer-first {
+    margin-top: 5vh;
+    height: 30%;
+  }
+
+  .footer-logo-name {
+    font-size: 4.5vw;
+    margin-top: 2%;
+  }
+
+  .footer-copyrights {
+    margin-top: 2%;
+    text-align: center;
+    font-size: 2.5vw;
+  }
+}

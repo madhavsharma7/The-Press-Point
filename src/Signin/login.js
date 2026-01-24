@@ -14,7 +14,19 @@ const AuthContainer = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const API_BASE = "https://the-press-point.onrender.com";
- 
+
+  useEffect(() => {
+    // Force light mode when on login page
+    document.body.classList.remove("dark-mode");
+
+    // Restore dark mode if it was active when leaving
+    return () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  }, []);
+
   // Initialize Google Sign-In
   useEffect(() => {
     if (!window.google) return;
@@ -59,7 +71,7 @@ const AuthContainer = () => {
 
     localStorage.setItem("user", JSON.stringify({ name: userName, email: userEmail }));
     localStorage.setItem("google_token", response.credential);
-  
+
     localStorage.setItem("google_token", response.credential);
     navigate("/", { replace: true });
   };
@@ -136,7 +148,8 @@ const AuthContainer = () => {
         {/* Sign Up Form */}
         <div className="form-container sign-up">
           <form onSubmit={handleSignup}>
-            <h1>Create Account</h1>
+            <h1 className="signup-topic">Create Account</h1>
+            <div className="signup-fields">
             <input
               type="text"
               placeholder="Name"
@@ -160,6 +173,7 @@ const AuthContainer = () => {
             />
             <button type="submit">Sign Up</button>
             {message && <p className="message">{message}</p>}
+            </div>
           </form>
         </div>
 

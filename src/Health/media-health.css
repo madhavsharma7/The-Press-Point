@@ -1,94 +1,161 @@
 @media screen and (max-width: 600px) {
+  #container {
+    margin-top: -5%;
+  }
 
-    #container {
-        margin-top: -5%;
-    }
+  #search input[type="text"] {
+    width: 25vw;
+    height: 2.5vw;
+    margin-left: -10%;
+  }
 
-    #search input[type="text"] {
-        width: 25vw;
-        height: 2.5vw;
-        margin-left: -10%;
-    }
+  .logo a {
+    margin-left: -18vw;
+    font-size: 4vw;
+  }
 
-    .logo a {
-        margin-left: -18vw;
-        font-size: 4vw;
-    }
+  .logo-part {
+    margin-left: -18vw;
+    font-size: 4vw;
+  }
 
-    .logo-part {
-        margin-left: -18vw;
-        font-size: 4vw;
-    }
+  .signin {
+    margin-left: -6vw;
+    font-size: 3vw;
+    font-weight: 600;
+  }
 
-    .signin {
-        margin-left: -6vw;
-        font-size: 3vw;
-        font-weight: 600;
-    }
+  .sub {
+    font-size: 3vw;
+    margin-right: -3vw;
+    padding: 8px 10px;
+  }
 
-    .sub {
-        font-size: 3vw;
-        margin-right: -3vw;
-        padding: 8px 10px;
-    }
+  #navbar-items :link {
+    font-size: 1.5vw;
+    font-weight: 500;
+  }
 
-    #navbar-items :Link {
-        font-size: 1.5vw;
-        font-weight: 500;
-    }
+  #news-container h1 {
+    font-size: 4vw;
+  }
 
-    #news-container h1 {
-        font-size: 4vw;
-    }
+  .title-hr {
+    width: 26vw;
+    margin-left: 33vw;
+  }
 
-    .title-hr {
-        width: 26vw;
-        margin-left: 33vw;
-    }
+  /* Sidebar */
+  .sidebar {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60vw;
+    height: 100vh;
+    background-color: black;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
 
-    #headlines-container {
-        grid-template-columns: repeat(2, 2fr);
-        gap: 8%;
-        margin-top: 5%;
-    }
+  .sidebar.active {
+    right: 0;
+    background-color: black;
+  }
 
-    .img-health {
-        width: 100%;
-        height: 18vh;
-    }
+  .sidebar a {
+    text-align: center;
+    font-size: 4vw;
+    text-decoration: none;
+  }
 
-    .title {
-        font-size: 3.2vw;
-        margin-top: 2vh;
-    }
+  .sidebar-menu {
+    margin-top: -8vh;
+  }
 
-    .desc {
-        font-size: 2.5vw;
-        margin-top: 2vh;
-    }
+  .login-resp-home {
+    padding-left: 36%;
+    padding-top: 6vh;
+    font-size: 4vw;
+  }
 
-    .readmore {
-        font-size: 3vw;
-    }
+  .sidebar-user {
+    margin-top: 5vh;
+    color: white;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
 
-    .save-for-health button {
-        font-size: 3vw !important;
-        margin-bottom: 3vh;
-    }
+  .logout-btn-sidebar {
+    margin-top: 5vh;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 4vw;
+    cursor: pointer;
+  }
 
-    #footer-health {
-        margin-top: 510vh;
-        height: 30%;
-    }
+  .sidebar-user {
+    text-align: center;
+  }
 
-    .footer-logo-health {
-        font-size: 4.5vw;
-        margin-top: 2%;
-    }
+  .sidebar-username {
+    color: white;
+    font-size: 4.4vw;
+  }
 
-    .footer-copyright-health {
-        margin-top: 2%;
-        text-align: center;
-        font-size: 2.5vw;
-    }
+  .logout-icon {
+    color: white;
+    font-size: 4vw;
+  }
+
+  #headlines-container {
+    grid-template-columns: repeat(2, 2fr);
+    gap: 8%;
+    margin-top: 5%;
+  }
+
+  .img-health {
+    width: 100%;
+    height: 18vh;
+  }
+
+  .title {
+    font-size: 3.2vw;
+    margin-top: 2vh;
+  }
+
+  .desc {
+    font-size: 2.5vw;
+    margin-top: 2vh;
+  }
+
+  .readmore {
+    font-size: 3vw;
+  }
+
+  .save-for-health button {
+    font-size: 3vw !important;
+    margin-bottom: 1.5vh;
+  }
+
+  #footer-health {
+    margin-top: 10vh;
+    height: 30%;
+  }
+
+  .footer-logo-health {
+    font-size: 4.5vw;
+    margin-top: 2%;
+  }
+
+  .footer-copyright-health {
+    margin-top: 2%;
+    text-align: center;
+    font-size: 2.5vw;
+  }
 }
