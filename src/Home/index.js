@@ -16,7 +16,7 @@ function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  // const [savedArticles, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -157,10 +157,10 @@ function App() {
     }
   };
 
-  const isUserSearch = searchQuery !== "india";
-  const defaultNews = headlines.filter((article) =>
-    article.title?.toLowerCase().includes("india"),
-  );
+  // const isUserSearch = searchQuery !== "india";
+  // const defaultNews = headlines.filter((article) =>
+  //   article.title?.toLowerCase().includes("india"),
+  // );
 
   return (
     <div id="container">

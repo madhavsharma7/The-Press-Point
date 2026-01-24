@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Science.css";
 import "./media-science.css";
 import { Link, useNavigate } from "react-router-dom";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 // Correct category & API URL
@@ -18,7 +17,7 @@ function Headlines() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  // const [savedArticles, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -169,10 +168,10 @@ function Headlines() {
     }
   };
 
-  const isUserSearch = searchQuery !== "india";
-  const defaultNews = headlines.filter((article) =>
-    article.title?.toLowerCase().includes("india"),
-  );
+  // const isUserSearch = searchQuery !== "india";
+  // const defaultNews = headlines.filter((article) =>
+  //   article.title?.toLowerCase().includes("india"),
+  // );
 
   return (
     <div id="container">
