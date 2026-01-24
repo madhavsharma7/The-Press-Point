@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Tech.css";
 import "./media-tech.css";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 const category = "technology";
