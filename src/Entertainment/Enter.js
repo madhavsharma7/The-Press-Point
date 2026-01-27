@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Enter.css";
 import "./media-enter.css";
 import { Link, useNavigate } from "react-router-dom";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 // ✅ Correct category
@@ -18,7 +17,7 @@ function Headlines() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -172,6 +171,7 @@ function Headlines() {
   const defaultNews = headlines.filter((article) =>
     article.title?.toLowerCase().includes("india"),
   );
+  const newsToShow = isUserSearch ? headlines : defaultNews;
 
   return (
     <div id="container">
@@ -351,7 +351,7 @@ function Headlines() {
           {error ? (
             <p>{error}</p>
           ) : headlines.length > 0 ? (
-            headlines.map((article, index) => (
+           newsToShow.map((article, index) => (
               <div key={index} className="headline-item">
                 {/* ✅ Show No Image Available box if image is missing */}
                 {article.urlToImage && article.urlToImage.startsWith("http") ? (

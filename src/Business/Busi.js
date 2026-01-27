@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Busi.css";
 import "./media-busi.css";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 const category = "business";
@@ -17,7 +16,7 @@ function Headlines() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -169,9 +168,12 @@ function Headlines() {
   };
 
   const isUserSearch = searchQuery !== "india";
-  const defaultNews = headlines.filter((article) =>
-    article.title?.toLowerCase().includes("india"),
-  );
+
+const defaultNews = headlines.filter((article) =>
+  article.title?.toLowerCase().includes("india"),
+);
+
+const newsToShow = isUserSearch ? headlines : defaultNews;
 
   return (
     <div id="container">
@@ -341,6 +343,58 @@ function Headlines() {
         </div>
       </div>
 
+
+        {/* Search Results Section */}
+        {isUserSearch && (
+          <>
+            <h1 className="latest-search" id="search-results-title">
+              Search Results
+            </h1>
+            <hr className="title-hr-search" />
+            <div id="search-results-box">
+              {searchResults.length > 0 ? (
+                searchResults.map((article, index) => (
+                  <div key={index} className="news-item-search">
+                    <div className="img-container-search">
+                      <img
+                        className="img-news-search-busi"
+                        src={
+                          article.urlToImage ||
+                          "https://via.placeholder.com/400x200?text=No+Image"
+                        }
+                        alt={article.title || "No Title"}
+                      />
+                    </div>
+                    <h2 className="h2-news">{article.title || "Untitled"}</h2>
+                    <p className="p-news">
+                      {article.description || "No description available."}
+                    </p>
+                    <div className="article-button-two">
+                      <div className="readmore-news-search ">
+                        <a
+                          href={article.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => handleReadMore(e, article.url)}
+                        >
+                          Read more
+                        </a>
+                      </div>
+                      <p className="save-latest-search">
+                        <button onClick={() => handleSave(article)}>
+                          Save Article
+                        </button>
+                      </p>
+                    </div>
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <p className="news-error">No Search Results Available</p>
+              )}
+            </div>
+          </>
+        )}
       {/* ================== News Section ================== */}
       <main id="news-container">
         <h1>Business Headlines</h1>
@@ -350,9 +404,9 @@ function Headlines() {
           {error ? (
             <p>{error}</p>
           ) : headlines.length > 0 ? (
-            headlines.map((article, index) => (
+            newsToShow.map((article, index) => (
+
               <div key={index} className="headline-item">
-                {/* ✅ Correct image key for Saurav API */}
                 {article.urlToImage ? (
                   <img
                     className="image-business"
@@ -397,57 +451,6 @@ function Headlines() {
           )}
         </div>
 
-        {/* Search Results Section */}
-        {isUserSearch && (
-          <>
-            <h1 className="latest-search" id="search-results-title">
-              Search Results
-            </h1>
-            <hr className="title-hr-search" />
-            <div id="search-results-box">
-              {searchResults.length > 0 ? (
-                searchResults.map((article, index) => (
-                  <div key={index} className="news-item-search">
-                    <div className="img-container-search">
-                      <img
-                        className="img-news-search"
-                        src={
-                          article.urlToImage ||
-                          "https://via.placeholder.com/400x200?text=No+Image"
-                        }
-                        alt={article.title || "No Title"}
-                      />
-                    </div>
-                    <h2 className="h2-news">{article.title || "Untitled"}</h2>
-                    <p className="p-news">
-                      {article.description || "No description available."}
-                    </p>
-                    <div className="article-button-two">
-                      <div className="readmore-news-search ">
-                        <a
-                          href={article.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => handleReadMore(e, article.url)}
-                        >
-                          Read more
-                        </a>
-                      </div>
-                      <p className="save-latest-search">
-                        <button onClick={() => handleSave(article)}>
-                          Save Article
-                        </button>
-                      </p>
-                    </div>
-                    <hr />
-                  </div>
-                ))
-              ) : (
-                <p className="news-error">No Search Results Available</p>
-              )}
-            </div>
-          </>
-        )}
       </main>
 
       {/* ================== Footer ================== */}

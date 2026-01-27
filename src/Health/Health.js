@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./health.css";
 import "./media-health.css";
 import { Link, useNavigate } from "react-router-dom";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 //Correct category & URL
@@ -18,11 +17,12 @@ function Headlines() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
   });
+  
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark",
   );
@@ -168,10 +168,13 @@ function Headlines() {
     }
   };
 
-  const isUserSearch = searchQuery !== "india";
-  const defaultNews = headlines.filter((article) =>
-    article.title?.toLowerCase().includes("india"),
-  );
+ const defaultNews = headlines.filter((article) =>
+  article.title?.toLowerCase().includes("india"),
+);
+
+const isUserSearch = searchQuery.toLowerCase() !== "india";
+
+const newsToShow = isUserSearch ? headlines : defaultNews;
 
   return (
     <div id="container">
@@ -298,6 +301,7 @@ function Headlines() {
           <Link to="/Save">Saved Articles</Link>
           <Link to="/Sub">Subscribe</Link>
         </div>
+
         {/* Navbar Navigation Links (Desktop) */}
         <div className="navbar-links">
           <ul>
@@ -349,7 +353,7 @@ function Headlines() {
           {error ? (
             <p>{error}</p>
           ) : headlines.length > 0 ? (
-            headlines.map((article, index) => (
+            newsToShow.map((article, index) => (
               <div key={index} className="headline-item">
                 {article.urlToImage && article.urlToImage.startsWith("http") ? (
                   <img
@@ -357,8 +361,8 @@ function Headlines() {
                     src={article.urlToImage}
                     alt={article.title || "No Title"}
                     onError={(e) =>
-                      (e.target.src =
-                        "https://via.placeholder.com/400x200?text=No+Image")
+                    (e.target.src =
+                      "https://via.placeholder.com/400x200?text=No+Image")
                     }
                   />
                 ) : (

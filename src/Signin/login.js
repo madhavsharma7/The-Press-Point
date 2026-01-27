@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./login.css";
 import "./media-login.css";
 import { useNavigate } from "react-router-dom";
@@ -27,27 +27,6 @@ const AuthContainer = () => {
     };
   }, []);
 
-  // Initialize Google Sign-In
-  useEffect(() => {
-    if (!window.google) return;
-
-    window.google.accounts.id.initialize({
-      client_id:
-        "98047572173-vcdm3gt2mbfa29og5t6ba576oti1cgpe.apps.googleusercontent.com",
-      callback: handleGoogleLogin,
-    });
-
-    window.google.accounts.id.renderButton(
-      document.getElementById("google-btn"),
-      {
-        theme: "outline",
-        size: "large",
-        shape: "pill",
-        text: "signin_with",
-      }
-    );
-  }, []);
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const user = params.get("user");
@@ -61,20 +40,43 @@ const AuthContainer = () => {
   }, []);
 
   // Handle Google Sign-In
-  const handleGoogleLogin = (response) => {
+const handleGoogleLogin = useCallback(
+  (response) => {
     console.log("✅ Google Token:", response.credential);
 
-    const decoded = jwtDecode(response.credential); // ✅ Fixed function call
-    console.log("🔍 Decoded Google User:", decoded);
-
+    const decoded = jwtDecode(response.credential);
     const { name: userName, email: userEmail } = decoded;
 
-    localStorage.setItem("user", JSON.stringify({ name: userName, email: userEmail }));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ name: userName, email: userEmail })
+    );
     localStorage.setItem("google_token", response.credential);
 
-    localStorage.setItem("google_token", response.credential);
     navigate("/", { replace: true });
-  };
+  },
+  [navigate]
+);
+
+useEffect(() => {
+  if (!window.google) return;
+
+  window.google.accounts.id.initialize({
+    client_id:
+      "98047572173-vcdm3gt2mbfa29og5t6ba576oti1cgpe.apps.googleusercontent.com",
+    callback: handleGoogleLogin,
+  });
+
+  window.google.accounts.id.renderButton(
+    document.getElementById("google-btn"),
+    {
+      theme: "outline",
+      size: "large",
+      shape: "pill",
+      text: "signin_with",
+    }
+  );
+}, [handleGoogleLogin]);
 
   // After successful login or redirect
 

@@ -105,6 +105,11 @@
     text-align: center;
   }
 
+  .news-error{
+    margin-left: 58%;
+    margin-top: 55%;
+  }
+
   #footers-save {
     margin-top: 35vh !important;
   }

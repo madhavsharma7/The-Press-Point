@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Sports.css";
 import "./media-sports.css";
 import { Link, useNavigate } from "react-router-dom";
-import face from "../assets/img/login-avatar.png";
 import { toast } from "react-toastify";
 
 // ✅ Correct category & API URL
@@ -18,7 +17,7 @@ function Headlines() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [ ,setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
@@ -173,6 +172,7 @@ function Headlines() {
   const defaultNews = headlines.filter((article) =>
     article.title?.toLowerCase().includes("india"),
   );
+  const newsToShow = isUserSearch ? headlines : defaultNews;
 
   return (
     <div id="container">
@@ -258,96 +258,96 @@ function Headlines() {
         </div>
 
         {/* Mobile Sidebar */}
-           <div className={`sidebar-home ${sidebarOpen ? "active-home" : ""}`}>
-              <div className="sidebar-header-home">
-                {user ? (
-                  <>
-                    <span className="sidebar-user-home" onClick={handleLogout}>
-                      Hi, {user.name}
-                    </span>
-                    <button
-                      className="logout-btn-sidebar-home"
-                      onClick={handleLogout}
-                      title="Log Out"
-                    >
-                      <i className="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                  </>
-                ) : (
-                  <Link className="login-resp-home" to="/login">
-                    Log In
-                  </Link>
-                )}
-              </div>
-            
-              <div className="sidebar-menu-home"> </div>
-              <Link to="/" onClick={toggleSidebar}>
-                Home
+        <div className={`sidebar-home ${sidebarOpen ? "active-home" : ""}`}>
+          <div className="sidebar-header-home">
+            {user ? (
+              <>
+                <span className="sidebar-user-home" onClick={handleLogout}>
+                  Hi, {user.name}
+                </span>
+                <button
+                  className="logout-btn-sidebar-home"
+                  onClick={handleLogout}
+                  title="Log Out"
+                >
+                  <i className="fa-solid fa-right-from-bracket"></i>
+                </button>
+              </>
+            ) : (
+              <Link className="login-resp-home" to="/login">
+                Log In
               </Link>
-              <Link to="/Bus" onClick={toggleSidebar}>
-                Business
-              </Link>
-              <Link to="/Tech" onClick={toggleSidebar}>
-                Technology
-              </Link>
-              <Link to="/Enter" onClick={toggleSidebar}>
-                Entertainment
-              </Link>
-              <Link to="/Sports" onClick={toggleSidebar}>
-                Sports
-              </Link>
-              <Link to="/Science" onClick={toggleSidebar}>
-                Science
-              </Link>
-              <Link to="/Health" onClick={toggleSidebar}>
-                Health
-              </Link>
-              <Link to="/Save">Saved Articles</Link>
-              <Link to="/Sub">Subscribe</Link>
-            </div>
+            )}
           </div>
-          
-          {/* Navbar Navigation Links (Desktop) */}
-          <div className="navbar-links">
-            <ul>
-              <li>
-                <Link to="/" data-category="home">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/Bus" data-category="business">
-                  Business
-                </Link>
-              </li>
-              <li>
-                <Link to="/Tech" data-category="technology">
-                  Technology
-                </Link>
-              </li>
-              <li>
-                <Link to="/Enter" data-category="entertainment">
-                  Entertainment
-                </Link>
-              </li>
-              <li>
-                <Link to="/Sports" data-category="sports">
-                  Sports
-                </Link>
-              </li>
-              <li>
-                <Link to="/Science" data-category="science">
-                  Science
-                </Link>
-              </li>
-              <li>
-                <Link to="/Health" data-category="health">
-                  Health
-                </Link>
-              </li>
-            </ul>
-          </div>
-      
+
+          <div className="sidebar-menu-home"> </div>
+          <Link to="/" onClick={toggleSidebar}>
+            Home
+          </Link>
+          <Link to="/Bus" onClick={toggleSidebar}>
+            Business
+          </Link>
+          <Link to="/Tech" onClick={toggleSidebar}>
+            Technology
+          </Link>
+          <Link to="/Enter" onClick={toggleSidebar}>
+            Entertainment
+          </Link>
+          <Link to="/Sports" onClick={toggleSidebar}>
+            Sports
+          </Link>
+          <Link to="/Science" onClick={toggleSidebar}>
+            Science
+          </Link>
+          <Link to="/Health" onClick={toggleSidebar}>
+            Health
+          </Link>
+          <Link to="/Save">Saved Articles</Link>
+          <Link to="/Sub">Subscribe</Link>
+        </div>
+      </div>
+
+      {/* Navbar Navigation Links (Desktop) */}
+      <div className="navbar-links">
+        <ul>
+          <li>
+            <Link to="/" data-category="home">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/Bus" data-category="business">
+              Business
+            </Link>
+          </li>
+          <li>
+            <Link to="/Tech" data-category="technology">
+              Technology
+            </Link>
+          </li>
+          <li>
+            <Link to="/Enter" data-category="entertainment">
+              Entertainment
+            </Link>
+          </li>
+          <li>
+            <Link to="/Sports" data-category="sports">
+              Sports
+            </Link>
+          </li>
+          <li>
+            <Link to="/Science" data-category="science">
+              Science
+            </Link>
+          </li>
+          <li>
+            <Link to="/Health" data-category="health">
+              Health
+            </Link>
+          </li>
+        </ul>
+      </div>
+
 
       {/* ================== News Section ================== */}
       <main id="news-container">
@@ -410,7 +410,7 @@ function Headlines() {
           {error ? (
             <p>{error}</p>
           ) : headlines.length > 0 ? (
-            headlines.map((article, index) => (
+             newsToShow.map((article, index) => (
               <div key={index} className="headline-item">
                 {article.urlToImage && article.urlToImage.startsWith("http") ? (
                   <img
@@ -418,8 +418,8 @@ function Headlines() {
                     src={article.urlToImage}
                     alt={article.title || "No Title"}
                     onError={(e) =>
-                      (e.target.src =
-                        "https://via.placeholder.com/400x200?text=No+Image")
+                    (e.target.src =
+                      "https://via.placeholder.com/400x200?text=No+Image")
                     }
                   />
                 ) : (

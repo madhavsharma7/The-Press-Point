@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Save.css";
-import face from "../assets/img/login-avatar.png";
 import "./media-save.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { toast } from "react-toastify";
 
 function Save() {
-  const [headlines, setHeadlines] = useState([]);
+  const [headlines] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("india");
   const [searchOpen, setSearchOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
+  const [isUserSearch] = useState(false);
   const [savedArticles, setSavedArticles] = useState([]);
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
@@ -60,12 +60,14 @@ function Save() {
     }
   }, [user]);
 
-  const handleReadMore = (e, url) => {
+  const handleReadMore = (url) => {
     if (!user) {
-      e.preventDefault();
       toast("Please log in to read the article.");
       navigate("/login");
+      return;
     }
+
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const handleLogout = () => {
@@ -145,11 +147,6 @@ function Save() {
       triggerSearch();
     }
   };
-
-  const isUserSearch = searchQuery !== "india";
-  const defaultNews = headlines.filter((article) =>
-    article.title?.toLowerCase().includes("india"),
-  );
 
   return (
     <div id="container">
@@ -359,22 +356,22 @@ function Save() {
                       {article.description || "No description available."}
                     </p>
                     <div className="article-button-two">
-                      <div className="readmore-news-search ">
-                        <a
-                          href={article.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => handleReadMore(e, article.url)}
-                        >
-                          Read more
-                        </a>
-                      </div>
-                      <div
+                      <button
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleReadMore(article.url);
+                        }}
+                      >
+                        Read more
+                      </button>
+
+                      <button
+                        type="button"
                         className="delete-article"
                         onClick={() => handleDelete(article.url)}
                       >
-                        <a>Delete</a>
-                      </div>
+                        Delete
+                      </button>
                     </div>
                     <hr />
                   </div>
@@ -405,22 +402,26 @@ function Save() {
                 <h2 className="title-save">{article.title}</h2>
                 <p className="desc-save">{article.description}</p>
                 <div className="article-button-save">
-                  <div className="readmore-news-submit">
-                    <a
-                      href={article.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => handleReadMore(e, article.url)}
-                    >
-                      Read more
-                    </a>
-                  </div>
-                  <div
+                
+                  <button
+                    className="readmore-news-submit"
+                    onClick={() => handleReadMore(article.url)}
+                    type="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleReadMore(article.url);
+                    }}
+                  >
+                    Read more
+                  </button>
+
+                  <button
+                    type="button"
                     className="delete-article"
                     onClick={() => handleDelete(article.url)}
                   >
-                    <a>Delete</a>
-                  </div>
+                    Delete
+                  </button>
                 </div>
                 <hr />
               </div>

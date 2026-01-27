@@ -178,7 +178,7 @@
   #search-container-search {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 5% !important;
-    margin-top: 17vh !important;
+    margin-top: 12vh !important;
   }
 
   .img-container-search {
@@ -213,8 +213,37 @@
     margin-bottom: 0.8vh;
   }
 
+  /* Search results */
+
+  #search-results-title{
+   font-size: 4vw;
+  }
+
+  #search-results-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 8vh !important;
+    column-gap: 2% !important;
+    margin-top: 15% !important;
+  }
+
+  .img-news-search {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .h2-news-search {
+    font-size: 3.2vw;
+    margin-top: 2vh;
+  }
+
+  .p-news-search {
+    font-size: 2.5vw;
+    margin-top: 2vh;
+  }
+
+
   #footers-home {
-    margin-top: 140vh !important;
+    margin-top: 115vh !important;
   }
 
   .footers-logo-home {

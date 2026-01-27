@@ -45,6 +45,90 @@
     margin-left: 33vw;
   }
 
+  /* Search Result  */
+
+  /* .img-news-search-busi {
+    width: 100% !important;
+    height: 20vh !important;
+  } */
+
+
+  #search-results-title{
+   font-size: 4vw;
+  }
+
+  #search-results-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 15vh !important;
+    column-gap: 1% !important;   
+  }
+
+  .img-news-search-busi {
+    width: 90% !important;
+    height: 20vh !important;
+  }
+
+  .h2-news {
+  font-size: 3.2vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .p-news {
+    font-size: 2.5vw ;
+    margin-top: 2vh;
+  }
+
+
+  /* Headlines */
+  #headlines-container {
+    grid-template-columns: repeat(2, 2fr);
+    gap: 2%;
+  }
+
+  .image-business {
+    width: 100%;
+    height: 20vh !important;
+  }
+
+  .news-title {
+    font-size: 3.2vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .description {
+    font-size: 2.5vw !important;
+    margin-top: 2vh !important;
+    text-align: center;
+  }
+
+  .readmore-button {
+    font-size: 3vw !important;
+  }
+
+  .save-for-business button {
+    font-size: 3vw !important;
+    margin-bottom: 1.2vh;
+  }
+
+  #footer-first {
+    margin-top: 5vh;
+    height: 30%;
+  }
+
+  .footer-logo-name {
+    font-size: 4.5vw;
+    margin-top: 2%;
+  }
+
+  .footer-copyrights {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+    font-size: 2.5vw;
+
+  }
+
+
   /* Sidebar */
   .sidebar {
     display: inline-block;
@@ -112,49 +196,4 @@
     font-size: 4vw;
   }
 
-  #headlines-container {
-    grid-template-columns: repeat(2, 2fr);
-    gap: 2%;
-  }
-
-  .image-business {
-    width: 100%;
-    height: 20vh !important;
-  }
-
-  .news-title {
-    font-size: 3.2vw !important;
-    margin-top: 2vh !important;
-  }
-
-  .description {
-    font-size: 2.5vw !important;
-    margin-top: 2vh !important;
-    text-align: center;
-  }
-
-  .readmore-button {
-    font-size: 3vw !important;
-  }
-
-  .save-for-business button {
-    font-size: 3vw !important;
-    margin-bottom: 1.2vh;
-  }
-
-  #footer-first {
-    margin-top: 5vh;
-    height: 30%;
-  }
-
-  .footer-logo-name {
-    font-size: 4.5vw;
-    margin-top: 2%;
-  }
-
-  .footer-copyrights {
-    margin-top: 2%;
-    text-align: center;
-    font-size: 2.5vw;
-  }
 }
