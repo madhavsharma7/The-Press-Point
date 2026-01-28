@@ -6,6 +6,88 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Headline */
+  .headline-item-save {
+    margin-top: 5%;
+  }
+
+  .img-save {
+    width: 100%;
+    height: auto;
+  }
+
+  .title-save {
+    font-size: 3.2vw;
+    margin-top: 2vh;
+  }
+
+  .desc-save {
+    font-size: 2.5vw;
+    margin-top: 2vh;
+    text-align: center;
+  }
+
+  .readmore-news-submit {
+    margin-top: 2vh;
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .delete-article {
+    margin-top: 2vh;
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .news-error{
+    margin-left: 58%;
+    margin-top: 55%;
+  }
+  /* Search results */
+
+  #search-results-title {
+    font-size: 4vw;
+  }
+
+  #search-results-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 15vh !important;
+    column-gap: 2% !important;
+  }
+
+  .img-news-search {
+    width: 90% !important;
+    height: 20vh !important;
+  }
+
+  .h2-news {
+    font-size: 3.2vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .p-news {
+    font-size: 2.5vw;
+    margin-top: 2vh;
+  }
+  /* Footer */
+  #footers-save {
+    margin-top: 35vh !important;
+  }
+
+  .footers-logo-save {
+    font-size: 4.5vw !important;
+    margin-top: 2% !important;
+  }
+
+  .footer-copyright-save {
+    color: white;
+    margin-top: 2% !important;
+    text-align: center !important;
+    font-size: 2.5vw !important;
+    padding-bottom: 2% !important;
+ 
+  }
+
   /* Sidebar */
   .sidebar {
     display: inline-block;
@@ -73,57 +155,4 @@
     font-size: 4vw;
   }
 
-  .headline-item-save {
-    margin-top: 5%;
-  }
-
-  .img-save {
-    width: 100%;
-    height: auto;
-  }
-
-  .title-save {
-    font-size: 3.2vw;
-    margin-top: 2vh;
-  }
-
-  .desc-save {
-    font-size: 2.5vw;
-    margin-top: 2vh;
-    text-align: center;
-  }
-
-  .readmore-news-submit {
-    margin-top: 2vh;
-    font-size: 3vw;
-    text-align: center;
-  }
-
-  .delete-article {
-    margin-top: 2vh;
-    font-size: 3vw;
-    text-align: center;
-  }
-
-  .news-error{
-    margin-left: 58%;
-    margin-top: 55%;
-  }
-
-  #footers-save {
-    margin-top: 35vh !important;
-  }
-
-  .footers-logo-save {
-    font-size: 4.5vw !important;
-    margin-top: 2% !important;
-  }
-
-  .footer-copyright-save {
-    color: white;
-    margin-top: 2% !important;
-    text-align: center !important;
-    font-size: 2.5vw !important;
-    padding-bottom: 2% !important;
-  }
 }

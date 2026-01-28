@@ -45,73 +45,6 @@
     margin-left: 33vw;
   }
 
-  /* Sidebar */
-  .sidebar-home  {
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 60vw;
-    height: 100vh;
-    background-color: black;
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar-home .active-home  {
-    right: 0;
-    background-color: black;
-  }
-
-  .sidebar-home a {
-    text-align: center;
-    font-size: 4vw;
-    text-decoration: none;
-  }
-
-  .sidebar-menu-home  {
-    margin-top: -8vh;
-  }
-
-  .login-resp-home  {
-    padding-left: 36%;
-    padding-top: 6vh;
-  }
-
-  .sidebar-user-home  {
-    margin-top: 5vh;
-    color: white;
-    font-weight: 100;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-  }
-
-  .logout-btn-sidebar-home  {
-    margin-top: 5vh;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 4vw;
-    cursor: pointer;
-  }
-
-  .sidebar-user-home  {
-    text-align: center;
-  }
-
-  .sidebar-username-home  {
-    color: white;
-    font-size: 4.4vw;
-  }
-
-  .logout-icon-home  {
-    color: white;
-    font-size: 4vw;
-  }
-
   #headlines-container {
     grid-template-columns: repeat(2, 2fr);
     gap: 8%;
@@ -142,6 +75,35 @@
     margin-bottom: 1.2vh;
   }
 
+  /* Search results */
+
+  #search-results-title {
+    font-size: 4vw;
+  }
+
+  #search-results-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 15vh !important;
+    column-gap: 2% !important;
+  }
+
+  .img-news-search {
+    width: 90% !important;
+    height: 20vh !important;
+  }
+
+  .h2-news {
+    font-size: 3.2vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .p-news {
+    font-size: 2.5vw;
+    margin-top: 2vh;
+  }
+
+  /* Footer */
+
   #footer-enter {
     margin-top: 10vh;
     height: 30%;
@@ -158,4 +120,72 @@
     text-align: center;
     font-size: 2.5vw;
   }
+
+  /* Sidebar */
+  .sidebar-home {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60vw;
+    height: 100vh;
+    background-color: black;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-home .active-home {
+    right: 0;
+    background-color: black;
+  }
+
+  .sidebar-home a {
+    text-align: center;
+    font-size: 4vw;
+    text-decoration: none;
+  }
+
+  .sidebar-menu-home {
+    margin-top: -8vh;
+  }
+
+  .login-resp-home {
+    padding-left: 36%;
+    padding-top: 6vh;
+  }
+
+  .sidebar-user-home {
+    margin-top: 5vh;
+    color: white;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .logout-btn-sidebar-home {
+    margin-top: 5vh;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 4vw;
+    cursor: pointer;
+  }
+
+  .sidebar-user-home {
+    text-align: center;
+  }
+
+  .sidebar-username-home {
+    color: white;
+    font-size: 4.4vw;
+  }
+
+  .logout-icon-home {
+    color: white;
+    font-size: 4vw;
+  }
+
 }

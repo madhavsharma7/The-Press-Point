@@ -168,7 +168,7 @@ function Headlines() {
     }
   };
 
-const isUserSearch = searchQuery !== "india";
+  const isUserSearch = searchQuery !== "india";
   const defaultNews = headlines.filter((article) =>
     article.title?.toLowerCase().includes("india"),
   );
@@ -253,27 +253,27 @@ const isUserSearch = searchQuery !== "india";
         </div>
 
         {/* Mobile Sidebar */}
-               <div className={`sidebar-home ${sidebarOpen ? "active-home" : ""}`}>
-                 <div className="sidebar-header-home">
-                   {user ? (
-                     <>
-                       <span className="sidebar-user-home" onClick={handleLogout}>
-                         Hi, {user.name}
-                       </span>
-                       <button
-                         className="logout-btn-sidebar-home"
-                         onClick={handleLogout}
-                         title="Log Out"
-                       >
-                         <i className="fa-solid fa-right-from-bracket"></i>
-                       </button>
-                     </>
-                   ) : (
-                     <Link className="login-resp-home" to="/login">
-                       Log In
-                     </Link>
-                   )}
-                 </div>
+        <div className={`sidebar-home ${sidebarOpen ? "active-home" : ""}`}>
+          <div className="sidebar-header-home">
+            {user ? (
+              <>
+                <span className="sidebar-user-home" onClick={handleLogout}>
+                  Hi, {user.name}
+                </span>
+                <button
+                  className="logout-btn-sidebar-home"
+                  onClick={handleLogout}
+                  title="Log Out"
+                >
+                  <i className="fa-solid fa-right-from-bracket"></i>
+                </button>
+              </>
+            ) : (
+              <Link className="login-resp-home" to="/login">
+                Log In
+              </Link>
+            )}
+          </div>
 
           <div className="sidebar-menu"></div>
           <Link to="/" onClick={toggleSidebar}>
@@ -343,6 +343,58 @@ const isUserSearch = searchQuery !== "india";
         </div>
       </div>
 
+      {/* Search Results Section */}
+      {isUserSearch && (
+        <>
+          <h1 className="latest-search" id="search-results-title">
+            Search Results
+          </h1>
+          <hr className="title-hr-search" />
+          <div id="search-results-box">
+            {searchResults.length > 0 ? (
+              searchResults.map((article, index) => (
+                <div key={index} className="news-item-search">
+                  <div className="img-container-search">
+                    <img
+                      className="img-news-search"
+                      src={
+                        article.urlToImage ||
+                        "https://via.placeholder.com/400x200?text=No+Image"
+                      }
+                      alt={article.title || "No Title"}
+                    />
+                  </div>
+                  <h2 className="h2-news">{article.title || "Untitled"}</h2>
+                  <p className="p-news">
+                    {article.description || "No description available."}
+                  </p>
+                  <div className="article-button-two">
+                    <div className="readmore-news-search ">
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => handleReadMore(e, article.url)}
+                      >
+                        Read more
+                      </a>
+                    </div>
+                    <p className="save-latest-search">
+                      <button onClick={() => handleSave(article)}>
+                        Save Article
+                      </button>
+                    </p>
+                  </div>
+                  <hr />
+                </div>
+              ))
+            ) : (
+              <p className="news-error">No Search Results Available</p>
+            )}
+          </div>
+        </>
+      )}
+
       {/* ================== News Section ================== */}
       <main id="news-container">
         <h1>Science Headlines</h1>
@@ -360,8 +412,8 @@ const isUserSearch = searchQuery !== "india";
                     src={article.urlToImage}
                     alt={article.title || "No Title"}
                     onError={(e) =>
-                      (e.target.src =
-                        "https://via.placeholder.com/400x200?text=No+Image")
+                    (e.target.src =
+                      "https://via.placeholder.com/400x200?text=No+Image")
                     }
                   />
                 ) : (
@@ -397,58 +449,6 @@ const isUserSearch = searchQuery !== "india";
             <p>No science news available.</p>
           )}
         </div>
-
-        {/* Search Results Section */}
-        {isUserSearch && (
-          <>
-            <h1 className="latest-search" id="search-results-title">
-              Search Results
-            </h1>
-            <hr className="title-hr-search" />
-            <div id="search-results-box">
-              {searchResults.length > 0 ? (
-                searchResults.map((article, index) => (
-                  <div key={index} className="news-item-search">
-                    <div className="img-container-search">
-                      <img
-                        className="img-news-search"
-                        src={
-                          article.urlToImage ||
-                          "https://via.placeholder.com/400x200?text=No+Image"
-                        }
-                        alt={article.title || "No Title"}
-                      />
-                    </div>
-                    <h2 className="h2-news">{article.title || "Untitled"}</h2>
-                    <p className="p-news">
-                      {article.description || "No description available."}
-                    </p>
-                    <div className="article-button-two">
-                      <div className="readmore-news-search ">
-                        <a
-                          href={article.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => handleReadMore(e, article.url)}
-                        >
-                          Read more
-                        </a>
-                      </div>
-                      <p className="save-latest-search">
-                        <button onClick={() => handleSave(article)}>
-                          Save Article
-                        </button>
-                      </p>
-                    </div>
-                    <hr />
-                  </div>
-                ))
-              ) : (
-                <p className="news-error">No Search Results Available</p>
-              )}
-            </div>
-          </>
-        )}
       </main>
 
       {/*Footer*/}

@@ -41,99 +41,7 @@
     font-weight: 500;
   }
 
-  /* Sidebar  */
-  .hamburger {
-    overflow-y: scroll;
-    display: flex;
-    color: black;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .hamburger .line {
-    height: 3px;
-    width: 100%;
-    background-color: black;
-    border-radius: 5px;
-  }
-
-  .hamburger.active {
-    color: white;
-    background-color: black;
-  }
-
-  .hamburger.active .line {
-    background-color: white;
-    color: white;
-  }
-
-  .sidebar-home {
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 60vw;
-    height: 100vh;
-    background-color: black;
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar-home.active-home {
-    right: 0;
-    background-color: black;
-  }
-
-  .sidebar-home a {
-    text-align: center;
-    font-size: 4vw;
-    /* color: white; */
-    text-decoration: none;
-  }
-
-  .sidebar-menu-home {
-    margin-top: -9vh;
-  }
-
-  .login-resp-home {
-    padding-left: 36%;
-    padding-top: 8vh;
-  }
-
-  .sidebar-user-home {
-    margin-top: 5vh;
-    color: white;
-    font-size: 4vw;
-    font-weight: 100;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-  }
-
-  .logout-btn-sidebar-home {
-    margin-top: 5vh;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 4vw;
-    cursor: pointer;
-  }
-
-  .sidebar-user-home {
-    text-align: center;
-    margin-left: 1vw;
-  }
-
-  .logout-icon {
-    color: white;
-    font-size: 4vw;
-  }
+  /* Headlines */
 
   #news-container h1 {
     font-size: 4vw;
@@ -175,6 +83,8 @@
     margin-bottom: 3vh;
   }
 
+  /* Latest News */
+
   #search-container-search {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 5% !important;
@@ -215,8 +125,8 @@
 
   /* Search results */
 
-  #search-results-title{
-   font-size: 4vw;
+  #search-results-title {
+    font-size: 4vw;
   }
 
   #search-results-box {
@@ -241,6 +151,7 @@
     margin-top: 2vh;
   }
 
+  /* Footer */
 
   #footers-home {
     margin-top: 115vh !important;
@@ -258,12 +169,108 @@
     padding-bottom: 2% !important;
   }
 
+    /* Sidebar  */
+    .hamburger {
+      overflow-y: scroll;
+      display: flex;
+      color: black;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .hamburger .line {
+      height: 3px;
+      width: 100%;
+      background-color: black;
+      border-radius: 5px;
+    }
+
+    .hamburger.active {
+      color: white;
+      background-color: black;
+    }
+
+    .hamburger.active .line {
+      background-color: white;
+      color: white;
+    }
+
+    .sidebar-home {
+      display: inline-block;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 60vw;
+      height: 100vh;
+      background-color: black;
+      transition: right 0.3s ease-in-out;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-home.active-home {
+      right: 0;
+      background-color: black;
+    }
+
+    .sidebar-home a {
+      text-align: center;
+      font-size: 4vw;
+      /* color: white; */
+      text-decoration: none;
+    }
+
+    .sidebar-menu-home {
+      margin-top: -9vh;
+    }
+
+    .login-resp-home {
+      padding-left: 36%;
+      padding-top: 8vh;
+    }
+
+    .sidebar-user-home {
+      margin-top: 5vh;
+      color: white;
+      font-size: 4vw;
+      font-weight: 100;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+
+    .logout-btn-sidebar-home {
+      margin-top: 5vh;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 4vw;
+      cursor: pointer;
+    }
+
+    .sidebar-user-home {
+      text-align: center;
+      margin-left: 1vw;
+    }
+
+    .logout-icon {
+      color: white;
+      font-size: 4vw;
+    }
   .sidebar-header a {
     margin-top: 2vh !important;
     text-align: center !important;
     font-size: 3vw !important;
     font-weight: normal !important;
   }
+
+
+  
 }
 
 @media screen and (max-width: 500px) {
