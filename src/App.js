@@ -8,8 +8,8 @@ import ScienceSector from "./Science/Science.js";
 import SportsSector from "./Sports/Sports.js";
 import Technology from "./Technology/Tech.js";
 import Signin from "./Signin/login.js";
-import Subscribe from "./Sub/Sub.js"
-import Articlesave from "./ArticleSave/Save.js"
+import Subscribe from "./Sub/Sub.js";
+import Articlesave from "./ArticleSave/Save.js";
 
 function App() {
   return (
