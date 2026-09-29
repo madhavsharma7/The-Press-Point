@@ -1,9 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useApp } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Header = ({ onSearch }) => {
-  const { user, logout, darkMode, toggleTheme, savedArticles } = useApp();
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+    return (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
+  });
+
+  const [savedArticles, setSavedArticles] = useState([]);
+
+  // Sync dark mode class with DOM
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      body.classList.add("dark");
+      body.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      body.classList.remove("dark");
+      body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev);
+  };
+
+  // Sync user and saved articles count with localStorage
+  useEffect(() => {
+    const syncState = () => {
+      try {
+        const storedUser = localStorage.getItem("user");
+        const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+        setUser(parsedUser);
+
+        if (parsedUser && parsedUser.name) {
+          const savedKey = `savedArticles_${parsedUser.name}`;
+          const stored = JSON.parse(localStorage.getItem(savedKey)) || [];
+          setSavedArticles(stored);
+        } else {
+          setSavedArticles([]);
+        }
+      } catch {
+        setUser(null);
+        setSavedArticles([]);
+      }
+    };
+
+    syncState();
+    window.addEventListener("storage", syncState);
+    window.addEventListener("bookmarkUpdated", syncState);
+
+    return () => {
+      window.removeEventListener("storage", syncState);
+      window.removeEventListener("bookmarkUpdated", syncState);
+    };
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("google_token");
+    setUser(null);
+    setSavedArticles([]);
+    toast.success("Logged out successfully");
+    window.dispatchEvent(new Event("bookmarkUpdated"));
+  };
   const [searchOpen, setSearchOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);

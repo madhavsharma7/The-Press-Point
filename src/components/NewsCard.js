@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useApp } from "../context/AppContext";
 
-const NewsCard = ({ article }) => {
-  const { user, saveArticle, removeArticle, isArticleSaved } = useApp();
+const NewsCard = ({ article, onRemove }) => {
   const navigate = useNavigate();
 
+  const getUser = () => {
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const checkIsSaved = () => {
+    const user = getUser();
+    if (!user || !user.name) return false;
+    try {
+      const savedKey = `savedArticles_${user.name}`;
+      const saved = JSON.parse(localStorage.getItem(savedKey)) || [];
+      return saved.some((a) => a.url === article.url);
+    } catch {
+      return false;
+    }
+  };
+
+  const [saved, setSaved] = useState(checkIsSaved);
+
   // Handle fallback image if none provided or fails to load
-  const [imgSrc, setImgSrc] = React.useState(
+  const [imgSrc, setImgSrc] = useState(
     article.urlToImage || "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   );
 
@@ -17,6 +38,7 @@ const NewsCard = ({ article }) => {
   };
 
   const handleReadMore = (e) => {
+    const user = getUser();
     if (!user) {
       e.preventDefault();
       toast.info("Please sign in to read full articles");
@@ -24,19 +46,40 @@ const NewsCard = ({ article }) => {
     }
   };
 
-  const saved = isArticleSaved(article.url);
-
   const handleBookmarkToggle = () => {
+    const user = getUser();
     if (!user) {
       toast.info("Please sign in to bookmark articles");
       navigate("/login");
       return;
     }
-    
+
+    const savedKey = `savedArticles_${user.name}`;
+    let current = [];
+    try {
+      current = JSON.parse(localStorage.getItem(savedKey)) || [];
+    } catch {}
+
     if (saved) {
-      removeArticle(article.url);
+      const updated = current.filter((a) => a.url !== article.url);
+      localStorage.setItem(savedKey, JSON.stringify(updated));
+      setSaved(false);
+      toast.success("Article removed from bookmarks");
+      window.dispatchEvent(new Event("bookmarkUpdated"));
+      if (onRemove) {
+        onRemove(article.url);
+      }
     } else {
-      saveArticle(article);
+      const exists = current.some((a) => a.url === article.url);
+      if (exists) {
+        toast.info("Article already saved in your bookmarks");
+        return;
+      }
+      const updated = [article, ...current];
+      localStorage.setItem(savedKey, JSON.stringify(updated));
+      setSaved(true);
+      toast.success("Article bookmarked successfully!");
+      window.dispatchEvent(new Event("bookmarkUpdated"));
     }
   };
 

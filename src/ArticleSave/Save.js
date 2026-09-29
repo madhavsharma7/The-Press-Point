@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NewsCard from "../components/NewsCard";
-import { useApp } from "../context/AppContext";
 
 function Save() {
-  const { user, savedArticles } = useApp();
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const [savedArticles, setSavedArticles] = useState(() => {
+    try {
+      const u = JSON.parse(localStorage.getItem("user"));
+      if (!u || !u.name) return [];
+      return JSON.parse(localStorage.getItem(`savedArticles_${u.name}`)) || [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    const refreshSaved = () => {
+      try {
+        const u = JSON.parse(localStorage.getItem("user"));
+        setUser(u);
+        if (u && u.name) {
+          const stored = JSON.parse(localStorage.getItem(`savedArticles_${u.name}`)) || [];
+          setSavedArticles(stored);
+        } else {
+          setSavedArticles([]);
+        }
+      } catch {
+        setUser(null);
+        setSavedArticles([]);
+      }
+    };
+
+    window.addEventListener("bookmarkUpdated", refreshSaved);
+    window.addEventListener("storage", refreshSaved);
+    return () => {
+      window.removeEventListener("bookmarkUpdated", refreshSaved);
+      window.removeEventListener("storage", refreshSaved);
+    };
+  }, []);
+
+  const handleRemove = (url) => {
+    setSavedArticles((prev) => prev.filter((a) => a.url !== url));
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-slate-950 transition-colors">
@@ -34,7 +79,7 @@ function Save() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {savedArticles.map((article, index) => (
-              <NewsCard key={index} article={article} />
+              <NewsCard key={article.url || index} article={article} onRemove={handleRemove} />
             ))}
           </div>
         )}

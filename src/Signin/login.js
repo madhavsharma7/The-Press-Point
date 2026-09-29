@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
-import { useApp } from "../context/AppContext";
 
 const AuthContainer = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -16,7 +15,6 @@ const AuthContainer = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { setUser } = useApp();
   const API_BASE = "https://the-press-point.onrender.com";
 
   // Check URL params for user data (OAuth redirect)
@@ -27,12 +25,12 @@ const AuthContainer = () => {
 
     if (userParam && emailParam) {
       const userData = { name: userParam, email: emailParam };
-      setUser(userData);
       localStorage.setItem("user", JSON.stringify(userData));
+      window.dispatchEvent(new Event("storage"));
       window.history.replaceState({}, document.title, "/");
       navigate("/");
     }
-  }, [navigate, setUser]);
+  }, [navigate]);
 
   // Google Sign-In setup
   useEffect(() => {
@@ -45,9 +43,9 @@ const AuthContainer = () => {
             const decoded = jwtDecode(response.credential);
             const userData = { name: decoded.name, email: decoded.email };
 
-            setUser(userData);
             localStorage.setItem("user", JSON.stringify(userData));
             localStorage.setItem("google_token", response.credential);
+            window.dispatchEvent(new Event("storage"));
 
             toast.success(`Welcome back, ${decoded.name}!`);
             navigate("/", { replace: true });
@@ -68,7 +66,7 @@ const AuthContainer = () => {
     // Small delay to ensure google script is loaded
     const timeoutId = setTimeout(initGoogleAuth, 500);
     return () => clearTimeout(timeoutId);
-  }, [navigate, setUser]);
+  }, [navigate]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -107,8 +105,8 @@ const AuthContainer = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        setUser(data.user);
         localStorage.setItem("user", JSON.stringify(data.user));
+        window.dispatchEvent(new Event("storage"));
         toast.success(`Welcome back, ${data.user.name}!`);
         navigate("/");
       } else {

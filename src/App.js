@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AppProvider } from "./context/AppContext";
 import Home from "./Home/index";
 import Bus from "./Business/Busi.js";
 import Entertainment from "./Entertainment/Enter.js";
@@ -14,8 +13,7 @@ import Articlesave from "./ArticleSave/Save.js";
 
 function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
+    <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,7 +29,6 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
-    </AppProvider>
   );
 }
 
