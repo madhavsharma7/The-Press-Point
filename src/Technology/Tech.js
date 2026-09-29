@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const category = "technology";
 const country = "in";
-const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
+const HEADLINES_URL = `https://raw.githubusercontent.com/SauravKanchan/NewsAPI/master/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
   const [headlines, setHeadlines] = useState([]);

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 // ✅ Correct category & API URL
 const category = "sports";
 const country = "in";
-const API_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
+const API_URL = `https://raw.githubusercontent.com/SauravKanchan/NewsAPI/master/top-headlines/category/${category}/${country}.json`;
 
 function Headlines() {
   const [headlines, setHeadlines] = useState([]);

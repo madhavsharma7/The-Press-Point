@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const category = "general";
 const country = "in";
-const HEADLINES_URL = `https://saurav.tech/NewsAPI/top-headlines/category/${category}/${country}.json`;
+const HEADLINES_URL = `https://raw.githubusercontent.com/SauravKanchan/NewsAPI/master/top-headlines/category/${category}/${country}.json`;
 
 function App() {
   const [headlines, setHeadlines] = useState([]);
@@ -330,58 +330,60 @@ function App() {
         </div>
       </div>
 
-          {/* Search Results Section */}
-        {isUserSearch && (
-          <>
-            <h1 className="latest-search" id="search-results-title">
-              Search Results
-            </h1>
-            <hr className="title-hr-search" />
-            <div id="search-results-box">
-              {searchResults.length > 0 ? (
-                searchResults.map((article, index) => (
-                  <div key={index} className="news-item-search">
-                    <div className="img-container-search">
-                      <img
-                        className="img-news-search"
-                        src={
-                          article.urlToImage ||
-                          "https://via.placeholder.com/400x200?text=No+Image"
-                        }
-                        alt={article.title || "No Title"}
-                      />
-                    </div>
-                    <h2 className="h2-news-search">{article.title || "Untitled"}</h2>
-                    <p className="p-news-search">
-                      {article.description || "No description available."}
-                    </p>
-                    <div className="article-button-two">
-                      <div className="readmore-news-search">
-                        <a
-                          href={article.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => handleReadMore(e, article.url)}
-                        >
-                          Read more
-                        </a>
-                      </div>
-                      <p className="save-latest-search">
-                        <button onClick={() => handleSave(article)}>
-                          Save Article
-                        </button>
-                      </p>
-                    </div>
-                    <hr />
+      {/* Search Results Section */}
+      {isUserSearch && (
+        <>
+          <h1 className="latest-search" id="search-results-title">
+            Search Results
+          </h1>
+          <hr className="title-hr-search" />
+          <div id="search-results-box">
+            {searchResults.length > 0 ? (
+              searchResults.map((article, index) => (
+                <div key={index} className="news-item-search">
+                  <div className="img-container-search">
+                    <img
+                      className="img-news-search"
+                      src={
+                        article.urlToImage ||
+                        "https://via.placeholder.com/400x200?text=No+Image"
+                      }
+                      alt={article.title || "No Title"}
+                    />
                   </div>
-                ))
-              ) : (
-                <p className="news-error">No Search Results Available</p>
-              )}
-            </div>
-          </>
-        )}
-        
+                  <h2 className="h2-news-search">
+                    {article.title || "Untitled"}
+                  </h2>
+                  <p className="p-news-search">
+                    {article.description || "No description available."}
+                  </p>
+                  <div className="article-button-two">
+                    <div className="readmore-news-search">
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => handleReadMore(e, article.url)}
+                      >
+                        Read more
+                      </a>
+                    </div>
+                    <p className="save-latest-search">
+                      <button onClick={() => handleSave(article)}>
+                        Save Article
+                      </button>
+                    </p>
+                  </div>
+                  <hr />
+                </div>
+              ))
+            ) : (
+              <p className="news-error">No Search Results Available</p>
+            )}
+          </div>
+        </>
+      )}
+
       {/* News Container */}
       <main id="news-container">
         <h1>Top Headlines</h1>
